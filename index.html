@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS — Premium Watch Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     TOP ANNOUNCEMENT BAR
+═══════════════════════════════════════════ -->
+<div class="announce-bar">
+    <span>🎁 Free shipping on orders above ₹999</span>
+    <span class="sep">|</span>
+    <span>⚡ Use code <strong>CHRONOS10</strong> for 10% off</span>
+    <span class="sep">|</span>
+    <span>🏆 2-Year Warranty on all watches</span>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+    <div class="nav-wrap">
+
+        <!-- Logo -->
+        <a class="logo" href="#">
+            <div class="logo-icon">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="15" cy="15" r="9"  stroke="currentColor" stroke-width="1"/>
+                    <line x1="15" y1="7"  x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="15" cy="15" r="1.8" fill="currentColor"/>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-name">CHRONOS</div>
+                <div class="logo-sub">Fine Timepieces</div>
+            </div>
+        </a>
+
+        <!-- Search -->
+        <div class="nav-search-wrap">
+            <div class="nav-search">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search for watches..." autocomplete="off">
+                <button class="search-clear-btn" id="searchClearBtn" style="display:none">✕</button>
+            </div>
+            <!-- Search suggestions dropdown (optional future) -->
+        </div>
+
+        <!-- Right Icons -->
+        <div class="nav-icons">
+            <!-- Wishlist -->
+            <button class="nav-icon-btn" id="wishlistNavBtn" title="Wishlist">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <span class="badge" id="wishlistBadge">0</span>
+            </button>
+
+            <!-- Cart -->
+            <button class="nav-icon-btn cart-icon-btn" id="cartNavBtn" title="Cart">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 01-8 0"/>
+                </svg>
+                <span class="badge cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO BANNER
+═══════════════════════════════════════════ -->
+<section class="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-inner">
+        <div class="hero-text">
+            <p class="hero-eyebrow">New 2025 Collection</p>
+            <h1 class="hero-heading">Wear Time.<br><em>Own Eternity.</em></h1>
+            <p class="hero-para">Curated luxury watches from Swiss & Japanese masters. Every second, beautifully counted.</p>
+            <div class="hero-btns">
+                <button class="btn-hero-primary" onclick="scrollToProducts()">Shop Now →</button>
+                <button class="btn-hero-ghost">View Lookbook</button>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-num">12K+</span><span class="stat-lbl">Happy Customers</span></div>
+            <div class="stat-item"><span class="stat-num">500+</span><span class="stat-lbl">Watch Models</span></div>
+            <div class="stat-item"><span class="stat-num">4.9★</span><span class="stat-lbl">Average Rating</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT — SIDEBAR + PRODUCTS
+═══════════════════════════════════════════ -->
+<main class="main-content" id="shopSection">
+    <div class="shop-layout">
+
+        <!-- ── SIDEBAR FILTERS ── -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Filters</h3>
+                <button class="clear-all-filters" id="clearAllFilters">Clear All</button>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="filter-group">
+                <h4 class="filter-title">Price Range</h4>
+                <label class="filter-radio"><input type="radio" name="price" value="all"    checked> All Prices</label>
+                <label class="filter-radio"><input type="radio" name="price" value="budget"> Under ₹1,000</label>
+                <label class="filter-radio"><input type="radio" name="price" value="mid">    ₹1,000 – ₹5,000</label>
+                <label class="filter-radio"><input type="radio" name="price" value="luxury"> Above ₹5,000</label>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="filter-group">
+                <h4 class="filter-title">Minimum Rating</h4>
+                <label class="filter-radio"><input type="radio" name="rating" value="0"   checked> All Ratings</label>
+                <label class="filter-radio"><input type="radio" name="rating" value="4.5"> 4.5★ & above</label>
+                <label class="filter-radio"><input type="radio" name="rating" value="4">   4★ & above</label>
+                <label class="filter-radio"><input type="radio" name="rating" value="3.5"> 3.5★ & above</label>
+            </div>
+
+            <!-- Color Filter -->
+            <div class="filter-group">
+                <h4 class="filter-title">Color</h4>
+                <div class="color-filter-grid" id="colorFilterGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="filter-group">
+                <h4 class="filter-title">Category</h4>
+                <label class="filter-check"><input type="checkbox" value="Luxury"  class="cat-filter"> Luxury</label>
+                <label class="filter-check"><input type="checkbox" value="Sport"   class="cat-filter"> Sport</label>
+                <label class="filter-check"><input type="checkbox" value="Vintage" class="cat-filter"> Vintage</label>
+                <label class="filter-check"><input type="checkbox" value="Casual"  class="cat-filter"> Casual</label>
+                <label class="filter-check"><input type="checkbox" value="Premium" class="cat-filter"> Premium</label>
+            </div>
+
+            <!-- Mobile close -->
+            <button class="sidebar-close-mobile" id="sidebarCloseMobile">✕ Close</button>
+        </aside>
+
+        <!-- ── PRODUCTS AREA ── -->
+        <div class="products-area">
+
+            <!-- Sort & Toggle bar -->
+            <div class="products-topbar">
+                <div class="topbar-left">
+                    <button class="filter-toggle-btn" id="filterToggleBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                        Filters
+                    </button>
+                    <span class="result-count" id="resultCount">12 products</span>
+                </div>
+                <div class="topbar-right">
+                    <label class="sort-label">Sort by:</label>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="default">Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="rating">Top Rated</option>
+                        <option value="discount">Highest Discount</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="products-grid" id="productsGrid"></div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults" style="display:none">
+                <div class="no-results-emoji">🔍</div>
+                <h3>No watches found</h3>
+                <p>Try adjusting your filters or search terms.</p>
+                <button onclick="hardReset()" class="btn-reset-all">Reset Everything</button>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<!-- ═══════════════════════════════════════════
+     RELATED / RECOMMENDED SECTIONS
+═══════════════════════════════════════════ -->
+<section class="reco-section" id="recoSection" style="display:none">
+    <div class="reco-inner">
+        <h2 class="reco-title">Related Products</h2>
+        <div class="reco-grid" id="relatedGrid"></div>
+        <h2 class="reco-title" style="margin-top:3rem">Customers Also Bought</h2>
+        <div class="reco-grid" id="alsoBoughtGrid"></div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCT MODAL
+═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay"></div>
+<div class="product-modal" id="productModal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="modal-body">
+        <!-- LEFT: Gallery -->
+        <div class="modal-left">
+            <div class="gallery-zoom-wrap" id="galleryZoomWrap">
+                <img id="galleryMainImg" src="" alt="" class="gallery-main">
+                <div class="zoom-lens" id="zoomLens"></div>
+                <div class="zoom-result" id="zoomResult"></div>
+            </div>
+            <div class="gallery-thumbs-row" id="galleryThumbsRow"></div>
+        </div>
+
+        <!-- RIGHT: Details -->
+        <div class="modal-right">
+            <div class="modal-breadcrumb">
+                <span>Watches</span> / <span id="mBreadCat"></span> / <span id="mBreadName"></span>
+            </div>
+
+            <h2 class="modal-prod-name" id="mName"></h2>
+
+            <!-- Rating summary -->
+            <div class="modal-rating-row" id="mRatingRow"></div>
+
+            <!-- Stock & Delivery -->
+            <div class="stock-delivery" id="mStockDelivery"></div>
+
+            <!-- Pricing -->
+            <div class="modal-price-block" id="mPriceBlock"></div>
+
+            <!-- Colors -->
+            <div class="modal-colors-block" id="mColorsBlock"></div>
+
+            <!-- Description -->
+            <p class="modal-description" id="mDesc"></p>
+
+            <!-- Specs -->
+            <div class="modal-specs-block" id="mSpecsBlock"></div>
+
+            <!-- Action Buttons -->
+            <div class="modal-action-btns">
+                <button class="btn-modal-cart" id="mAddCart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    Add to Cart
+                </button>
+                <button class="btn-modal-buy" id="mBuyNow">
+                    Buy Now →
+                </button>
+            </div>
+
+            <!-- Rating Breakdown -->
+            <div class="rating-breakdown" id="mRatingBreakdown"></div>
+
+            <!-- Reviews -->
+            <div class="reviews-section" id="mReviewsSection">
+                <div class="reviews-header">
+                    <h4>Customer Reviews</h4>
+                    <select class="review-sort-select" id="reviewSortSelect">
+                        <option value="latest">Latest</option>
+                        <option value="highest">Highest Rated</option>
+                        <option value="lowest">Lowest Rated</option>
+                    </select>
+                </div>
+                <div class="reviews-list" id="mReviewsList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CHECKOUT MODAL
+═══════════════════════════════════════════ -->
+<div class="checkout-overlay" id="checkoutOverlay"></div>
+<div class="checkout-modal" id="checkoutModal">
+    <button class="checkout-close" id="checkoutClose">✕</button>
+
+    <div class="checkout-layout">
+        <!-- Left: Form -->
+        <div class="checkout-form-side">
+            <h3 class="checkout-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Delivery Address
+            </h3>
+            <div class="form-grid">
+                <input type="text"  class="checkout-input" id="ckName"    placeholder="Full Name *">
+                <input type="tel"   class="checkout-input" id="ckPhone"   placeholder="Phone Number *">
+                <input type="email" class="checkout-input full-span"      placeholder="Email Address">
+                <input type="text"  class="checkout-input full-span" id="ckAddress"  placeholder="Street Address *">
+                <input type="text"  class="checkout-input" id="ckCity"    placeholder="City *">
+                <input type="text"  class="checkout-input" id="ckPincode" placeholder="Pincode *">
+                <input type="text"  class="checkout-input" placeholder="State">
+            </div>
+
+            <h3 class="checkout-title" style="margin-top:1.75rem">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                Payment Method
+            </h3>
+            <div class="payment-options" id="paymentOptions">
+                <label class="payment-opt active" data-method="card">
+                    <input type="radio" name="payment" value="card" checked>
+                    <div class="pay-icon">💳</div>
+                    <div class="pay-info"><strong>Credit / Debit Card</strong><small>Visa, Mastercard, Rupay</small></div>
+                </label>
+                <label class="payment-opt" data-method="upi">
+                    <input type="radio" name="payment" value="upi">
+                    <div class="pay-icon">📱</div>
+                    <div class="pay-info"><strong>UPI</strong><small>GPay, PhonePe, Paytm</small></div>
+                </label>
+                <label class="payment-opt" data-method="cod">
+                    <input type="radio" name="payment" value="cod">
+                    <div class="pay-icon">💵</div>
+                    <div class="pay-info"><strong>Cash on Delivery</strong><small>Pay when delivered</small></div>
+                </label>
+                <label class="payment-opt" data-method="emi">
+                    <input type="radio" name="payment" value="emi">
+                    <div class="pay-icon">🏦</div>
+                    <div class="pay-info"><strong>EMI</strong><small>No-cost EMI available</small></div>
+                </label>
+            </div>
+
+            <!-- Card form (shown when card is selected) -->
+            <div class="card-form" id="cardForm">
+                <input type="text" class="checkout-input full-span" placeholder="Card Number">
+                <input type="text" class="checkout-input" placeholder="MM / YY">
+                <input type="text" class="checkout-input" placeholder="CVV">
+                <input type="text" class="checkout-input full-span" placeholder="Name on Card">
+            </div>
+
+            <!-- UPI form -->
+            <div class="card-form" id="upiForm" style="display:none">
+                <input type="text" class="checkout-input full-span" placeholder="UPI ID (e.g. name@upi)">
+            </div>
+        </div>
+
+        <!-- Right: Order Summary -->
+        <div class="checkout-summary-side">
+            <h3 class="checkout-title">Order Summary</h3>
+            <div class="order-items" id="checkoutItems"></div>
+            <div class="order-totals" id="checkoutTotals"></div>
+            <button class="place-order-btn" id="placeOrderBtn">
+                🔒 Place Order
+            </button>
+            <p class="secure-note">🔐 Secured by 256-bit SSL encryption</p>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ORDER SUCCESS POPUP
+═══════════════════════════════════════════ -->
+<div class="success-overlay" id="successOverlay"></div>
+<div class="success-popup" id="successPopup">
+    <div class="success-icon">✅</div>
+    <h2>Order Placed!</h2>
+    <p id="successMsg">Your order has been confirmed.</p>
+    <div class="success-order-id" id="successOrderId"></div>
+    <button class="success-continue-btn" id="successContinueBtn">Continue Shopping</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CART SIDEBAR
+═══════════════════════════════════════════ -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar-head">
+        <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            My Cart
+        </h3>
+        <button class="cart-side-close" id="cartSideClose">✕</button>
+    </div>
+
+    <div class="cart-side-body">
+        <div class="cart-empty-state" id="cartEmptyState">
+            <div class="cart-empty-img">🛍️</div>
+            <p>Your cart is empty</p>
+            <small>Add some gorgeous timepieces!</small>
+        </div>
+        <div id="cartItemsList"></div>
+    </div>
+
+    <div class="cart-side-foot" id="cartSideFoot" style="display:none">
+        <div class="cart-price-rows">
+            <div class="cart-price-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+            <div class="cart-price-row"><span>Shipping</span><span class="green-text">FREE</span></div>
+            <div class="cart-price-row total-row"><span>Total</span><span id="cartFinalTotal">₹0</span></div>
+        </div>
+        <button class="cart-checkout-btn" id="cartCheckoutBtn">Proceed to Checkout →</button>
+        <button class="cart-clear-btn" id="cartClearBtn">Clear Cart</button>
+    </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════
+     WISHLIST SIDEBAR
+═══════════════════════════════════════════ -->
+<div class="wishlist-overlay" id="wishlistOverlay"></div>
+<aside class="wishlist-sidebar" id="wishlistSidebar">
+    <div class="wishlist-head">
+        <h3>❤️ Wishlist</h3>
+        <button class="wishlist-close" id="wishlistClose">✕</button>
+    </div>
+    <div class="wishlist-body" id="wishlistBody">
+        <div class="wishlist-empty" id="wishlistEmpty">
+            <div style="font-size:3rem">💝</div>
+            <p>No items in wishlist yet</p>
+        </div>
+        <div id="wishlistItems"></div>
+    </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════
+     TOAST
+═══════════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">CHRONOS</div>
+            <p>India's finest curated watch marketplace. Every timepiece tells a story.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Shop</h4>
+            <a href="#">Luxury Watches</a>
+            <a href="#">Sport Watches</a>
+            <a href="#">Vintage Watches</a>
+            <a href="#">New Arrivals</a>
+        </div>
+        <div class="footer-links">
+            <h4>Support</h4>
+            <a href="#">Track Order</a>
+            <a href="#">Returns & Exchange</a>
+            <a href="#">Warranty</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-links">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Blog</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2025 CHRONOS Fine Timepieces. All rights reserved.</span>
+        <span>Made with ❤️ in India</span>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
