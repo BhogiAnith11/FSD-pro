@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — CHRONOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #f8f5f0; --ivory-2: #f0ece4; --ivory-3: #e8e2d8;
+            --white: #ffffff; --charcoal: #1c1c1e; --dark: #2c2c2e;
+            --mid: #48484a; --light-text: #8e8e93; --faint: #aeaeb2;
+            --gold: #b8860b; --gold-2: #d4a017; --gold-bg: rgba(184,134,11,0.08);
+            --red: #e63946; --green: #2a9d3d;
+            --border: #ddd8d0; --border-2: #ece8e0;
+            --shadow-sm: 0 1px 8px rgba(28,28,30,0.08);
+            --shadow-md: 0 4px 24px rgba(28,28,30,0.12);
+            --shadow-gold: 0 6px 24px rgba(184,134,11,0.22);
+            --font-d: 'DM Serif Display', Georgia, serif;
+            --font-b: 'DM Sans', system-ui, sans-serif;
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-b); background: var(--ivory); color: var(--charcoal); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: var(--font-b); }
+        input, select, textarea { font-family: var(--font-b); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--ivory-2); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+        /* NAVBAR */
+        .navbar { background: var(--white); border-bottom: 1px solid var(--border); height: 62px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+        .nav-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 0.7rem; }
+        .logo-icon { color: var(--gold); }
+        .logo-name { font-family: var(--font-d); font-size: 1.5rem; letter-spacing: 0.2em; }
+        .logo-sub { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light-text); margin-top: 2px; }
+        .nav-back { display: flex; align-items: center; gap: 0.5rem; background: var(--ivory); border: 1.5px solid var(--border); padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--mid); transition: all 0.2s ease; }
+        .nav-back:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* HERO */
+        .page-hero { background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a2e 100%); color: white; padding: 4rem 1.5rem; text-align: center; position: relative; overflow: hidden; }
+        .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(100,100,255,0.06) 0%, transparent 70%); }
+        .page-hero-content { position: relative; z-index: 1; animation: fadeUp 0.8s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        .page-eyebrow { display: inline-block; background: rgba(184,134,11,0.18); border: 1px solid rgba(184,134,11,0.35); color: var(--gold-2); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 99px; margin-bottom: 1rem; }
+        .page-title { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+        .page-title em { color: var(--gold-2); font-style: italic; }
+        .page-subtitle { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+
+        /* CONTACT INFO STRIP */
+        .contact-strip { background: var(--white); border-bottom: 1px solid var(--border); }
+        .contact-strip-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+        .contact-strip-item {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1.5rem 1rem; border-right: 1px solid var(--border-2);
+            transition: background 0.2s ease; cursor: pointer;
+        }
+        .contact-strip-item:last-child { border-right: none; }
+        .contact-strip-item:hover { background: var(--ivory); }
+        .cs-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .cs-icon.gold { background: var(--gold-bg); }
+        .cs-icon.blue { background: rgba(59,130,246,0.1); }
+        .cs-icon.green { background: rgba(42,157,61,0.1); }
+        .cs-icon.purple { background: rgba(139,92,246,0.1); }
+        .cs-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-text); margin-bottom: 2px; }
+        .cs-value { font-size: 0.9rem; font-weight: 600; color: var(--charcoal); }
+        .cs-hours { font-size: 0.72rem; color: var(--light-text); }
+
+        /* MAIN LAYOUT */
+        .main { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+        .contact-layout { display: grid; grid-template-columns: 1fr 440px; gap: 2.5rem; }
+
+        /* CONTACT FORM */
+        .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); }
+        .form-card-head { background: var(--charcoal); padding: 2rem; color: white; }
+        .form-card-head h2 { font-family: var(--font-d); font-size: 1.7rem; margin-bottom: 0.35rem; }
+        .form-card-head p { font-size: 0.875rem; color: rgba(255,255,255,0.55); }
+        .form-card-body { padding: 2rem; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+        .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+        .form-field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); }
+        .form-input, .form-select, .form-textarea {
+            background: var(--ivory); border: 1.5px solid var(--border);
+            padding: 0.75rem 1rem; border-radius: 9px;
+            font-size: 0.875rem; color: var(--charcoal); outline: none;
+            transition: border-color 0.2s ease; width: 100%;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); background: var(--white); }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--faint); }
+        .form-textarea { resize: vertical; min-height: 120px; }
+        .full-col { grid-column: 1 / -1; }
+        .submit-btn {
+            background: var(--gold); color: white; padding: 0.9rem;
+            border-radius: 9px; font-size: 0.95rem; font-weight: 700;
+            width: 100%; margin-top: 0.5rem; transition: all 0.2s ease;
+            box-shadow: var(--shadow-gold); letter-spacing: 0.02em;
+        }
+        .submit-btn:hover { background: var(--gold-2); transform: translateY(-2px); }
+        .submit-btn:active { transform: translateY(0); }
+
+        .char-counter { text-align: right; font-size: 0.72rem; color: var(--faint); margin-top: 2px; }
+
+        .success-banner {
+            display: none; background: rgba(42,157,61,0.06);
+            border: 1.5px solid rgba(42,157,61,0.25); border-radius: 10px;
+            padding: 1.25rem 1.5rem; margin-top: 1rem;
+        }
+        .success-banner.show { display: block; animation: fadeUp 0.4s ease; }
+        .success-banner h4 { color: var(--green); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem; }
+        .success-banner p { font-size: 0.82rem; color: var(--mid); }
+
+        /* RIGHT SIDE */
+        .contact-right { display: flex; flex-direction: column; gap: 1.25rem; }
+
+        /* Live Chat Card */
+        .live-chat-card {
+            background: var(--charcoal); border-radius: 16px; padding: 1.75rem;
+            color: white; position: relative; overflow: hidden;
+        }
+        .live-chat-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: rgba(184,134,11,0.15); border-radius: 50%; }
+        .lc-online { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 600; color: #4ade80; margin-bottom: 0.75rem; }
+        .lc-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        .live-chat-card h3 { font-family: var(--font-d); font-size: 1.35rem; margin-bottom: 0.4rem; }
+        .live-chat-card p { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
+        .chat-btn { background: var(--gold); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.875rem; font-weight: 700; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .chat-btn:hover { background: var(--gold-2); transform: translateY(-2px); }
+        .chat-agents { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+        .agent-avatar { width: 28px; height: 28px; background: var(--gold-bg); border: 2px solid rgba(184,134,11,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--gold-2); margin-left: -8px; }
+        .agent-avatar:first-child { margin-left: 0; }
+        .agents-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+
+        /* Info Cards */
+        .info-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+        .info-card h3 { font-family: var(--font-d); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+        .info-row { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.85rem; padding-bottom: 0.85rem; border-bottom: 1px solid var(--border-2); }
+        .info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .info-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+        .info-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light-text); margin-bottom: 2px; }
+        .info-value { font-size: 0.875rem; font-weight: 600; color: var(--charcoal); }
+        .info-sub { font-size: 0.72rem; color: var(--light-text); margin-top: 1px; }
+
+        /* Hours Card */
+        .hours-card { background: var(--ivory); border: 1px solid var(--border-2); border-radius: 12px; overflow: hidden; }
+        .hours-head { background: var(--gold); color: white; padding: 0.85rem 1.25rem; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .hours-body { padding: 0.5rem 0; }
+        .hours-row { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 1.25rem; font-size: 0.82rem; border-bottom: 1px solid var(--border-2); }
+        .hours-row:last-child { border-bottom: none; }
+        .hours-day { font-weight: 600; color: var(--charcoal); }
+        .hours-time { color: var(--mid); }
+        .hours-time.closed { color: var(--red); }
+        .today-row { background: var(--gold-bg); }
+        .today-tag { font-size: 0.62rem; font-weight: 700; background: var(--gold); color: white; padding: 0.1rem 0.4rem; border-radius: 3px; }
+
+        /* Social */
+        .social-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+        .social-card h3 { font-family: var(--font-d); font-size: 1.1rem; margin-bottom: 1rem; }
+        .social-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .social-btn {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.55rem 1rem; border: 1.5px solid var(--border);
+            border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+            color: var(--mid); transition: all 0.2s ease; background: var(--white);
+        }
+        .social-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+        .social-btn span { font-size: 1rem; }
+
+        /* FAQ SECTION */
+        .faq-section { margin-top: 3.5rem; }
+        .faq-section h2 { font-family: var(--font-d); font-size: 1.8rem; margin-bottom: 0.4rem; }
+        .faq-section > p { font-size: 0.9rem; color: var(--light-text); margin-bottom: 1.5rem; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+        .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600; transition: background 0.2s ease; gap: 1rem; }
+        .faq-q:hover { background: var(--ivory); }
+        .faq-icon { font-size: 1rem; color: var(--gold); transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s ease; font-size: 0.82rem; color: var(--mid); line-height: 1.7; padding: 0 1.25rem; }
+        .faq-item.open .faq-a { max-height: 200px; padding: 0 1.25rem 1rem; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* FOOTER */
+        .footer { background: var(--charcoal); color: rgba(255,255,255,0.5); text-align: center; padding: 1.5rem; font-size: 0.8rem; }
+        .footer a { color: var(--gold-2); margin: 0 0.5rem; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 1024px) { .contact-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .contact-strip-inner { grid-template-columns: 1fr 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .contact-strip-inner { grid-template-columns: 1fr; }
+            .form-card-head, .form-card-body { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-wrap">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+                    <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/>
+                    <line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="15" cy="15" r="1.8" fill="currentColor"/>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-name">CHRONOS</div>
+                <div class="logo-sub">Fine Timepieces</div>
+            </div>
+        </a>
+        <a href="index.html" class="nav-back">← Back to Store</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <div class="page-eyebrow">We're Here for You</div>
+        <h1 class="page-title">Get in <em>Touch</em></h1>
+        <p class="page-subtitle">Our watch experts are ready to help you — 7 days a week</p>
+    </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+    <div class="contact-strip-inner">
+        <div class="contact-strip-item" onclick="document.getElementById('contactPhone').scrollIntoView({behavior:'smooth'})">
+            <div class="cs-icon gold">📞</div>
+            <div>
+                <div class="cs-label">Call Us</div>
+                <div class="cs-value">1800-CHRONOS</div>
+                <div class="cs-hours">Mon–Sat, 9AM–9PM</div>
+            </div>
+        </div>
+        <div class="contact-strip-item" onclick="window.location.href='mailto:support@chronos.com'">
+            <div class="cs-icon blue">✉️</div>
+            <div>
+                <div class="cs-label">Email Us</div>
+                <div class="cs-value">support@chronos.com</div>
+                <div class="cs-hours">Reply within 4 hours</div>
+            </div>
+        </div>
+        <div class="contact-strip-item">
+            <div class="cs-icon green">💬</div>
+            <div>
+                <div class="cs-label">Live Chat</div>
+                <div class="cs-value">Chat Now</div>
+                <div class="cs-hours">Available now • Online</div>
+            </div>
+        </div>
+        <div class="contact-strip-item">
+            <div class="cs-icon purple">📱</div>
+            <div>
+                <div class="cs-label">WhatsApp</div>
+                <div class="cs-value">+91 98765 43210</div>
+                <div class="cs-hours">Mon–Sun, 8AM–10PM</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+    <div class="contact-layout">
+
+        <!-- LEFT: FORM -->
+        <div class="form-card">
+            <div class="form-card-head">
+                <h2>Send Us a Message</h2>
+                <p>Fill in the form below and we'll get back to you within 4 hours during business hours.</p>
+            </div>
+            <div class="form-card-body">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label>First Name *</label>
+                        <input type="text" class="form-input" id="ctFirstName" placeholder="Your first name">
+                    </div>
+                    <div class="form-field">
+                        <label>Last Name *</label>
+                        <input type="text" class="form-input" id="ctLastName" placeholder="Your last name">
+                    </div>
+                    <div class="form-field">
+                        <label>Email Address *</label>
+                        <input type="email" class="form-input" id="ctEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="form-field">
+                        <label>Phone Number</label>
+                        <input type="tel" class="form-input" id="ctPhone" placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    <div class="form-field">
+                        <label>Order ID (if applicable)</label>
+                        <input type="text" class="form-input" placeholder="e.g. CHR12345678">
+                    </div>
+                    <div class="form-field">
+                        <label>Subject *</label>
+                        <select class="form-select" id="ctSubject">
+                            <option value="">Select a topic</option>
+                            <option>Order Status / Tracking</option>
+                            <option>Return or Exchange</option>
+                            <option>Warranty Claim</option>
+                            <option>Product Question</option>
+                            <option>Payment Issue</option>
+                            <option>Bulk / Corporate Order</option>
+                            <option>Partnership / Press</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-field full-col">
+                        <label>Message *</label>
+                        <textarea class="form-textarea" id="ctMessage" placeholder="Describe your query in detail. Include any relevant order IDs, product names, or other information..." oninput="updateCounter(this)"></textarea>
+                        <div class="char-counter" id="charCounter">0 / 500 characters</div>
+                    </div>
+                    <div class="form-field full-col">
+                        <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;text-transform:none;letter-spacing:0;font-size:0.82rem;color:var(--mid);">
+                            <input type="checkbox" id="ctConsent" style="accent-color:var(--gold);width:16px;height:16px;">
+                            I agree to be contacted by CHRONOS regarding my query. View our Privacy Policy.
+                        </label>
+                    </div>
+                </div>
+                <button class="submit-btn" onclick="submitContact()">
+                    Send Message →
+                </button>
+                <div class="success-banner" id="ctSuccess">
+                    <h4>✅ Message sent successfully!</h4>
+                    <p>Thank you for reaching out. Our team will respond to <strong id="ctConfirmEmail"></strong> within 4 hours. Your ticket ID is <strong id="ctTicketId"></strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="contact-right">
+
+            <!-- Live Chat -->
+            <div class="live-chat-card">
+                <div class="lc-online"><span class="lc-dot"></span> 3 agents online now</div>
+                <h3>Need Instant Help?</h3>
+                <p>Chat live with our watch experts for immediate support on orders, products, and more.</p>
+                <button class="chat-btn" onclick="alert('Live chat feature coming soon! Please email us at support@chronos.com')">
+                    💬 Start Live Chat
+                </button>
+                <div class="chat-agents">
+                    <div class="agent-avatar">A</div>
+                    <div class="agent-avatar">P</div>
+                    <div class="agent-avatar">R</div>
+                    <span class="agents-label">Avg. wait time: &lt; 2 min</span>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="info-card" id="contactPhone">
+                <h3>📍 Our Details</h3>
+                <div class="info-row">
+                    <span class="info-icon">📞</span>
+                    <div>
+                        <div class="info-label">Toll Free</div>
+                        <div class="info-value">1800-CHRONOS (1800-247-6667)</div>
+                        <div class="info-sub">Mon–Sat, 9:00 AM – 9:00 PM IST</div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-icon">✉️</span>
+                    <div>
+                        <div class="info-label">General Support</div>
+                        <div class="info-value">support@chronos.com</div>
+                        <div class="info-sub">Response within 4 hours</div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-icon">🔧</span>
+                    <div>
+                        <div class="info-label">Warranty & Service</div>
+                        <div class="info-value">warranty@chronos.com</div>
+                        <div class="info-sub">Response within 24 hours</div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-icon">🏢</span>
+                    <div>
+                        <div class="info-label">Registered Office</div>
+                        <div class="info-value">CHRONOS Fine Timepieces Pvt. Ltd.</div>
+                        <div class="info-sub">42, Luxury Lane, Bandra West, Mumbai — 400050</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="hours-card">
+                <div class="hours-head">🕐 Business Hours</div>
+                <div class="hours-body" id="hoursBody">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-card">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-btn"><span>📸</span> Instagram</a>
+                    <a href="#" class="social-btn"><span>👍</span> Facebook</a>
+                    <a href="#" class="social-btn"><span>🐦</span> Twitter / X</a>
+                    <a href="#" class="social-btn"><span>▶️</span> YouTube</a>
+                    <a href="#" class="social-btn"><span>💼</span> LinkedIn</a>
+                    <a href="#" class="social-btn"><span>📌</span> Pinterest</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to the most common questions we receive.</p>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">How do I cancel my order?<span class="faq-icon">+</span></div>
+                <div class="faq-a">Orders can be cancelled within 2 hours of placing them. After that, the order enters processing. Email us at support@chronos.com with your Order ID immediately for assistance.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">Do you offer COD (Cash on Delivery)?<span class="faq-icon">+</span></div>
+                <div class="faq-a">Yes! Cash on Delivery is available for orders up to ₹15,000. For orders above this amount, prepaid payment (card, UPI, or bank transfer) is required for security reasons.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">Are all your watches 100% authentic?<span class="faq-icon">+</span></div>
+                <div class="faq-a">Absolutely. Every watch sold on CHRONOS is 100% authentic and comes with brand warranty. We source directly from authorized distributors and never deal in replicas or refurbished stock.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">Can I place a bulk or corporate order?<span class="faq-icon">+</span></div>
+                <div class="faq-a">Yes! For bulk orders of 5 or more watches (corporate gifts, events, etc.), we offer special pricing and personalized engraving. Email corporate@chronos.com with your requirements.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">Do you ship internationally?<span class="faq-icon">+</span></div>
+                <div class="faq-a">Currently we ship only within India. International shipping is coming soon. If you're an NRI interested in gifting, contact us and we'll try to accommodate your request.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">How do I get a gift receipt or invoice?<span class="faq-icon">+</span></div>
+                <div class="faq-a">A digital invoice (GST compliant) is automatically emailed after every purchase. For a physical gift receipt without price, mention "gift" in the order notes at checkout or email us after placing the order.</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 CHRONOS Fine Timepieces &nbsp;|&nbsp;
+        <a href="index.html">Home</a>
+        <a href="track-order.html">Track Order</a>
+        <a href="returns.html">Returns</a>
+        <a href="warranty.html">Warranty</a>
+    </p>
+</footer>
+
+<script>
+    // Build Business Hours with today highlighted
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const hours = [
+        { day:'Monday',    time:'9:00 AM – 9:00 PM' },
+        { day:'Tuesday',   time:'9:00 AM – 9:00 PM' },
+        { day:'Wednesday', time:'9:00 AM – 9:00 PM' },
+        { day:'Thursday',  time:'9:00 AM – 9:00 PM' },
+        { day:'Friday',    time:'9:00 AM – 9:00 PM' },
+        { day:'Saturday',  time:'10:00 AM – 7:00 PM' },
+        { day:'Sunday',    time:'Closed', closed: true }
+    ];
+    const todayName = days[new Date().getDay()];
+    const hoursBody = document.getElementById('hoursBody');
+    hoursBody.innerHTML = hours.map(h => `
+        <div class="hours-row ${h.day === todayName ? 'today-row' : ''}">
+            <span class="hours-day">
+                ${h.day}
+                ${h.day === todayName ? '<span class="today-tag">Today</span>' : ''}
+            </span>
+            <span class="hours-time ${h.closed ? 'closed' : ''}">${h.time}</span>
+        </div>
+    `).join('');
+
+    // Character counter
+    function updateCounter(el) {
+        const count = el.value.length;
+        const counter = document.getElementById('charCounter');
+        counter.textContent = `${count} / 500 characters`;
+        counter.style.color = count > 450 ? 'var(--red)' : 'var(--faint)';
+        if (count > 500) el.value = el.value.substring(0, 500);
+    }
+
+    // Submit form
+    function submitContact() {
+        const firstName = document.getElementById('ctFirstName').value.trim();
+        const lastName  = document.getElementById('ctLastName').value.trim();
+        const email     = document.getElementById('ctEmail').value.trim();
+        const subject   = document.getElementById('ctSubject').value;
+        const message   = document.getElementById('ctMessage').value.trim();
+        const consent   = document.getElementById('ctConsent').checked;
+
+        if (!firstName || !lastName || !email || !subject || !message) {
+            alert('Please fill in all required fields (marked with *).'); return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+            alert('Please enter a valid email address.'); return;
+        }
+        if (!consent) {
+            alert('Please agree to the contact consent to proceed.'); return;
+        }
+
+        const btn = document.querySelector('.submit-btn');
+        btn.textContent = 'Sending...'; btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+            btn.textContent = 'Send Message →'; btn.style.opacity = '1';
+            const ticketId = 'TKT-' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('ctConfirmEmail').textContent = email;
+            document.getElementById('ctTicketId').textContent = ticketId;
+            document.getElementById('ctSuccess').classList.add('show');
+            // Clear form
+            ['ctFirstName','ctLastName','ctEmail','ctPhone','ctMessage'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('ctSubject').value = '';
+            document.getElementById('ctConsent').checked = false;
+            document.getElementById('charCounter').textContent = '0 / 500 characters';
+            document.getElementById('ctSuccess').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 1200);
+    }
+
+    function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

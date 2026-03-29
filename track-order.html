@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order — CHRONOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory:      #f8f5f0;
+            --ivory-2:    #f0ece4;
+            --ivory-3:    #e8e2d8;
+            --white:      #ffffff;
+            --charcoal:   #1c1c1e;
+            --dark:       #2c2c2e;
+            --mid:        #48484a;
+            --light-text: #8e8e93;
+            --faint:      #aeaeb2;
+            --gold:       #b8860b;
+            --gold-2:     #d4a017;
+            --gold-bg:    rgba(184,134,11,0.08);
+            --red:        #e63946;
+            --green:      #2a9d3d;
+            --border:     #ddd8d0;
+            --border-2:   #ece8e0;
+            --shadow-sm:  0 1px 8px rgba(28,28,30,0.08);
+            --shadow-md:  0 4px 24px rgba(28,28,30,0.12);
+            --shadow-gold:0 6px 24px rgba(184,134,11,0.22);
+            --font-d: 'DM Serif Display', Georgia, serif;
+            --font-b: 'DM Sans', system-ui, sans-serif;
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-b); background: var(--ivory); color: var(--charcoal); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: var(--font-b); }
+        input { font-family: var(--font-b); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--ivory-2); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            height: 62px;
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-wrap {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 1.5rem; height: 100%;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 0.7rem; }
+        .logo-icon { color: var(--gold); }
+        .logo-name { font-family: var(--font-d); font-size: 1.5rem; letter-spacing: 0.2em; }
+        .logo-sub { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light-text); margin-top: 2px; }
+        .nav-back {
+            display: flex; align-items: center; gap: 0.5rem;
+            background: var(--ivory); border: 1.5px solid var(--border);
+            padding: 0.45rem 1rem; border-radius: 8px;
+            font-size: 0.85rem; font-weight: 600; color: var(--mid);
+            transition: all 0.2s ease;
+        }
+        .nav-back:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2c2018 100%);
+            color: white; padding: 4rem 1.5rem;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,134,11,0.1) 0%, transparent 70%);
+        }
+        .page-hero-content { position: relative; z-index: 1; animation: fadeUp 0.8s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        .page-eyebrow {
+            display: inline-block;
+            background: rgba(184,134,11,0.18); border: 1px solid rgba(184,134,11,0.35);
+            color: var(--gold-2); font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 0.3rem 0.9rem; border-radius: 99px; margin-bottom: 1rem;
+        }
+        .page-title { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+        .page-title em { color: var(--gold-2); font-style: italic; }
+        .page-subtitle { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+
+        /* ── MAIN ── */
+        .main { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+        /* ── TRACK FORM ── */
+        .track-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .track-card h2 {
+            font-family: var(--font-d); font-size: 1.6rem;
+            margin-bottom: 0.4rem; color: var(--charcoal);
+        }
+        .track-card p { font-size: 0.9rem; color: var(--light-text); margin-bottom: 1.75rem; }
+        .track-form { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .track-input {
+            flex: 1; min-width: 200px;
+            background: var(--ivory); border: 1.5px solid var(--border);
+            padding: 0.8rem 1.1rem; border-radius: 9px;
+            font-size: 0.9rem; color: var(--charcoal); outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .track-input:focus { border-color: var(--gold); background: var(--white); }
+        .track-input::placeholder { color: var(--faint); }
+        .track-btn {
+            background: var(--gold); color: var(--white);
+            padding: 0.8rem 2rem; border-radius: 9px;
+            font-size: 0.9rem; font-weight: 700;
+            transition: all 0.2s ease; white-space: nowrap;
+            box-shadow: var(--shadow-gold);
+        }
+        .track-btn:hover { background: var(--gold-2); transform: translateY(-1px); }
+
+        /* ── RESULT ── */
+        .track-result { display: none; animation: fadeUp 0.5s ease; }
+        .track-result.show { display: block; }
+
+        .order-summary-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+            margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);
+        }
+        .order-summary-head {
+            background: var(--charcoal); color: var(--white);
+            padding: 1.25rem 1.75rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 0.5rem;
+        }
+        .order-id-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+        .order-id-val { font-family: var(--font-d); font-size: 1.3rem; color: var(--gold-2); }
+        .order-status-badge {
+            background: rgba(42,157,61,0.2); color: #4ade80;
+            font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 0.3rem 0.85rem; border-radius: 99px;
+            border: 1px solid rgba(42,157,61,0.3);
+        }
+        .order-summary-body { padding: 1.5rem 1.75rem; }
+        .order-meta-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem; margin-bottom: 1.5rem;
+        }
+        .order-meta-item { display: flex; flex-direction: column; gap: 3px; }
+        .meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-text); }
+        .meta-val { font-size: 0.9rem; font-weight: 600; color: var(--charcoal); }
+        .meta-val.gold { color: var(--gold); }
+
+        /* ── TRACKING TIMELINE ── */
+        .timeline-section h3 {
+            font-family: var(--font-d); font-size: 1.25rem;
+            margin-bottom: 1.25rem; color: var(--charcoal);
+        }
+        .timeline { display: flex; flex-direction: column; gap: 0; }
+        .timeline-step {
+            display: flex; gap: 1rem; position: relative;
+            padding-bottom: 1.5rem;
+        }
+        .timeline-step:last-child { padding-bottom: 0; }
+        .timeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+        .t-dot {
+            width: 34px; height: 34px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; flex-shrink: 0; z-index: 1;
+            border: 2px solid var(--border); background: var(--white);
+            color: var(--light-text);
+        }
+        .t-dot.done { background: var(--green); border-color: var(--green); color: white; }
+        .t-dot.active { background: var(--gold); border-color: var(--gold); color: white; box-shadow: 0 0 0 4px rgba(184,134,11,0.2); }
+        .t-line {
+            width: 2px; flex: 1; background: var(--border);
+            margin: 3px 0; min-height: 28px;
+        }
+        .t-line.done { background: var(--green); }
+        .timeline-step:last-child .t-line { display: none; }
+        .t-content { padding: 4px 0 0; }
+        .t-title {
+            font-size: 0.9rem; font-weight: 700; color: var(--charcoal);
+            margin-bottom: 2px;
+        }
+        .t-title.muted { color: var(--light-text); font-weight: 500; }
+        .t-desc { font-size: 0.8rem; color: var(--light-text); }
+        .t-time { font-size: 0.72rem; color: var(--faint); margin-top: 2px; }
+
+        /* ── PRODUCT IN ORDER ── */
+        .ordered-product {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem; background: var(--ivory);
+            border-radius: 10px; border: 1px solid var(--border-2);
+            margin-top: 1.25rem;
+        }
+        .ordered-product img { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; }
+        .op-info { flex: 1; }
+        .op-name { font-size: 0.88rem; font-weight: 700; color: var(--charcoal); margin-bottom: 2px; }
+        .op-detail { font-size: 0.75rem; color: var(--light-text); }
+        .op-price { font-size: 0.95rem; font-weight: 700; color: var(--gold); }
+
+        /* ── FAQ SECTION ── */
+        .faq-section { margin-top: 3rem; }
+        .faq-section h2 { font-family: var(--font-d); font-size: 1.6rem; margin-bottom: 1.25rem; }
+        .faq-item {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 10px; margin-bottom: 0.65rem; overflow: hidden;
+        }
+        .faq-q {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.25rem; cursor: pointer;
+            font-size: 0.9rem; font-weight: 600; color: var(--charcoal);
+            transition: background 0.2s ease;
+        }
+        .faq-q:hover { background: var(--ivory); }
+        .faq-icon { font-size: 1.1rem; color: var(--gold); transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.2s ease;
+            font-size: 0.85rem; color: var(--mid); line-height: 1.7;
+            padding: 0 1.25rem;
+        }
+        .faq-item.open .faq-a { max-height: 200px; padding: 0 1.25rem 1rem; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--charcoal); color: rgba(255,255,255,0.5);
+            text-align: center; padding: 1.5rem;
+            font-size: 0.8rem;
+        }
+        .footer a { color: var(--gold-2); margin: 0 0.5rem; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .track-card { padding: 1.5rem; }
+            .track-form { flex-direction: column; }
+            .order-summary-head { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-wrap">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+                    <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/>
+                    <line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="15" cy="15" r="1.8" fill="currentColor"/>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-name">CHRONOS</div>
+                <div class="logo-sub">Fine Timepieces</div>
+            </div>
+        </a>
+        <a href="index.html" class="nav-back">← Back to Store</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <div class="page-eyebrow">Order Management</div>
+        <h1 class="page-title">Track Your <em>Order</em></h1>
+        <p class="page-subtitle">Enter your Order ID or phone number to get live tracking updates</p>
+    </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+    <!-- Search Card -->
+    <div class="track-card">
+        <h2>Find Your Order</h2>
+        <p>Enter your Order ID (e.g. CHR12345678) or registered phone number</p>
+        <div class="track-form">
+            <input type="text" class="track-input" id="trackInput" placeholder="Order ID or Phone Number (e.g. CHR12345678)">
+            <button class="track-btn" onclick="trackOrder()">Track Order →</button>
+        </div>
+    </div>
+
+    <!-- Result (hidden until search) -->
+    <div class="track-result" id="trackResult">
+
+        <!-- Order Summary -->
+        <div class="order-summary-card">
+            <div class="order-summary-head">
+                <div>
+                    <div class="order-id-label">Order ID</div>
+                    <div class="order-id-val" id="displayOrderId">CHR12345678</div>
+                </div>
+                <div class="order-status-badge">🚚 Out for Delivery</div>
+            </div>
+            <div class="order-summary-body">
+                <div class="order-meta-grid">
+                    <div class="order-meta-item">
+                        <span class="meta-label">Order Date</span>
+                        <span class="meta-val" id="orderDate">28 Mar 2025</span>
+                    </div>
+                    <div class="order-meta-item">
+                        <span class="meta-label">Est. Delivery</span>
+                        <span class="meta-val gold">Tomorrow, 29 Mar</span>
+                    </div>
+                    <div class="order-meta-item">
+                        <span class="meta-label">Amount Paid</span>
+                        <span class="meta-val">₹8,549</span>
+                    </div>
+                    <div class="order-meta-item">
+                        <span class="meta-label">Payment</span>
+                        <span class="meta-val">UPI ✓</span>
+                    </div>
+                    <div class="order-meta-item">
+                        <span class="meta-label">Delivery To</span>
+                        <span class="meta-val">Mumbai, 400001</span>
+                    </div>
+                    <div class="order-meta-item">
+                        <span class="meta-label">Courier</span>
+                        <span class="meta-val">Delhivery</span>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline-section">
+                    <h3>Shipment Tracking</h3>
+                    <div class="timeline">
+                        <div class="timeline-step">
+                            <div class="timeline-left">
+                                <div class="t-dot done">✓</div>
+                                <div class="t-line done"></div>
+                            </div>
+                            <div class="t-content">
+                                <div class="t-title">Order Confirmed</div>
+                                <div class="t-desc">Your order has been placed and payment confirmed</div>
+                                <div class="t-time">28 Mar 2025, 10:22 AM</div>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-left">
+                                <div class="t-dot done">✓</div>
+                                <div class="t-line done"></div>
+                            </div>
+                            <div class="t-content">
+                                <div class="t-title">Order Packed</div>
+                                <div class="t-desc">Your watch has been carefully inspected and packaged</div>
+                                <div class="t-time">28 Mar 2025, 3:45 PM</div>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-left">
+                                <div class="t-dot done">✓</div>
+                                <div class="t-line done"></div>
+                            </div>
+                            <div class="t-content">
+                                <div class="t-title">Shipped</div>
+                                <div class="t-desc">Picked up by Delhivery. AWB: DL8823847291</div>
+                                <div class="t-time">28 Mar 2025, 7:10 PM</div>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-left">
+                                <div class="t-dot active">🚚</div>
+                                <div class="t-line"></div>
+                            </div>
+                            <div class="t-content">
+                                <div class="t-title">Out for Delivery</div>
+                                <div class="t-desc">Your package is with the delivery agent near you</div>
+                                <div class="t-time">29 Mar 2025, 8:30 AM</div>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-left">
+                                <div class="t-dot">📦</div>
+                                <div class="t-line"></div>
+                            </div>
+                            <div class="t-content">
+                                <div class="t-title muted">Delivered</div>
+                                <div class="t-desc" style="color:var(--faint)">Estimated by 8:00 PM today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product -->
+                <div class="ordered-product">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80" alt="Royal Oak Prestige">
+                    <div class="op-info">
+                        <div class="op-name">Royal Oak Prestige</div>
+                        <div class="op-detail">Color: Black • Qty: 1</div>
+                    </div>
+                    <div class="op-price">₹8,999</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+        <h2>Tracking FAQs</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                Where can I find my Order ID?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Your Order ID is sent to your registered email and phone number via SMS immediately after placing your order. It starts with "CHR" followed by 8 digits (e.g. CHR12345678).</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                How long does delivery take?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Standard delivery takes 5–7 business days. Express delivery (available at checkout) delivers within 2–3 business days. Metro cities typically receive orders faster.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                My tracking hasn't updated in 2 days. What should I do?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Tracking updates may be delayed by 24–48 hours during transit between cities. If there's no update for more than 3 days, please contact our support team at support@chronos.com with your Order ID.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                Can I change the delivery address after ordering?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Address changes are possible within 2 hours of placing the order. After that, the order enters processing and cannot be changed. Contact us immediately at support@chronos.com.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                I wasn't home during delivery. What happens?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">The courier will attempt delivery 3 times over 3 days. If all attempts fail, the package is returned to our warehouse and a full refund is processed within 5–7 business days.</div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 CHRONOS Fine Timepieces &nbsp;|&nbsp;
+        <a href="index.html">Home</a>
+        <a href="returns.html">Returns</a>
+        <a href="contact.html">Contact</a>
+    </p>
+</footer>
+
+<script>
+    function trackOrder() {
+        const val = document.getElementById('trackInput').value.trim();
+        if (!val) { alert('Please enter an Order ID or phone number.'); return; }
+
+        // Simulate loading
+        const btn = document.querySelector('.track-btn');
+        btn.textContent = 'Searching...';
+        btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+            btn.textContent = 'Track Order →';
+            btn.style.opacity = '1';
+            document.getElementById('displayOrderId').textContent = val.toUpperCase().startsWith('CHR') ? val.toUpperCase() : 'CHR' + Math.floor(10000000 + Math.random() * 90000000);
+            const result = document.getElementById('trackResult');
+            result.classList.add('show');
+            result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 1200);
+    }
+
+    // Allow Enter key
+    document.getElementById('trackInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') trackOrder();
+    });
+
+    function toggleFaq(el) {
+        const item = el.parentElement;
+        item.classList.toggle('open');
+    }
+</script>
+</body>
+</html>

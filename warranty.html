@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warranty — CHRONOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #f8f5f0; --ivory-2: #f0ece4; --ivory-3: #e8e2d8;
+            --white: #ffffff; --charcoal: #1c1c1e; --dark: #2c2c2e;
+            --mid: #48484a; --light-text: #8e8e93; --faint: #aeaeb2;
+            --gold: #b8860b; --gold-2: #d4a017; --gold-bg: rgba(184,134,11,0.08);
+            --gold-light: #f5dfa0; --red: #e63946; --green: #2a9d3d;
+            --border: #ddd8d0; --border-2: #ece8e0;
+            --shadow-sm: 0 1px 8px rgba(28,28,30,0.08);
+            --shadow-md: 0 4px 24px rgba(28,28,30,0.12);
+            --shadow-gold: 0 6px 24px rgba(184,134,11,0.22);
+            --font-d: 'DM Serif Display', Georgia, serif;
+            --font-b: 'DM Sans', system-ui, sans-serif;
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-b); background: var(--ivory); color: var(--charcoal); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: var(--font-b); }
+        input, select { font-family: var(--font-b); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--ivory-2); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+        /* NAVBAR */
+        .navbar { background: var(--white); border-bottom: 1px solid var(--border); height: 62px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+        .nav-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 0.7rem; }
+        .logo-icon { color: var(--gold); }
+        .logo-name { font-family: var(--font-d); font-size: 1.5rem; letter-spacing: 0.2em; }
+        .logo-sub { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light-text); margin-top: 2px; }
+        .nav-back { display: flex; align-items: center; gap: 0.5rem; background: var(--ivory); border: 1.5px solid var(--border); padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--mid); transition: all 0.2s ease; }
+        .nav-back:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* HERO */
+        .page-hero {
+            background: linear-gradient(135deg, #1a1205 0%, #2c2018 60%, #3d2d08 100%);
+            color: white; padding: 4rem 1.5rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 90% at 50% 50%, rgba(184,134,11,0.15) 0%, transparent 70%); }
+        .hero-ornament {
+            position: absolute; font-size: 16rem; opacity: 0.03;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            pointer-events: none; line-height: 1;
+        }
+        .page-hero-content { position: relative; z-index: 1; animation: fadeUp 0.8s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        .page-eyebrow { display: inline-block; background: rgba(184,134,11,0.2); border: 1px solid rgba(184,134,11,0.4); color: var(--gold-2); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 99px; margin-bottom: 1rem; }
+        .page-title { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+        .page-title em { color: var(--gold-2); font-style: italic; }
+        .page-subtitle { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+        .warranty-badge-row { display: flex; justify-content: center; gap: 1.25rem; margin-top: 2rem; flex-wrap: wrap; }
+        .w-badge {
+            background: rgba(255,255,255,0.07); border: 1px solid rgba(184,134,11,0.3);
+            border-radius: 10px; padding: 0.85rem 1.5rem;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .w-badge-icon { font-size: 1.6rem; }
+        .w-badge-text { text-align: left; }
+        .w-badge-title { font-size: 0.95rem; font-weight: 700; color: var(--gold-2); line-height: 1; }
+        .w-badge-sub { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+        /* MAIN */
+        .main { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+        /* WARRANTY TIERS */
+        .tier-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+        .tier-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+            transition: all 0.25s ease; position: relative;
+        }
+        .tier-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .tier-card.featured { border-color: var(--gold); box-shadow: var(--shadow-gold); }
+        .tier-card.featured::after { content: 'Most Popular'; position: absolute; top: 1rem; right: 1rem; background: var(--gold); color: white; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase; }
+        .tier-head { padding: 1.5rem; border-bottom: 1px solid var(--border-2); }
+        .tier-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .tier-name { font-family: var(--font-d); font-size: 1.3rem; margin-bottom: 0.25rem; }
+        .tier-duration { font-size: 2.2rem; font-family: var(--font-d); color: var(--gold); line-height: 1; }
+        .tier-duration span { font-size: 0.9rem; color: var(--light-text); font-family: var(--font-b); }
+        .tier-cat { font-size: 0.75rem; color: var(--light-text); margin-top: 0.25rem; }
+        .tier-body { padding: 1.25rem 1.5rem; }
+        .tier-feature { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.65rem; font-size: 0.85rem; color: var(--mid); }
+        .tier-feature::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+        .tier-feature.no::before { content: '✗'; color: var(--faint); }
+        .tier-feature.no { color: var(--faint); }
+
+        /* COVERAGE TABLE */
+        .coverage-section { margin-bottom: 3rem; }
+        .coverage-section h2 { font-family: var(--font-d); font-size: 1.7rem; margin-bottom: 0.4rem; }
+        .coverage-section p { font-size: 0.875rem; color: var(--light-text); margin-bottom: 1.5rem; }
+        .cov-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+        .cov-table thead { background: var(--charcoal); color: white; }
+        .cov-table th { padding: 0.9rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        .cov-table td { padding: 0.9rem 1.25rem; font-size: 0.875rem; border-bottom: 1px solid var(--border-2); color: var(--mid); }
+        .cov-table tr:last-child td { border-bottom: none; }
+        .cov-table tr:hover td { background: var(--ivory); }
+        .tick { color: var(--green); font-weight: 700; }
+        .cross { color: var(--faint); }
+
+        /* REGISTER FORM */
+        .register-section { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 3rem; }
+        .register-head { background: var(--charcoal); padding: 2rem 2.5rem; color: white; }
+        .register-head h2 { font-family: var(--font-d); font-size: 1.7rem; margin-bottom: 0.4rem; }
+        .register-head p { font-size: 0.875rem; color: rgba(255,255,255,0.55); }
+        .register-body { padding: 2rem 2.5rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+        .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+        .form-field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); }
+        .form-input, .form-select {
+            background: var(--ivory); border: 1.5px solid var(--border);
+            padding: 0.75rem 1rem; border-radius: 9px;
+            font-size: 0.875rem; color: var(--charcoal); outline: none;
+            transition: border-color 0.2s ease; width: 100%;
+        }
+        .form-input:focus, .form-select:focus { border-color: var(--gold); background: var(--white); }
+        .form-input::placeholder { color: var(--faint); }
+        .full-col { grid-column: 1 / -1; }
+        .submit-btn { background: var(--gold); color: white; padding: 0.85rem 2.5rem; border-radius: 9px; font-size: 0.95rem; font-weight: 700; margin-top: 0.75rem; transition: all 0.2s ease; box-shadow: var(--shadow-gold); }
+        .submit-btn:hover { background: var(--gold-2); transform: translateY(-2px); }
+        .success-msg { display: none; background: rgba(42,157,61,0.08); border: 1.5px solid rgba(42,157,61,0.3); border-radius: 10px; padding: 1.25rem 1.5rem; color: var(--green); font-weight: 600; font-size: 0.9rem; margin-top: 1rem; }
+        .success-msg.show { display: flex; align-items: center; gap: 0.6rem; }
+
+        /* CLAIM PROCESS */
+        .claim-section { margin-bottom: 3rem; }
+        .claim-section h2 { font-family: var(--font-d); font-size: 1.7rem; margin-bottom: 1.5rem; }
+        .claim-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem; }
+        .claim-step { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; transition: all 0.2s ease; }
+        .claim-step:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+        .claim-step-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+        .claim-step-num { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+        .claim-step-title { font-size: 0.9rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.35rem; }
+        .claim-step-desc { font-size: 0.78rem; color: var(--mid); line-height: 1.6; }
+
+        /* FAQ */
+        .faq-section { }
+        .faq-section h2 { font-family: var(--font-d); font-size: 1.7rem; margin-bottom: 1.25rem; }
+        .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.65rem; overflow: hidden; }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: background 0.2s ease; }
+        .faq-q:hover { background: var(--ivory); }
+        .faq-icon { font-size: 1.1rem; color: var(--gold); transition: transform 0.3s ease; }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s ease; font-size: 0.85rem; color: var(--mid); line-height: 1.7; padding: 0 1.25rem; }
+        .faq-item.open .faq-a { max-height: 220px; padding: 0 1.25rem 1rem; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* FOOTER */
+        .footer { background: var(--charcoal); color: rgba(255,255,255,0.5); text-align: center; padding: 1.5rem; font-size: 0.8rem; }
+        .footer a { color: var(--gold-2); margin: 0 0.5rem; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .register-head, .register-body { padding: 1.5rem; }
+            .warranty-badge-row { gap: 0.75rem; }
+            .w-badge { padding: 0.65rem 1rem; }
+        }
+        @media (max-width: 480px) {
+            .warranty-badge-row { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-wrap">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+                    <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/>
+                    <line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="15" cy="15" r="1.8" fill="currentColor"/>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-name">CHRONOS</div>
+                <div class="logo-sub">Fine Timepieces</div>
+            </div>
+        </a>
+        <a href="index.html" class="nav-back">← Back to Store</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="hero-ornament">⌚</div>
+    <div class="page-hero-content">
+        <div class="page-eyebrow">Official Guarantee</div>
+        <h1 class="page-title">Our <em>Warranty</em> Promise</h1>
+        <p class="page-subtitle">Every CHRONOS watch is backed by our comprehensive warranty program</p>
+        <div class="warranty-badge-row">
+            <div class="w-badge">
+                <span class="w-badge-icon">🛡️</span>
+                <div class="w-badge-text">
+                    <div class="w-badge-title">2-Year Standard</div>
+                    <div class="w-badge-sub">All watches</div>
+                </div>
+            </div>
+            <div class="w-badge">
+                <span class="w-badge-icon">⭐</span>
+                <div class="w-badge-text">
+                    <div class="w-badge-title">5-Year Extended</div>
+                    <div class="w-badge-sub">Luxury & Premium</div>
+                </div>
+            </div>
+            <div class="w-badge">
+                <span class="w-badge-icon">🏆</span>
+                <div class="w-badge-text">
+                    <div class="w-badge-title">Lifetime Service</div>
+                    <div class="w-badge-sub">Ultra Luxury tier</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+    <!-- Warranty Tiers -->
+    <h2 style="font-family:var(--font-d);font-size:1.8rem;margin-bottom:0.4rem;">Warranty Plans</h2>
+    <p style="color:var(--light-text);font-size:0.9rem;margin-bottom:1.75rem;">Choose the coverage that fits your watch category</p>
+
+    <div class="tier-grid">
+        <div class="tier-card">
+            <div class="tier-head">
+                <div class="tier-icon">🥉</div>
+                <div class="tier-name">Standard Warranty</div>
+                <div class="tier-duration">2 <span>years</span></div>
+                <div class="tier-cat">Casual & Budget watches</div>
+            </div>
+            <div class="tier-body">
+                <div class="tier-feature">Manufacturing defects</div>
+                <div class="tier-feature">Movement failure</div>
+                <div class="tier-feature">Crown &amp; pusher issues</div>
+                <div class="tier-feature">Free service at authorized center</div>
+                <div class="tier-feature no">Accidental damage</div>
+                <div class="tier-feature no">Water damage (misuse)</div>
+                <div class="tier-feature no">Strap / bracelet wear</div>
+            </div>
+        </div>
+
+        <div class="tier-card featured">
+            <div class="tier-head">
+                <div class="tier-icon">🥈</div>
+                <div class="tier-name">Extended Warranty</div>
+                <div class="tier-duration">5 <span>years</span></div>
+                <div class="tier-cat">Sport, Vintage & Premium</div>
+            </div>
+            <div class="tier-body">
+                <div class="tier-feature">All Standard coverage</div>
+                <div class="tier-feature">Case &amp; crystal damage</div>
+                <div class="tier-feature">Water ingress (within rating)</div>
+                <div class="tier-feature">Annual service included</div>
+                <div class="tier-feature">Strap/bracelet replacement (1x)</div>
+                <div class="tier-feature">Priority repair turnaround</div>
+                <div class="tier-feature no">Accidental damage (drops)</div>
+            </div>
+        </div>
+
+        <div class="tier-card">
+            <div class="tier-head">
+                <div class="tier-icon">🥇</div>
+                <div class="tier-name">Lifetime Warranty</div>
+                <div class="tier-duration">∞ <span>lifetime</span></div>
+                <div class="tier-cat">Ultra Luxury tier only</div>
+            </div>
+            <div class="tier-body">
+                <div class="tier-feature">All Extended coverage</div>
+                <div class="tier-feature">Accidental damage (1x/year)</div>
+                <div class="tier-feature">Bi-annual full service</div>
+                <div class="tier-feature">Strap/bracelet replacement (unlimited)</div>
+                <div class="tier-feature">Dedicated concierge support</div>
+                <div class="tier-feature">Transferable to new owner</div>
+                <div class="tier-feature">Authenticity certificate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coverage Table -->
+    <div class="coverage-section">
+        <h2>What's Covered?</h2>
+        <p>Detailed breakdown of what is and isn't included in our warranty.</p>
+        <table class="cov-table">
+            <thead>
+                <tr>
+                    <th>Issue Type</th>
+                    <th>Standard (2yr)</th>
+                    <th>Extended (5yr)</th>
+                    <th>Lifetime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Manufacturing defects</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Movement failure / stops working</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Crown &amp; pusher malfunction</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Dial / hand defects</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Crystal / glass cracking (no impact)</td><td class="cross">✗</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Water ingress (within rated depth)</td><td class="cross">✗</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Strap / bracelet defects</td><td class="cross">✗</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Accidental damage (drops, impacts)</td><td class="cross">✗</td><td class="cross">✗</td><td class="tick">✓ (1x/yr)</td></tr>
+                <tr><td>Battery replacement (quartz)</td><td class="tick">✓ (1x)</td><td class="tick">✓ (every 2yr)</td><td class="tick">✓ (unlimited)</td></tr>
+                <tr><td>Annual servicing / oiling</td><td class="cross">✗</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+                <tr><td>Theft / loss</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Register Form -->
+    <div class="register-section">
+        <div class="register-head">
+            <h2>Register Your Warranty</h2>
+            <p>Register within 30 days of purchase to activate your warranty. You'll receive a digital warranty card by email.</p>
+        </div>
+        <div class="register-body">
+            <div class="form-grid">
+                <div class="form-field">
+                    <label>Full Name *</label>
+                    <input type="text" class="form-input" id="warName" placeholder="Your full name">
+                </div>
+                <div class="form-field">
+                    <label>Email Address *</label>
+                    <input type="email" class="form-input" id="warEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-field">
+                    <label>Order ID *</label>
+                    <input type="text" class="form-input" id="warOrderId" placeholder="e.g. CHR12345678">
+                </div>
+                <div class="form-field">
+                    <label>Phone Number *</label>
+                    <input type="tel" class="form-input" id="warPhone" placeholder="10-digit number">
+                </div>
+                <div class="form-field">
+                    <label>Watch Model *</label>
+                    <input type="text" class="form-input" placeholder="e.g. Royal Oak Prestige">
+                </div>
+                <div class="form-field">
+                    <label>Purchase Date *</label>
+                    <input type="date" class="form-input" id="warDate">
+                </div>
+                <div class="form-field full-col">
+                    <label>Serial Number (on caseback)</label>
+                    <input type="text" class="form-input" placeholder="e.g. CHR-2025-000123 (optional but recommended)">
+                </div>
+            </div>
+            <button class="submit-btn" onclick="registerWarranty()">Register Warranty →</button>
+            <div class="success-msg" id="warSuccessMsg">
+                🛡️ Warranty registered successfully! Your digital warranty card will be emailed within 24 hours.
+            </div>
+        </div>
+    </div>
+
+    <!-- How to Claim -->
+    <div class="claim-section">
+        <h2>How to Claim Warranty</h2>
+        <div class="claim-steps">
+            <div class="claim-step">
+                <div class="claim-step-icon">📞</div>
+                <div class="claim-step-num">Step 01</div>
+                <div class="claim-step-title">Contact Support</div>
+                <div class="claim-step-desc">Email warranty@chronos.com or call 1800-CHRONOS with your Order ID and issue description</div>
+            </div>
+            <div class="claim-step">
+                <div class="claim-step-icon">📋</div>
+                <div class="claim-step-num">Step 02</div>
+                <div class="claim-step-title">Verification</div>
+                <div class="claim-step-desc">Our team verifies your warranty registration and assesses if the issue is covered under your plan</div>
+            </div>
+            <div class="claim-step">
+                <div class="claim-step-icon">🚚</div>
+                <div class="claim-step-num">Step 03</div>
+                <div class="claim-step-title">Send Watch</div>
+                <div class="claim-step-desc">Ship the watch to our service center (prepaid label provided) or drop it at an authorized service partner</div>
+            </div>
+            <div class="claim-step">
+                <div class="claim-step-icon">🔧</div>
+                <div class="claim-step-num">Step 04</div>
+                <div class="claim-step-title">Repair & Return</div>
+                <div class="claim-step-desc">Watch is repaired / serviced by certified technicians and returned to you within 7–14 business days</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+        <h2>Warranty FAQs</h2>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Does my warranty transfer if I gift the watch?<span class="faq-icon">+</span></div>
+            <div class="faq-a">Standard and Extended warranties are non-transferable. The Lifetime Warranty on Ultra Luxury watches is fully transferable to a new owner with proper documentation from CHRONOS.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What voids my warranty?<span class="faq-icon">+</span></div>
+            <div class="faq-a">Warranty is void if: the watch is repaired/opened by an unauthorized service center, intentional damage is evident, serial number is tampered with, or the watch is used beyond its stated water resistance rating.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">How long does a warranty repair take?<span class="faq-icon">+</span></div>
+            <div class="faq-a">Standard repairs take 7–14 business days. Complex movement repairs may take up to 21 days. Extended and Lifetime warranty holders get priority processing with a guaranteed 10-day turnaround.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Can I extend my Standard 2-year warranty?<span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes! You can upgrade to an Extended 5-year warranty for eligible watches within the first 6 months of purchase. Contact our support team for pricing and eligibility details.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Is the warranty valid across India?<span class="faq-icon">+</span></div>
+            <div class="faq-a">Yes, CHRONOS warranty is valid pan-India. We have authorized service centers in all major cities. For remote locations, we offer free courier pickup and delivery for warranty repairs.</div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 CHRONOS Fine Timepieces &nbsp;|&nbsp;
+        <a href="index.html">Home</a>
+        <a href="track-order.html">Track Order</a>
+        <a href="returns.html">Returns</a>
+        <a href="contact.html">Contact</a>
+    </p>
+</footer>
+
+<script>
+    function registerWarranty() {
+        const name    = document.getElementById('warName').value.trim();
+        const email   = document.getElementById('warEmail').value.trim();
+        const orderId = document.getElementById('warOrderId').value.trim();
+        const phone   = document.getElementById('warPhone').value.trim();
+        if (!name || !email || !orderId || !phone) {
+            alert('Please fill in all required fields.'); return;
+        }
+        const btn = document.querySelector('.submit-btn');
+        btn.textContent = 'Registering...'; btn.style.opacity = '0.7';
+        setTimeout(() => {
+            btn.textContent = 'Register Warranty →'; btn.style.opacity = '1';
+            document.getElementById('warSuccessMsg').classList.add('show');
+        }, 1000);
+    }
+    function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

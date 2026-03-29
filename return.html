@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns & Exchange — CHRONOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #f8f5f0; --ivory-2: #f0ece4; --ivory-3: #e8e2d8;
+            --white: #ffffff; --charcoal: #1c1c1e; --dark: #2c2c2e;
+            --mid: #48484a; --light-text: #8e8e93; --faint: #aeaeb2;
+            --gold: #b8860b; --gold-2: #d4a017; --gold-bg: rgba(184,134,11,0.08);
+            --red: #e63946; --green: #2a9d3d;
+            --border: #ddd8d0; --border-2: #ece8e0;
+            --shadow-sm: 0 1px 8px rgba(28,28,30,0.08);
+            --shadow-md: 0 4px 24px rgba(28,28,30,0.12);
+            --shadow-gold: 0 6px 24px rgba(184,134,11,0.22);
+            --font-d: 'DM Serif Display', Georgia, serif;
+            --font-b: 'DM Sans', system-ui, sans-serif;
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-b); background: var(--ivory); color: var(--charcoal); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: var(--font-b); }
+        input, select, textarea { font-family: var(--font-b); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--ivory-2); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+        /* NAVBAR */
+        .navbar { background: var(--white); border-bottom: 1px solid var(--border); height: 62px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+        .nav-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 0.7rem; }
+        .logo-icon { color: var(--gold); }
+        .logo-name { font-family: var(--font-d); font-size: 1.5rem; letter-spacing: 0.2em; }
+        .logo-sub { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light-text); margin-top: 2px; }
+        .nav-back { display: flex; align-items: center; gap: 0.5rem; background: var(--ivory); border: 1.5px solid var(--border); padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--mid); transition: all 0.2s ease; }
+        .nav-back:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* HERO */
+        .page-hero { background: linear-gradient(135deg, var(--charcoal) 0%, #1a2a1a 100%); color: white; padding: 4rem 1.5rem; text-align: center; position: relative; overflow: hidden; }
+        .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(42,157,61,0.1) 0%, transparent 70%); }
+        .page-hero-content { position: relative; z-index: 1; animation: fadeUp 0.8s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        .page-eyebrow { display: inline-block; background: rgba(42,157,61,0.18); border: 1px solid rgba(42,157,61,0.35); color: #4ade80; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 99px; margin-bottom: 1rem; }
+        .page-title { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0.75rem; }
+        .page-title em { color: #4ade80; font-style: italic; }
+        .page-subtitle { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+
+        /* TRUST BADGES */
+        .trust-strip { background: var(--white); border-bottom: 1px solid var(--border); padding: 1.25rem 1.5rem; }
+        .trust-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+        .trust-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; font-weight: 600; color: var(--mid); }
+        .trust-icon { font-size: 1.4rem; }
+
+        /* MAIN */
+        .main { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+        .section-title { font-family: var(--font-d); font-size: 1.8rem; margin-bottom: 0.4rem; }
+        .section-sub { font-size: 0.9rem; color: var(--light-text); margin-bottom: 1.75rem; }
+
+        /* POLICY CARDS GRID */
+        .policy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+        .policy-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: all 0.2s ease; }
+        .policy-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--gold); }
+        .policy-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+        .policy-card h3 { font-family: var(--font-d); font-size: 1.15rem; margin-bottom: 0.4rem; }
+        .policy-card p { font-size: 0.85rem; color: var(--mid); line-height: 1.7; }
+
+        /* STEPS */
+        .steps-section { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 2.5rem; margin-bottom: 3rem; }
+        .steps-section h2 { font-family: var(--font-d); font-size: 1.6rem; margin-bottom: 1.5rem; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+        .step-item { display: flex; flex-direction: column; gap: 0.6rem; }
+        .step-num { width: 40px; height: 40px; background: var(--gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; font-family: var(--font-d); }
+        .step-title { font-size: 0.9rem; font-weight: 700; color: var(--charcoal); }
+        .step-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+        .step-connector { display: none; }
+
+        /* WHAT'S ELIGIBLE TABLE */
+        .eligibility-section { margin-bottom: 3rem; }
+        .eligibility-section h2 { font-family: var(--font-d); font-size: 1.6rem; margin-bottom: 1.25rem; }
+        .elig-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .elig-table thead { background: var(--charcoal); color: white; }
+        .elig-table th { padding: 0.9rem 1.25rem; text-align: left; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        .elig-table td { padding: 0.9rem 1.25rem; font-size: 0.875rem; border-bottom: 1px solid var(--border-2); color: var(--mid); vertical-align: middle; }
+        .elig-table tr:last-child td { border-bottom: none; }
+        .elig-table tr:hover td { background: var(--ivory); }
+        .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 4px; }
+        .tag.yes { background: rgba(42,157,61,0.1); color: var(--green); }
+        .tag.no  { background: rgba(230,57,70,0.1); color: var(--red); }
+        .tag.partial { background: rgba(184,134,11,0.1); color: var(--gold); }
+
+        /* RETURN REQUEST FORM */
+        .form-section { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 2.5rem; margin-bottom: 3rem; }
+        .form-section h2 { font-family: var(--font-d); font-size: 1.6rem; margin-bottom: 0.4rem; }
+        .form-section p { font-size: 0.875rem; color: var(--light-text); margin-bottom: 1.75rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+        .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+        .form-field label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); }
+        .form-input, .form-select, .form-textarea {
+            background: var(--ivory); border: 1.5px solid var(--border);
+            padding: 0.75rem 1rem; border-radius: 9px;
+            font-size: 0.875rem; color: var(--charcoal); outline: none;
+            transition: border-color 0.2s ease; width: 100%;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); background: var(--white); }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--faint); }
+        .form-textarea { resize: vertical; min-height: 100px; }
+        .full-col { grid-column: 1 / -1; }
+        .submit-btn { background: var(--gold); color: white; padding: 0.85rem 2.5rem; border-radius: 9px; font-size: 0.95rem; font-weight: 700; margin-top: 0.5rem; transition: all 0.2s ease; box-shadow: var(--shadow-gold); }
+        .submit-btn:hover { background: var(--gold-2); transform: translateY(-2px); }
+
+        /* SUCCESS MSG */
+        .success-msg { display: none; background: rgba(42,157,61,0.08); border: 1.5px solid rgba(42,157,61,0.3); border-radius: 10px; padding: 1.25rem 1.5rem; color: var(--green); font-weight: 600; font-size: 0.9rem; margin-top: 1rem; }
+        .success-msg.show { display: flex; align-items: center; gap: 0.6rem; }
+
+        /* FAQ */
+        .faq-section { margin-top: 3rem; }
+        .faq-section h2 { font-family: var(--font-d); font-size: 1.6rem; margin-bottom: 1.25rem; }
+        .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.65rem; overflow: hidden; }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: background 0.2s ease; }
+        .faq-q:hover { background: var(--ivory); }
+        .faq-icon { font-size: 1.1rem; color: var(--gold); transition: transform 0.3s ease; }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s ease; font-size: 0.85rem; color: var(--mid); line-height: 1.7; padding: 0 1.25rem; }
+        .faq-item.open .faq-a { max-height: 200px; padding: 0 1.25rem 1rem; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* FOOTER */
+        .footer { background: var(--charcoal); color: rgba(255,255,255,0.5); text-align: center; padding: 1.5rem; font-size: 0.8rem; }
+        .footer a { color: var(--gold-2); margin: 0 0.5rem; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr 1fr; }
+            .steps-section { padding: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .steps-grid { grid-template-columns: 1fr; }
+            .trust-inner { gap: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-wrap">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+                    <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/>
+                    <line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="15" cy="15" r="1.8" fill="currentColor"/>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-name">CHRONOS</div>
+                <div class="logo-sub">Fine Timepieces</div>
+            </div>
+        </a>
+        <a href="index.html" class="nav-back">← Back to Store</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <div class="page-eyebrow">Hassle-Free Policy</div>
+        <h1 class="page-title">Returns &amp; <em>Exchange</em></h1>
+        <p class="page-subtitle">30-day easy returns. No questions asked on eligible products.</p>
+    </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+    <div class="trust-inner">
+        <div class="trust-item"><span class="trust-icon">↩️</span> 30-Day Returns</div>
+        <div class="trust-item"><span class="trust-icon">🔄</span> Easy Exchange</div>
+        <div class="trust-item"><span class="trust-icon">💰</span> Full Refund</div>
+        <div class="trust-item"><span class="trust-icon">🚚</span> Free Return Pickup</div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> Refund in 5–7 Days</div>
+    </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+    <!-- Policy Cards -->
+    <div class="section-title">Our Return Policy</div>
+    <div class="section-sub">Simple, fair, and customer-first. Here's what we offer.</div>
+
+    <div class="policy-grid">
+        <div class="policy-card">
+            <div class="policy-icon">↩️</div>
+            <h3>30-Day Returns</h3>
+            <p>Changed your mind? Return any unworn watch within 30 days of delivery. No questions asked for eligible items.</p>
+        </div>
+        <div class="policy-card">
+            <div class="policy-icon">🔄</div>
+            <h3>Easy Exchange</h3>
+            <p>Want a different color or model? Exchange within 30 days. We'll pick up the old one and deliver the new one free.</p>
+        </div>
+        <div class="policy-card">
+            <div class="policy-icon">💳</div>
+            <h3>Full Refund</h3>
+            <p>Refunds are processed to your original payment method within 5–7 business days after we receive the returned item.</p>
+        </div>
+        <div class="policy-card">
+            <div class="policy-icon">🏠</div>
+            <h3>Free Pickup</h3>
+            <p>Our courier partner will pick up the return from your doorstep. Zero cost to you — we cover all return shipping charges.</p>
+        </div>
+        <div class="policy-card">
+            <div class="policy-icon">🔍</div>
+            <h3>Quality Check</h3>
+            <p>All returned watches undergo a thorough quality inspection by our expert team before the refund is processed.</p>
+        </div>
+        <div class="policy-card">
+            <div class="policy-icon">📦</div>
+            <h3>Original Packaging</h3>
+            <p>Please return the watch in its original box with all accessories, tags, and documentation for a smooth return process.</p>
+        </div>
+    </div>
+
+    <!-- How it Works Steps -->
+    <div class="steps-section">
+        <h2>How to Return in 4 Easy Steps</h2>
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <div class="step-title">Initiate Request</div>
+                <div class="step-desc">Fill the return form below or email us at returns@chronos.com with your Order ID</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">2</div>
+                <div class="step-title">Schedule Pickup</div>
+                <div class="step-desc">Our team will confirm within 24 hours and schedule a free pickup at your convenience</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <div class="step-title">Pack & Handover</div>
+                <div class="step-desc">Pack the watch in its original box with all accessories and hand it to the courier agent</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">4</div>
+                <div class="step-title">Get Refund</div>
+                <div class="step-desc">After quality check (2–3 days), refund is credited to your account in 5–7 business days</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Eligibility Table -->
+    <div class="eligibility-section">
+        <h2>What Can Be Returned?</h2>
+        <table class="elig-table">
+            <thead>
+                <tr>
+                    <th>Condition</th>
+                    <th>Return</th>
+                    <th>Exchange</th>
+                    <th>Refund</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Unused, original packaging, within 30 days</td>
+                    <td><span class="tag yes">✓ Yes</span></td>
+                    <td><span class="tag yes">✓ Yes</span></td>
+                    <td><span class="tag yes">✓ Full</span></td>
+                </tr>
+                <tr>
+                    <td>Defective or damaged on arrival</td>
+                    <td><span class="tag yes">✓ Yes</span></td>
+                    <td><span class="tag yes">✓ Yes</span></td>
+                    <td><span class="tag yes">✓ Full</span></td>
+                </tr>
+                <tr>
+                    <td>Wrong item delivered</td>
+                    <td><span class="tag yes">✓ Yes</span></td>
+                    <td><span class="tag yes">✓ Yes</span></td>
+                    <td><span class="tag yes">✓ Full</span></td>
+                </tr>
+                <tr>
+                    <td>Worn/used but with defect (within 30 days)</td>
+                    <td><span class="tag partial">~ Case by Case</span></td>
+                    <td><span class="tag yes">✓ Yes</span></td>
+                    <td><span class="tag partial">~ Partial</span></td>
+                </tr>
+                <tr>
+                    <td>Worn/used without defect</td>
+                    <td><span class="tag no">✗ No</span></td>
+                    <td><span class="tag partial">~ Case by Case</span></td>
+                    <td><span class="tag no">✗ No</span></td>
+                </tr>
+                <tr>
+                    <td>After 30 days (no defect)</td>
+                    <td><span class="tag no">✗ No</span></td>
+                    <td><span class="tag no">✗ No</span></td>
+                    <td><span class="tag no">✗ No</span></td>
+                </tr>
+                <tr>
+                    <td>Limited / Exclusive edition watches</td>
+                    <td><span class="tag no">✗ No</span></td>
+                    <td><span class="tag no">✗ No</span></td>
+                    <td><span class="tag no">✗ No</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Return Request Form -->
+    <div class="form-section">
+        <h2>Request a Return or Exchange</h2>
+        <p>Fill in the details below and our team will get back to you within 24 hours.</p>
+        <div class="form-grid">
+            <div class="form-field">
+                <label>Full Name *</label>
+                <input type="text" class="form-input" id="retName" placeholder="Your full name">
+            </div>
+            <div class="form-field">
+                <label>Order ID *</label>
+                <input type="text" class="form-input" id="retOrderId" placeholder="e.g. CHR12345678">
+            </div>
+            <div class="form-field">
+                <label>Phone Number *</label>
+                <input type="tel" class="form-input" id="retPhone" placeholder="10-digit number">
+            </div>
+            <div class="form-field">
+                <label>Email Address</label>
+                <input type="email" class="form-input" placeholder="your@email.com">
+            </div>
+            <div class="form-field">
+                <label>Request Type *</label>
+                <select class="form-select" id="retType">
+                    <option value="">Select type</option>
+                    <option value="return">Return (Refund)</option>
+                    <option value="exchange">Exchange (Different Product)</option>
+                    <option value="defective">Defective / Damaged Item</option>
+                    <option value="wrong">Wrong Item Delivered</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label>Product Name</label>
+                <input type="text" class="form-input" placeholder="Watch name from your order">
+            </div>
+            <div class="form-field full-col">
+                <label>Reason for Return *</label>
+                <textarea class="form-textarea" id="retReason" placeholder="Please describe the reason for your return or exchange request..."></textarea>
+            </div>
+        </div>
+        <button class="submit-btn" onclick="submitReturn()">Submit Return Request →</button>
+        <div class="success-msg" id="retSuccessMsg">
+            ✅ Your return request has been submitted! We'll contact you within 24 hours to schedule pickup.
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+        <h2>Return FAQs</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                How long does the refund take after return pickup?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Once we receive the returned watch, our quality team inspects it within 2–3 business days. After approval, the refund is processed and credited to your original payment method within 5–7 business days.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                Can I exchange for a more expensive watch?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Yes! You can exchange for any watch in our catalog. If the new watch is more expensive, you pay the difference. If it's less expensive, we refund the balance to your original payment method.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                What if I lost the original box or tags?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Original packaging is preferred but not always mandatory. However, missing accessories, straps, or documentation may result in a deduction from your refund amount. Contact us first and we'll guide you.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                My watch was a gift. Can it be returned?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Yes! Gifted watches can be returned within 30 days. You'll need the original Order ID from the purchaser. The refund will be issued to the original buyer's payment method.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                Is the return shipping really free?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-a">Absolutely! For all eligible returns and exchanges, we arrange a free doorstep pickup through our courier partner. You will never have to pay any return shipping charges.</div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 CHRONOS Fine Timepieces &nbsp;|&nbsp;
+        <a href="index.html">Home</a>
+        <a href="track-order.html">Track Order</a>
+        <a href="warranty.html">Warranty</a>
+        <a href="contact.html">Contact</a>
+    </p>
+</footer>
+
+<script>
+    function submitReturn() {
+        const name    = document.getElementById('retName').value.trim();
+        const orderId = document.getElementById('retOrderId').value.trim();
+        const phone   = document.getElementById('retPhone').value.trim();
+        const type    = document.getElementById('retType').value;
+        const reason  = document.getElementById('retReason').value.trim();
+
+        if (!name || !orderId || !phone || !type || !reason) {
+            alert('Please fill in all required fields (marked with *).'); return;
+        }
+
+        const btn = document.querySelector('.submit-btn');
+        btn.textContent = 'Submitting...'; btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+            btn.textContent = 'Submit Return Request →'; btn.style.opacity = '1';
+            document.getElementById('retSuccessMsg').classList.add('show');
+            document.querySelector('.form-grid').querySelectorAll('input, select, textarea').forEach(el => el.value = '');
+        }, 1000);
+    }
+
+    function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
