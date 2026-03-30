@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Watches — CHRONOS Fine Timepieces</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── LUXURY PAGE SPECIFIC STYLES ── */
+
+        /* Hero */
+        .lux-hero {
+            background: var(--charcoal);
+            color: var(--ivory);
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .lux-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(184,134,11,0.12);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .lux-hero::after {
+            content: '';
+            position: absolute;
+            width: 380px; height: 380px;
+            border-radius: 50%;
+            border: 1px solid rgba(184,134,11,0.08);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .lux-hero-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold-2);
+            margin-bottom: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+        .lux-hero-heading {
+            font-family: var(--font-d);
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 1.12;
+            color: var(--ivory);
+            margin-bottom: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .lux-hero-heading em { color: var(--gold-2); font-style: italic; }
+        .lux-hero-desc {
+            font-size: 1rem;
+            color: var(--faint);
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        .lux-hero-breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--faint);
+            position: relative;
+            z-index: 1;
+        }
+        .lux-hero-breadcrumb a { color: var(--gold-2); text-decoration: none; transition: opacity 0.2s; }
+        .lux-hero-breadcrumb a:hover { opacity: 0.75; }
+        .lux-hero-breadcrumb span { opacity: 0.4; }
+
+        /* Features strip */
+        .lux-features {
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 0.85rem 2rem;
+            flex-wrap: wrap;
+        }
+        .lux-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.03em;
+        }
+
+        /* Catalog layout */
+        .lux-catalog {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 5rem;
+        }
+        .lux-catalog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .lux-catalog-title {
+            font-family: var(--font-d);
+            font-size: 1.6rem;
+            color: var(--charcoal);
+        }
+        .lux-catalog-count {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin-top: 0.15rem;
+        }
+        .lux-sort-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .lux-sort-label {
+            font-size: 0.82rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        .lux-sort-select {
+            padding: 0.5rem 0.9rem;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            background: var(--white);
+            font-family: var(--font-b);
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .lux-sort-select:focus { border-color: var(--gold); }
+
+        /* Product grid */
+        .lux-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Product card */
+        .lux-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-2);
+            transition: transform var(--t), box-shadow var(--t);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .lux-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Card image */
+        .lux-card-img-wrap {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: var(--ivory-2);
+        }
+        .lux-card-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .lux-card:hover .lux-card-img { transform: scale(1.06); }
+
+        /* Badge */
+        .lux-badge {
+            position: absolute;
+            top: 1rem; left: 1rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        .lux-badge.gold { background: var(--gold); color: var(--white); }
+        .lux-badge.green { background: var(--green); color: var(--white); }
+        .lux-badge.default { background: var(--charcoal); color: var(--ivory); }
+
+        /* Wishlist btn on card */
+        .lux-card-wish {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--shadow-sm);
+            transition: background var(--t), color var(--t);
+            z-index: 2;
+            color: var(--faint);
+        }
+        .lux-card-wish:hover { background: var(--white); color: var(--red); }
+        .lux-card-wish.wishlisted { color: var(--red); }
+
+        /* Out of stock overlay */
+        .lux-oos-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(248,245,240,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            backdrop-filter: blur(2px);
+        }
+        .lux-oos-tag {
+            background: var(--charcoal);
+            color: var(--ivory);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Color dots on image */
+        .lux-card-colors {
+            position: absolute;
+            bottom: 0.85rem;
+            left: 1rem;
+            display: flex;
+            gap: 0.4rem;
+            z-index: 2;
+        }
+        .lux-color-dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.8);
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            transition: transform 0.15s;
+        }
+        .lux-color-dot:hover, .lux-color-dot.active { transform: scale(1.3); border-color: white; }
+
+        /* Card body */
+        .lux-card-body {
+            padding: 1.4rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .lux-card-category {
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+        .lux-card-name {
+            font-family: var(--font-d);
+            font-size: 1.25rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            line-height: 1.25;
+        }
+        .lux-card-desc {
+            font-size: 0.84rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 0.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Specs chips */
+        .lux-card-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+        .lux-spec-chip {
+            background: var(--ivory-2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.2rem 0.65rem;
+            font-size: 0.71rem;
+            color: var(--mid);
+            font-weight: 500;
+        }
+
+        /* Rating */
+        .lux-card-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .lux-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.04em; }
+        .lux-rating-num { font-size: 0.82rem; font-weight: 700; color: var(--charcoal); }
+        .lux-review-count { font-size: 0.78rem; color: var(--light-text); }
+
+        /* Price */
+        .lux-card-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+            margin-top: auto;
+        }
+        .lux-price-curr {
+            font-family: var(--font-d);
+            font-size: 1.5rem;
+            color: var(--charcoal);
+        }
+        .lux-price-orig {
+            font-size: 0.88rem;
+            color: var(--faint);
+            text-decoration: line-through;
+        }
+        .lux-price-disc {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--green);
+            background: rgba(42,157,61,0.08);
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        /* Card actions */
+        .lux-card-actions {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.6rem;
+        }
+        .lux-add-btn {
+            padding: 0.72rem 1rem;
+            background: var(--charcoal);
+            color: var(--ivory);
+            border: none;
+            border-radius: 9px;
+            font-family: var(--font-b);
+            font-size: 0.87rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--t), transform 0.15s, box-shadow var(--t);
+            position: relative;
+            overflow: hidden;
+        }
+        .lux-add-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(184,134,11,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .lux-add-btn:hover { background: var(--dark); box-shadow: var(--shadow-gold); transform: translateY(-1px); }
+        .lux-add-btn:hover::before { opacity: 1; }
+        .lux-add-btn:disabled { background: var(--faint); cursor: not-allowed; transform: none; box-shadow: none; }
+        .lux-add-btn:disabled::before { display: none; }
+
+        .lux-view-btn {
+            padding: 0.72rem 0.9rem;
+            background: var(--ivory-2);
+            color: var(--charcoal);
+            border: 1.5px solid var(--border);
+            border-radius: 9px;
+            font-family: var(--font-b);
+            font-size: 0.87rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color var(--t), background var(--t);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .lux-view-btn:hover { border-color: var(--gold); background: var(--gold-bg); }
+
+        /* Featured highlight card (full-width) */
+        .lux-card.featured {
+            grid-column: 1 / -1;
+            flex-direction: row;
+        }
+        .lux-card.featured .lux-card-img-wrap {
+            width: 45%;
+            flex-shrink: 0;
+            aspect-ratio: unset;
+            min-height: 340px;
+        }
+        .lux-card.featured .lux-card-body { padding: 2rem 2.5rem; justify-content: center; }
+        .lux-card.featured .lux-card-name { font-size: 1.75rem; margin-bottom: 0.7rem; }
+        .lux-card.featured .lux-card-desc { -webkit-line-clamp: 3; margin-bottom: 1.2rem; }
+        .lux-card.featured .lux-price-curr { font-size: 1.9rem; }
+
+        /* Featured label */
+        .lux-featured-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .lux-featured-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        /* Bottom CTA */
+        .lux-cta {
+            background: var(--charcoal);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .lux-cta-title {
+            font-family: var(--font-d);
+            font-size: 2rem;
+            color: var(--ivory);
+            margin-bottom: 0.6rem;
+        }
+        .lux-cta-title em { color: var(--gold-2); font-style: italic; }
+        .lux-cta-desc { font-size: 0.93rem; color: var(--faint); margin-bottom: 1.8rem; }
+        .lux-cta-btns { display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .lux-cta-btn {
+            padding: 0.85rem 2rem;
+            border-radius: 9px;
+            font-family: var(--font-b);
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lux-cta-btn.primary { background: var(--gold); color: var(--white); border: none; }
+        .lux-cta-btn.primary:hover { background: var(--gold-2); }
+        .lux-cta-btn.ghost { background: none; color: var(--ivory); border: 1.5px solid rgba(255,255,255,0.25); }
+        .lux-cta-btn.ghost:hover { border-color: var(--gold-2); color: var(--gold-2); }
+
+        /* Toast */
+        .toast-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.6rem; }
+        .toast { background: var(--charcoal); color: var(--ivory); padding: 0.75rem 1.1rem; border-radius: 8px; font-size: 0.88rem; box-shadow: var(--shadow-md); animation: toastIn 0.3s ease; max-width: 280px; }
+        .toast.success { border-left: 3px solid var(--green); }
+        .toast.added   { border-left: 3px solid var(--gold); }
+        @keyframes toastIn { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .lux-card.featured { flex-direction: column; grid-column: auto; }
+            .lux-card.featured .lux-card-img-wrap { width: 100%; min-height: 240px; }
+            .lux-card.featured .lux-card-body { padding: 1.4rem 1.5rem; }
+            .lux-card.featured .lux-card-name { font-size: 1.35rem; }
+        }
+        @media (max-width: 600px) {
+            .lux-grid { grid-template-columns: 1fr; }
+            .lux-catalog-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ ANNOUNCEMENT BAR ═══ -->
+<div class="announce-bar">
+    <span>🎁 Free shipping on orders above ₹999</span>
+    <span class="sep">|</span>
+    <span>⚡ Use code <strong>CHRONOS10</strong> for 10% off</span>
+    <span class="sep">|</span>
+    <span>🏆 2-Year Warranty on all watches</span>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+    <div class="nav-wrap">
+        <a class="logo" href="index.html">
+            <div class="logo-icon">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="15" cy="15" r="9"  stroke="currentColor" stroke-width="1"/>
+                    <line x1="15" y1="7"  x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="15" cy="15" r="1.8" fill="currentColor"/>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-name">CHRONOS</div>
+                <div class="logo-sub">Fine Timepieces</div>
+            </div>
+        </a>
+
+        <div style="flex:1"></div>
+
+        <div class="nav-icons">
+            <a href="login.html" class="nav-icon-btn" title="Login / My Account" style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;padding:0 0.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>Login</span>
+            </a>
+            <button class="nav-icon-btn" id="wishlistNavBtn" title="Wishlist">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span class="badge" id="wishlistBadge">0</span>
+            </button>
+            <button class="nav-icon-btn" id="cartNavBtn" title="Cart">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span class="badge cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="lux-hero">
+    <p class="lux-hero-eyebrow">CHRONOS — 2026 Collection</p>
+    <h1 class="lux-hero-heading">The Art of<br><em>Luxury</em> Timekeeping</h1>
+    <p class="lux-hero-desc">Masterpieces from the world's finest ateliers. Each watch a testament to generations of horological expertise.</p>
+    <div class="lux-hero-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Luxury Watches</span>
+    </div>
+</section>
+
+<!-- ═══ FEATURES STRIP ═══ -->
+<div class="lux-features">
+    <div class="lux-feature">✦ Swiss & Japanese Movements</div>
+    <div class="lux-feature">✦ Certificate of Authenticity</div>
+    <div class="lux-feature">✦ 2-Year International Warranty</div>
+    <div class="lux-feature">✦ Free Insured Shipping</div>
+    <div class="lux-feature">✦ 30-Day Returns</div>
+</div>
+
+<!-- ═══ CATALOG ═══ -->
+<div class="lux-catalog">
+    <div class="lux-catalog-header">
+        <div>
+            <h2 class="lux-catalog-title">Luxury Collection</h2>
+            <p class="lux-catalog-count" id="catalogCount">Showing 4 timepieces</p>
+        </div>
+        <div class="lux-sort-wrap">
+            <span class="lux-sort-label">Sort by:</span>
+            <select class="lux-sort-select" id="sortSelect" onchange="sortCards()">
+                <option value="default">Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="lux-grid" id="luxGrid">
+        <!-- Cards injected by JS -->
+    </div>
+</div>
+
+<!-- ═══ BOTTOM CTA ═══ -->
+<section class="lux-cta">
+    <h2 class="lux-cta-title">Explore the Full <em>Collection</em></h2>
+    <p class="lux-cta-desc">Browse 500+ timepieces across Sport, Vintage, Casual, and Premium categories.</p>
+    <div class="lux-cta-btns">
+        <a href="index.html" class="lux-cta-btn primary">Shop All Watches →</a>
+        <a href="contact.html" class="lux-cta-btn ghost">Talk to an Expert</a>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">CHRONOS</div>
+            <p>India's finest curated watch marketplace. Every timepiece tells a story.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Shop</h4>
+            <a href="luxury-watches.html">Luxury Watches</a>
+            <a href="#">Sport Watches</a>
+            <a href="#">Vintage Watches</a>
+            <a href="#">New Arrivals</a>
+        </div>
+        <div class="footer-links">
+            <h4>Support</h4>
+            <a href="track-order.html">Track Order</a>
+            <a href="return.html">Returns & Exchange</a>
+            <a href="warranty.html">Warranty</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-links">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Blog</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 CHRONOS Fine Timepieces. All rights reserved.</span>
+        <span>Made with ❤️ in India</span>
+    </div>
+</footer>
+
+<!-- Cart & Wishlist sidebars (shared UI) -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar-head">
+        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> My Cart</h3>
+        <button class="cart-side-close" id="cartSideClose">✕</button>
+    </div>
+    <div class="cart-side-body">
+        <div class="cart-empty-state" id="cartEmptyState"><div class="cart-empty-img">🛍️</div><p>Your cart is empty</p><small>Add some gorgeous timepieces!</small></div>
+        <div id="cartItemsList"></div>
+    </div>
+    <div class="cart-side-foot" id="cartSideFoot" style="display:none">
+        <div class="cart-price-rows">
+            <div class="cart-price-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+            <div class="cart-price-row"><span>Shipping</span><span class="green-text">FREE</span></div>
+            <div class="cart-price-row total-row"><span>Total</span><span id="cartFinalTotal">₹0</span></div>
+        </div>
+        <button class="cart-checkout-btn" onclick="window.location.href='index.html#checkout'">Proceed to Checkout →</button>
+        <button class="cart-clear-btn" id="cartClearBtn">Clear Cart</button>
+    </div>
+</aside>
+
+<div class="wishlist-overlay" id="wishlistOverlay"></div>
+<aside class="wishlist-sidebar" id="wishlistSidebar">
+    <div class="wishlist-head"><h3>❤️ Wishlist</h3><button class="wishlist-close" id="wishlistClose">✕</button></div>
+    <div class="wishlist-body" id="wishlistBody">
+        <div class="wishlist-empty" id="wishlistEmpty"><div style="font-size:3rem">💝</div><p>No items in wishlist yet</p></div>
+        <div id="wishlistItems"></div>
+    </div>
+</aside>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ── DATA: Luxury watches from the existing product catalog ── */
+const luxuryWatches = [
+  {
+    id: 8, name: "Moonphase Luxury", category: "Luxury",
+    price: 15999, originalPrice: 22000, discount: 27,
+    rating: 4.9, reviewCount: 92,
+    badge: "Exclusive", badgeClass: "gold",
+    stock: true,
+    featured: true,
+    colors: [
+      { name: "Gold",  hex: "#c9a84c", img: "https://images.unsplash.com/photo-1511370235399-1802cae1d32f?w=900&q=80" },
+      { name: "Black", hex: "#1a1a1a", img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=900&q=80" }
+    ],
+    description: "An astronomical marvel. The moonphase display tracks the lunar cycle within 122 years. Guilloché dial work, 18K gold case, and alligator strap — for those who accept nothing less than perfection.",
+    specs: ["18K Gold Case", "Swiss Automatic", "Moonphase Display", "Alligator Strap", "40mm", "Guilloché Dial"]
+  },
+  {
+    id: 10, name: "Skeleton Tourbillon", category: "Luxury",
+    price: 24999, originalPrice: 34999, discount: 29,
+    rating: 4.9, reviewCount: 48,
+    badge: "Ultra Luxury", badgeClass: "gold",
+    stock: false,
+    featured: false,
+    colors: [
+      { name: "Black",  hex: "#1a1a1a", img: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=900&q=80" },
+      { name: "Silver", hex: "#c0c0c0", img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=900&q=80" }
+    ],
+    description: "The pinnacle of horology. Open-worked skeleton dial reveals the mesmerizing tourbillon — watchmaking's most complex complication — in perpetual motion. Limited edition.",
+    specs: ["Titanium Case", "Manual Tourbillon", "Skeleton Dial", "Crocodile Strap", "45mm", "Limited Edition"]
+  },
+  {
+    id: 1, name: "Royal Oak Prestige", category: "Luxury",
+    price: 8999, originalPrice: 13999, discount: 36,
+    rating: 4.8, reviewCount: 248,
+    badge: "Best Seller", badgeClass: "gold",
+    stock: true,
+    featured: false,
+    colors: [
+      { name: "Black",  hex: "#1a1a1a", img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=900&q=80" },
+      { name: "Silver", hex: "#c0c0c0", img: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=900&q=80" },
+      { name: "Gold",   hex: "#c9a84c", img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=900&q=80" }
+    ],
+    description: "A masterpiece that redefines luxury watchmaking. Hand-finished stainless steel case, sapphire crystal glass, and Swiss automatic movement with 72-hour power reserve.",
+    specs: ["Stainless Steel", "Swiss Auto", "50m WR", "Sapphire Crystal", "38mm", "72hr Reserve"]
+  },
+  {
+    id: 2, name: "Nautilus Elite", category: "Premium",
+    price: 12499, originalPrice: 18000, discount: 31,
+    rating: 4.9, reviewCount: 176,
+    badge: "Top Rated", badgeClass: "gold",
+    stock: true,
+    featured: false,
+    colors: [
+      { name: "Rose Gold", hex: "#b76e79", img: "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=900&q=80" },
+      { name: "Black",     hex: "#1a1a1a", img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=900&q=80" },
+      { name: "Silver",    hex: "#c0c0c0", img: "https://images.unsplash.com/photo-1511370235399-1802cae1d32f?w=900&q=80" }
+    ],
+    description: "Sophisticated design meets modern engineering. Rose gold plated case with genuine alligator leather strap. The exhibition caseback reveals a breathtaking Swiss automatic movement.",
+    specs: ["Rose Gold Plated", "Swiss Automatic", "100m WR", "Exhibition Back", "42mm", "Alligator Strap"]
+  }
+];
+
+/* ── State ── */
+let cart      = JSON.parse(localStorage.getItem('cCart'))     || [];
+let wishlist  = JSON.parse(localStorage.getItem('cWishlist')) || [];
+let activeColorPerCard = {}; // id -> colorIndex
+let currentSort = 'default';
+
+/* ── Helpers ── */
+function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
+function stars(r) {
+    const full = Math.floor(r), half = r % 1 >= 0.5;
+    return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - (half ? 1 : 0));
+}
+function showToast(msg, type='added') {
+    const t = document.createElement('div');
+    t.className = `toast ${type}`;
+    t.textContent = msg;
+    document.getElementById('toastContainer').appendChild(t);
+    setTimeout(() => t.remove(), 3000);
+}
+function saveCart() { localStorage.setItem('cCart', JSON.stringify(cart)); }
+function saveWishlist() { localStorage.setItem('cWishlist', JSON.stringify(wishlist)); }
+function updateBadges() {
+    const cq = cart.reduce((a,c)=>a+c.qty,0);
+    document.getElementById('cartBadge').textContent = cq;
+    document.getElementById('wishlistBadge').textContent = wishlist.length;
+}
+
+/* ── Cart sidebar ── */
+function renderCartSidebar() {
+    const list  = document.getElementById('cartItemsList');
+    const empty = document.getElementById('cartEmptyState');
+    const foot  = document.getElementById('cartSideFoot');
+    list.innerHTML = '';
+    if (!cart.length) { empty.style.display=''; foot.style.display='none'; return; }
+    empty.style.display = 'none'; foot.style.display = '';
+    cart.forEach(item => {
+        const d = document.createElement('div');
+        d.className = 'cart-item';
+        d.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+            <div class="cart-item-info">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-color">${item.color}</div>
+                <div class="cart-item-price">${fmt(item.price)}</div>
+                <div class="cart-item-qty">
+                    <button onclick="changeQty(${item.id},'${item.color}',-1)">−</button>
+                    <span>${item.qty}</span>
+                    <button onclick="changeQty(${item.id},'${item.color}',1)">+</button>
+                    <button class="cart-item-remove" onclick="removeFromCart(${item.id},'${item.color}')">✕</button>
+                </div>
+            </div>`;
+        list.appendChild(d);
+    });
+    const total = cart.reduce((a,c)=>a+c.price*c.qty,0);
+    document.getElementById('cartSubtotal').textContent  = fmt(total);
+    document.getElementById('cartFinalTotal').textContent = fmt(total);
+    updateBadges();
+}
+function changeQty(id, color, delta) {
+    const item = cart.find(c=>c.id===id&&c.color===color);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(c=>!(c.id===id&&c.color===color));
+    saveCart(); renderCartSidebar();
+}
+function removeFromCart(id, color) {
+    cart = cart.filter(c=>!(c.id===id&&c.color===color));
+    saveCart(); renderCartSidebar();
+}
+
+/* ── Add to cart ── */
+function addToCart(productId) {
+    const w   = luxuryWatches.find(p=>p.id===productId);
+    if (!w || !w.stock) return;
+    const ci  = activeColorPerCard[productId] ?? 0;
+    const col = w.colors[ci];
+    const existing = cart.find(c=>c.id===w.id&&c.color===col.name);
+    if (existing) { existing.qty++; }
+    else { cart.push({ id:w.id, name:w.name, price:w.price, color:col.name, img:col.img, qty:1 }); }
+    saveCart(); renderCartSidebar(); updateBadges();
+    showToast(`${w.name} added to cart ✓`, 'added');
+}
+
+/* ── Wishlist ── */
+function toggleWishlist(productId) {
+    const w   = luxuryWatches.find(p=>p.id===productId);
+    const idx = wishlist.findIndex(x=>x.id===productId);
+    if (idx > -1) {
+        wishlist.splice(idx, 1);
+        showToast(`${w.name} removed from wishlist`, 'success');
+    } else {
+        wishlist.push({ id:w.id, name:w.name, price:w.price, img:w.colors[0].img });
+        showToast(`${w.name} added to wishlist ❤️`, 'success');
+    }
+    saveWishlist(); updateBadges();
+    // update heart icon on card
+    const btn = document.querySelector(`.lux-card-wish[data-id="${productId}"]`);
+    if (btn) btn.classList.toggle('wishlisted', wishlist.some(x=>x.id===productId));
+}
+
+/* ── Color switch ── */
+function switchColor(productId, colorIdx) {
+    activeColorPerCard[productId] = colorIdx;
+    const w   = luxuryWatches.find(p=>p.id===productId);
+    const img = document.getElementById(`card-img-${productId}`);
+    if (img) img.src = w.colors[colorIdx].img;
+    // update dot active states
+    document.querySelectorAll(`.color-dot-${productId}`).forEach((dot, i) => {
+        dot.classList.toggle('active', i === colorIdx);
+    });
+}
+
+/* ── Sort ── */
+function sortCards() {
+    currentSort = document.getElementById('sortSelect').value;
+    renderGrid();
+}
+
+/* ── Render grid ── */
+function renderGrid() {
+    const watches = [...luxuryWatches];
+    if (currentSort === 'price-asc')  watches.sort((a,b) => a.price - b.price);
+    if (currentSort === 'price-desc') watches.sort((a,b) => b.price - a.price);
+    if (currentSort === 'rating')     watches.sort((a,b) => b.rating - a.rating);
+    // featured always first when default
+    if (currentSort === 'default') watches.sort((a,b) => (b.featured?1:0)-(a.featured?1:0));
+
+    const grid = document.getElementById('luxGrid');
+    grid.innerHTML = '';
+
+    watches.forEach(w => {
+        const ci      = activeColorPerCard[w.id] ?? 0;
+        const imgSrc  = w.colors[ci].img;
+        const inWish  = wishlist.some(x=>x.id===w.id);
+        const isFeat  = w.featured && currentSort === 'default';
+
+        const colorDots = w.colors.map((c, i) =>
+            `<span class="lux-color-dot color-dot-${w.id} ${i===ci?'active':''}"
+                   style="background:${c.hex}" title="${c.name}"
+                   onclick="switchColor(${w.id},${i})"></span>`
+        ).join('');
+
+        const specChips = w.specs.slice(0,4).map(s =>
+            `<span class="lux-spec-chip">${s}</span>`
+        ).join('');
+
+        const discLabel = `<span class="lux-price-disc">${w.discount}% OFF</span>`;
+        const badgeCls  = w.badgeClass === 'gold' ? 'gold' : w.badgeClass === 'green' ? 'green' : 'default';
+
+        const card = document.createElement('div');
+        card.className = 'lux-card' + (isFeat ? ' featured' : '');
+        card.innerHTML = `
+            <div class="lux-card-img-wrap">
+                <img class="lux-card-img" id="card-img-${w.id}" src="${imgSrc}" alt="${w.name}" loading="lazy">
+                ${w.badge ? `<span class="lux-badge ${badgeCls}">${w.badge}</span>` : ''}
+                <button class="lux-card-wish ${inWish?'wishlisted':''}" data-id="${w.id}" onclick="toggleWishlist(${w.id})" title="Wishlist">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="${inWish?'currentColor':'none'}" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </button>
+                <div class="lux-card-colors">${colorDots}</div>
+                ${!w.stock ? `<div class="lux-oos-overlay"><span class="lux-oos-tag">Sold Out</span></div>` : ''}
+            </div>
+            <div class="lux-card-body">
+                ${isFeat ? '<div class="lux-featured-label">Featured Piece</div>' : ''}
+                <div class="lux-card-category">${w.category}</div>
+                <div class="lux-card-name">${w.name}</div>
+                <div class="lux-card-desc">${w.description}</div>
+                <div class="lux-card-specs">${specChips}</div>
+                <div class="lux-card-rating">
+                    <span class="lux-stars">${'★'.repeat(Math.floor(w.rating))}${w.rating%1>=0.5?'½':''}</span>
+                    <span class="lux-rating-num">${w.rating}</span>
+                    <span class="lux-review-count">(${w.reviewCount} reviews)</span>
+                </div>
+                <div class="lux-card-price">
+                    <span class="lux-price-curr">${fmt(w.price)}</span>
+                    <span class="lux-price-orig">${fmt(w.originalPrice)}</span>
+                    ${discLabel}
+                </div>
+                <div class="lux-card-actions">
+                    <button class="lux-add-btn" onclick="addToCart(${w.id})" ${!w.stock?'disabled':''}>
+                        ${w.stock ? 'Add to Cart' : 'Out of Stock'}
+                    </button>
+                    <button class="lux-view-btn" onclick="window.location.href='index.html'" title="View in store">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                </div>
+            </div>`;
+        grid.appendChild(card);
+    });
+
+    document.getElementById('catalogCount').textContent = `Showing ${watches.length} timepiece${watches.length!==1?'s':''}`;
+}
+
+/* ── Cart & Wishlist sidebar toggle ── */
+document.getElementById('cartNavBtn').addEventListener('click', () => {
+    document.getElementById('cartSidebar').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+});
+document.getElementById('cartSideClose').addEventListener('click', () => {
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+});
+document.getElementById('cartOverlay').addEventListener('click', () => {
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+});
+document.getElementById('cartClearBtn').addEventListener('click', () => {
+    cart = []; saveCart(); renderCartSidebar();
+});
+
+document.getElementById('wishlistNavBtn').addEventListener('click', () => {
+    document.getElementById('wishlistSidebar').classList.add('open');
+    document.getElementById('wishlistOverlay').classList.add('open');
+    renderWishlistSidebar();
+});
+document.getElementById('wishlistClose').addEventListener('click', () => {
+    document.getElementById('wishlistSidebar').classList.remove('open');
+    document.getElementById('wishlistOverlay').classList.remove('open');
+});
+document.getElementById('wishlistOverlay').addEventListener('click', () => {
+    document.getElementById('wishlistSidebar').classList.remove('open');
+    document.getElementById('wishlistOverlay').classList.remove('open');
+});
+
+function renderWishlistSidebar() {
+    const body  = document.getElementById('wishlistItems');
+    const empty = document.getElementById('wishlistEmpty');
+    body.innerHTML = '';
+    if (!wishlist.length) { empty.style.display=''; return; }
+    empty.style.display = 'none';
+    wishlist.forEach(item => {
+        const d = document.createElement('div');
+        d.className = 'cart-item';
+        d.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+            <div class="cart-item-info">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-price">${fmt(item.price)}</div>
+                <button class="cart-item-remove" onclick="removeWish(${item.id})">✕ Remove</button>
+            </div>`;
+        body.appendChild(d);
+    });
+}
+function removeWish(id) {
+    wishlist = wishlist.filter(x=>x.id!==id);
+    saveWishlist(); updateBadges(); renderWishlistSidebar();
+    const btn = document.querySelector(`.lux-card-wish[data-id="${id}"]`);
+    if (btn) btn.classList.remove('wishlisted');
+}
+
+/* ── Navbar scroll ── */
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* ── Init ── */
+renderGrid();
+renderCartSidebar();
+updateBadges();
+</script>
+</body>
+</html>
