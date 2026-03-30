@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Watches — CHRONOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--ivory:#f8f5f0;--ivory-2:#f0ece4;--white:#ffffff;--charcoal:#1c1c1e;--mid:#48484a;--light-text:#8e8e93;--faint:#aeaeb2;--gold:#b8860b;--gold-2:#d4a017;--gold-bg:rgba(184,134,11,0.08);--red:#e63946;--green:#2a9d3d;--border:#ddd8d0;--border-2:#ece8e0;--shadow-sm:0 1px 8px rgba(28,28,30,0.08);--shadow-md:0 4px 24px rgba(28,28,30,0.12);--shadow-gold:0 6px 24px rgba(184,134,11,0.22);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--ivory);color:var(--charcoal);line-height:1.6;}
+        a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:var(--font-b);}img{display:block;max-width:100%;}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ivory-2);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+        .navbar{background:var(--white);border-bottom:1px solid var(--border);height:62px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+        .nav-wrap{max-width:1300px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+        .logo{display:flex;align-items:center;gap:0.7rem;}.logo-icon{color:var(--gold);}
+        .logo-name{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.2em;}
+        .logo-sub{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--light-text);margin-top:2px;}
+        .nav-links{display:flex;gap:0.25rem;}
+        .nav-link{padding:0.45rem 0.85rem;border-radius:7px;font-size:0.84rem;font-weight:500;color:var(--mid);transition:all 0.2s ease;}
+        .nav-link:hover{background:var(--ivory-2);color:var(--charcoal);}
+        .nav-link.active{background:var(--gold-bg);color:var(--gold);font-weight:600;}
+        .nav-back{display:flex;align-items:center;gap:0.5rem;background:var(--ivory);border:1.5px solid var(--border);padding:0.45rem 1rem;border-radius:8px;font-size:0.85rem;font-weight:600;color:var(--mid);transition:all 0.2s ease;}
+        .nav-back:hover{border-color:var(--gold);color:var(--gold);}
+
+        /* HERO — Vintage sepia warm */
+        .hero{background:linear-gradient(135deg,#1a1000 0%,#2d1f05 50%,#3d2a0a 100%);color:white;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 40%,rgba(180,130,30,0.18) 0%,transparent 70%);}
+        .hero-inner{max-width:1300px;margin:0 auto;position:relative;z-index:1;text-align:center;}
+        .hero-eyebrow{display:inline-block;background:rgba(184,134,11,0.18);border:1px solid rgba(184,134,11,0.4);color:var(--gold-2);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:99px;margin-bottom:1.25rem;}
+        .hero-title{font-family:var(--font-d);font-size:clamp(2.5rem,6vw,5rem);line-height:1.05;margin-bottom:1rem;}
+        .hero-title em{color:var(--gold-2);font-style:italic;}
+        .hero-desc{font-size:1rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.8;margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto;}
+        .hero-cta{display:inline-flex;align-items:center;gap:0.6rem;background:var(--gold);color:white;padding:0.85rem 2rem;border-radius:9px;font-size:0.95rem;font-weight:700;transition:all 0.2s ease;box-shadow:var(--shadow-gold);}
+        .hero-cta:hover{background:var(--gold-2);transform:translateY(-2px);}
+        .hero-ornament{font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-top:2.5rem;}
+
+        .main{max-width:1300px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+        .sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.75rem;gap:1rem;flex-wrap:wrap;}
+        .sec-title{font-family:var(--font-d);font-size:1.9rem;}
+        .sec-sub{font-size:0.875rem;color:var(--light-text);margin-top:0.25rem;}
+        .view-all-btn{display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:700;color:var(--gold);border:1.5px solid var(--gold);padding:0.45rem 1.1rem;border-radius:7px;transition:all 0.2s ease;white-space:nowrap;}
+        .view-all-btn:hover{background:var(--gold);color:white;}
+
+        /* DECADE FILTER */
+        .decade-pills{display:flex;gap:0.65rem;flex-wrap:wrap;margin-bottom:2rem;}
+        .pill{padding:0.45rem 1.1rem;border:1.5px solid var(--border);border-radius:99px;font-size:0.82rem;font-weight:600;color:var(--mid);background:var(--white);cursor:pointer;transition:all 0.2s ease;}
+        .pill:hover{border-color:var(--gold);color:var(--gold);}
+        .pill.active{background:var(--charcoal);color:white;border-color:var(--charcoal);}
+
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;}
+        .product-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.3s ease;display:flex;flex-direction:column;}
+        .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--gold);}
+        .card-img{position:relative;background:var(--ivory-2);aspect-ratio:4/3;overflow:hidden;}
+        .card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;filter:sepia(15%);}
+        .product-card:hover .card-img img{transform:scale(1.06);filter:sepia(0%);}
+        .card-badge{position:absolute;top:0.65rem;left:0.65rem;background:var(--gold);color:white;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.22rem 0.6rem;border-radius:4px;}
+        .card-wishlist{position:absolute;top:0.65rem;right:0.65rem;width:32px;height:32px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.88rem;transition:all 0.2s ease;box-shadow:var(--shadow-sm);}
+        .card-wishlist:hover{transform:scale(1.15);}
+        .card-body{padding:1.1rem 1.25rem;display:flex;flex-direction:column;gap:0.45rem;flex:1;}
+        .card-cat{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+        .card-name{font-family:var(--font-d);font-size:1.15rem;line-height:1.25;color:var(--charcoal);}
+        .card-era{font-size:0.72rem;color:var(--light-text);font-style:italic;}
+        .card-stars{display:flex;align-items:center;gap:4px;font-size:0.78rem;}
+        .stars{color:#f5a623;}.rating-val{font-weight:700;}.review-cnt{color:var(--light-text);}
+        .card-pricing{display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;}
+        .price-now{font-size:1.2rem;font-weight:700;font-family:var(--font-d);}
+        .price-was{font-size:0.82rem;color:var(--light-text);text-decoration:line-through;}
+        .price-off{font-size:0.72rem;font-weight:700;color:var(--green);background:rgba(42,157,61,0.1);padding:0.12rem 0.42rem;border-radius:4px;}
+        .card-btns{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:auto;}
+        .btn-cart,.btn-buy{padding:0.6rem 0.5rem;border-radius:7px;font-size:0.78rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:0.35rem;transition:all 0.2s ease;}
+        .btn-cart{background:var(--ivory);border:1.5px solid var(--border);color:var(--charcoal);}
+        .btn-cart:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-bg);}
+        .btn-buy{background:var(--gold);color:white;border:1.5px solid transparent;}
+        .btn-buy:hover{background:var(--gold-2);transform:translateY(-1px);}
+
+        /* HISTORY TIMELINE */
+        .history-section{margin-bottom:4rem;}
+        .history-section h2{font-family:var(--font-d);font-size:1.8rem;margin-bottom:0.4rem;}
+        .history-section p{color:var(--light-text);font-size:0.875rem;margin-bottom:2rem;}
+        .timeline{display:flex;flex-direction:column;gap:0;}
+        .tl-item{display:flex;gap:1.5rem;padding-bottom:1.75rem;position:relative;}
+        .tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:60px;}
+        .tl-decade{font-family:var(--font-d);font-size:0.95rem;font-weight:600;color:var(--gold);text-align:center;line-height:1;}
+        .tl-line{width:2px;flex:1;background:var(--border-2);margin:6px 0;min-height:24px;}
+        .tl-item:last-child .tl-line{display:none;}
+        .tl-content{padding-top:2px;}
+        .tl-title{font-size:0.9rem;font-weight:700;color:var(--charcoal);margin-bottom:3px;}
+        .tl-desc{font-size:0.82rem;color:var(--mid);line-height:1.65;}
+
+        /* PATINA CALLOUT */
+        .patina-callout{background:linear-gradient(135deg,#2d1f05,#3d2a0a);border-radius:16px;padding:2.5rem;margin-bottom:4rem;color:white;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+        .pc-icon{font-size:4rem;flex-shrink:0;}
+        .pc-title{font-family:var(--font-d);font-size:1.5rem;color:var(--gold-2);margin-bottom:0.4rem;}
+        .pc-desc{font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.75;max-width:500px;}
+
+        .footer{background:var(--charcoal);color:rgba(255,255,255,0.5);text-align:center;padding:1.5rem;font-size:0.8rem;}
+        .footer a{color:var(--gold-2);margin:0 0.5rem;}
+
+        @media(max-width:600px){.products-grid{grid-template-columns:1fr 1fr;gap:0.75rem;}.card-btns{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-wrap">
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/><line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="15" r="1.8" fill="currentColor"/></svg></div><div><div class="logo-name">CHRONOS</div><div class="logo-sub">Fine Timepieces</div></div></a>
+    <div class="nav-links"><a href="luxury-watches.html" class="nav-link">Luxury</a><a href="sport-watches.html" class="nav-link">Sport</a><a href="vintage-watches.html" class="nav-link active">Vintage</a><a href="new-arrivals.html" class="nav-link">New Arrivals</a></div>
+    <a href="index.html" class="nav-back">← Store</a>
+</div></nav>
+
+<section class="hero"><div class="hero-inner">
+    <div class="hero-eyebrow">Heritage Collection</div>
+    <h1 class="hero-title">Vintage<br><em>& Heritage</em></h1>
+    <p class="hero-desc">Timepieces that carry history on their wrists. Inspired by decades of watchmaking tradition — where aged patina, manual wind movements, and classic dials tell stories that modern watches simply cannot.</p>
+    <a href="#products" class="hero-cta">Discover Heritage Watches →</a>
+    <div class="hero-ornament">— Est. 1920s through 1980s Inspired Designs —</div>
+</div></section>
+
+<main class="main" id="products">
+    <div class="sec-header">
+        <div><div class="sec-title">Heritage Collection</div><div class="sec-sub">Vintage-inspired designs with modern reliability</div></div>
+        <a href="index.html" class="view-all-btn">All Watches →</a>
+    </div>
+
+    <div class="decade-pills">
+        <button class="pill active">All Eras</button>
+        <button class="pill">1920s – 1940s</button>
+        <button class="pill">1950s – 1960s</button>
+        <button class="pill">1970s – 1980s</button>
+        <button class="pill">Dress Watches</button>
+        <button class="pill">Field / Military</button>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=600&q=80" alt="Heritage Vintage"><span class="card-badge">Classic</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Vintage</span><div class="card-name">Heritage Vintage</div><div class="card-era">Inspired by 1950s Dress Watches</div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.5</span><span class="review-cnt">(134)</span></div><div class="card-pricing"><span class="price-now">₹2,799</span><span class="price-was">₹3,999</span><span class="price-off">30% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=600&q=80" alt="Field Watch"><span class="card-badge">Military</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Heritage</span><div class="card-name">Field Watch Classic</div><div class="card-era">Inspired by 1940s Military Watches</div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.6</span><span class="review-cnt">(98)</span></div><div class="card-pricing"><span class="price-now">₹1,899</span><span class="price-was">₹2,999</span><span class="price-off">37% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=80" alt="Pilot"><span class="card-badge">Aviation</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Vintage</span><div class="card-name">Pilot's Mark I</div><div class="card-era">Inspired by 1930s Cockpit Instruments</div><div class="card-stars"><span class="stars">★★★★☆</span><span class="rating-val">4.4</span><span class="review-cnt">(156)</span></div><div class="card-pricing"><span class="price-now">₹3,199</span><span class="price-was">₹4,800</span><span class="price-off">33% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=80" alt="Dress"><span class="card-badge">Dress</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Heritage</span><div class="card-name">Grand Dress Watch</div><div class="card-era">Inspired by 1960s Slim Dress Pieces</div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.7</span><span class="review-cnt">(72)</span></div><div class="card-pricing"><span class="price-now">₹4,499</span><span class="price-was">₹6,200</span><span class="price-off">27% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+    </div>
+
+    <!-- History Timeline -->
+    <div class="history-section">
+        <h2>A Century of Watchmaking</h2>
+        <p>Our vintage collection draws inspiration from the most important decades of horology history.</p>
+        <div class="timeline">
+            <div class="tl-item"><div class="tl-left"><div class="tl-decade">1920s</div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">The Birth of the Wristwatch</div><div class="tl-desc">WWI soldiers needed hands-free timekeeping — the wristwatch was born from necessity. Cushion cases, wire lugs, and enamel dials defined the decade.</div></div></div>
+            <div class="tl-item"><div class="tl-left"><div class="tl-decade">1940s</div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">Military Precision</div><div class="tl-desc">WWII drove massive innovation. Military spec field watches, hack movements, and legible dials became the standard. Many iconic references were born during this era.</div></div></div>
+            <div class="tl-item"><div class="tl-left"><div class="tl-decade">1960s</div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">The Space Age & Dive Watch Boom</div><div class="tl-desc">The space race and scuba diving craze produced legendary tool watches. Rotating bezels, helium escape valves, and chronographs flourished in this golden era.</div></div></div>
+            <div class="tl-item"><div class="tl-left"><div class="tl-decade">1980s</div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">The Quartz Crisis & Survival</div><div class="tl-desc">Japanese quartz nearly killed Swiss watchmaking. The survivors who persisted — focusing on mechanical craftsmanship — built the foundation of luxury watchmaking today.</div></div></div>
+        </div>
+    </div>
+
+    <div class="patina-callout">
+        <div class="pc-icon">🟤</div>
+        <div><div class="pc-title">What is Watch Patina?</div><div class="pc-desc">Patina is the natural aging of a watch's dial, hands, and case over decades of wear. Creamy "tropical" dials, gilt numerals that fade to warm brown, and bronze cases that darken with character — these are not flaws. They're the soul of a vintage watch.</div></div>
+    </div>
+</main>
+
+<footer class="footer"><p>© 2025 CHRONOS &nbsp;|&nbsp;<a href="index.html">Home</a><a href="luxury-watches.html">Luxury</a><a href="contact.html">Contact</a></p></footer>
+<script>
+document.querySelectorAll('.card-wishlist').forEach(b=>b.addEventListener('click',()=>b.textContent=b.textContent==='🤍'?'❤️':'🤍'));
+document.querySelectorAll('.btn-cart').forEach(b=>b.addEventListener('click',()=>{b.textContent='✓ Added!';b.style.color='var(--green)';b.style.borderColor='var(--green)';setTimeout(()=>{b.textContent='🛒 Cart';b.style.color='';b.style.borderColor='';},1500);}));
+document.querySelectorAll('.pill').forEach(p=>p.addEventListener('click',()=>{document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));p.classList.add('active');}));
+</script>
+</body>
+</html>

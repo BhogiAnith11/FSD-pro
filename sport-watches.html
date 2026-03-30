@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Watches — CHRONOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--ivory:#f8f5f0;--ivory-2:#f0ece4;--white:#ffffff;--charcoal:#1c1c1e;--mid:#48484a;--light-text:#8e8e93;--faint:#aeaeb2;--gold:#b8860b;--gold-2:#d4a017;--gold-bg:rgba(184,134,11,0.08);--red:#e63946;--green:#2a9d3d;--border:#ddd8d0;--border-2:#ece8e0;--shadow-sm:0 1px 8px rgba(28,28,30,0.08);--shadow-md:0 4px 24px rgba(28,28,30,0.12);--shadow-gold:0 6px 24px rgba(184,134,11,0.22);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--ivory);color:var(--charcoal);line-height:1.6;}
+        a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:var(--font-b);}img{display:block;max-width:100%;}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ivory-2);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+        .navbar{background:var(--white);border-bottom:1px solid var(--border);height:62px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+        .nav-wrap{max-width:1300px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+        .logo{display:flex;align-items:center;gap:0.7rem;}.logo-icon{color:var(--gold);}
+        .logo-name{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.2em;}
+        .logo-sub{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--light-text);margin-top:2px;}
+        .nav-links{display:flex;gap:0.25rem;}
+        .nav-link{padding:0.45rem 0.85rem;border-radius:7px;font-size:0.84rem;font-weight:500;color:var(--mid);transition:all 0.2s ease;}
+        .nav-link:hover{background:var(--ivory-2);color:var(--charcoal);}
+        .nav-link.active{background:var(--gold-bg);color:var(--gold);font-weight:600;}
+        .nav-back{display:flex;align-items:center;gap:0.5rem;background:var(--ivory);border:1.5px solid var(--border);padding:0.45rem 1rem;border-radius:8px;font-size:0.85rem;font-weight:600;color:var(--mid);transition:all 0.2s ease;}
+        .nav-back:hover{border-color:var(--gold);color:var(--gold);}
+
+        /* HERO — Sport theme: dark + electric blue */
+        .hero{background:linear-gradient(135deg,#0a0f1a 0%,#0d1b2a 50%,#1a2a0d 100%);color:white;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 30% 50%,rgba(59,130,246,0.12) 0%,transparent 60%);}
+        .hero-inner{max-width:1300px;margin:0 auto;position:relative;z-index:1;}
+        .hero-eyebrow{display:inline-block;background:rgba(59,130,246,0.2);border:1px solid rgba(59,130,246,0.4);color:#60a5fa;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:99px;margin-bottom:1.25rem;}
+        .hero-title{font-family:var(--font-d);font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.05;margin-bottom:1rem;max-width:700px;}
+        .hero-title em{color:#60a5fa;font-style:italic;}
+        .hero-desc{font-size:1rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.8;margin-bottom:2rem;max-width:500px;}
+        .hero-cta{display:inline-flex;align-items:center;gap:0.6rem;background:var(--gold);color:white;padding:0.85rem 2rem;border-radius:9px;font-size:0.95rem;font-weight:700;transition:all 0.2s ease;box-shadow:var(--shadow-gold);}
+        .hero-cta:hover{background:var(--gold-2);transform:translateY(-2px);}
+        .hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;flex-wrap:wrap;}
+        .stat{display:flex;flex-direction:column;gap:2px;}
+        .stat-num{font-family:var(--font-d);font-size:1.8rem;color:#60a5fa;line-height:1;}
+        .stat-lbl{font-size:0.72rem;color:rgba(255,255,255,0.45);}
+
+        /* SPEC STRIP */
+        .spec-strip{background:#1c1c1e;border-bottom:1px solid rgba(255,255,255,0.06);padding:1rem 1.5rem;}
+        .spec-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;}
+        .spec-item{display:flex;align-items:center;gap:0.6rem;font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.65);}
+        .spec-icon{font-size:1.1rem;}
+
+        /* MAIN */
+        .main{max-width:1300px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+        .sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.75rem;gap:1rem;flex-wrap:wrap;}
+        .sec-title{font-family:var(--font-d);font-size:1.9rem;}
+        .sec-sub{font-size:0.875rem;color:var(--light-text);margin-top:0.25rem;}
+        .view-all-btn{display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:700;color:var(--gold);border:1.5px solid var(--gold);padding:0.45rem 1.1rem;border-radius:7px;transition:all 0.2s ease;white-space:nowrap;}
+        .view-all-btn:hover{background:var(--gold);color:white;}
+
+        /* CATEGORY PILLS */
+        .category-pills{display:flex;gap:0.65rem;flex-wrap:wrap;margin-bottom:2rem;}
+        .pill{padding:0.45rem 1.1rem;border:1.5px solid var(--border);border-radius:99px;font-size:0.82rem;font-weight:600;color:var(--mid);background:var(--white);cursor:pointer;transition:all 0.2s ease;}
+        .pill:hover{border-color:var(--gold);color:var(--gold);}
+        .pill.active{background:var(--charcoal);color:white;border-color:var(--charcoal);}
+
+        /* PRODUCT GRID */
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;}
+        .product-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.3s ease;display:flex;flex-direction:column;animation:cardIn 0.5s ease both;}
+        @keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        .product-card:nth-child(1){animation-delay:.04s}.product-card:nth-child(2){animation-delay:.08s}.product-card:nth-child(3){animation-delay:.12s}.product-card:nth-child(4){animation-delay:.16s}.product-card:nth-child(5){animation-delay:.2s}.product-card:nth-child(6){animation-delay:.24s}
+        .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--gold);}
+        .card-img{position:relative;background:var(--ivory-2);aspect-ratio:4/3;overflow:hidden;}
+        .card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
+        .product-card:hover .card-img img{transform:scale(1.06);}
+        .card-badge{position:absolute;top:0.65rem;left:0.65rem;background:var(--red);color:white;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.22rem 0.6rem;border-radius:4px;}
+        .card-badge.gold{background:var(--gold);}
+        .card-badge.blue{background:#3b82f6;}
+        .card-badge.green{background:var(--green);}
+        .card-wishlist{position:absolute;top:0.65rem;right:0.65rem;width:32px;height:32px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.88rem;transition:all 0.2s ease;box-shadow:var(--shadow-sm);}
+        .card-wishlist:hover{transform:scale(1.15);}
+        .card-body{padding:1.1rem 1.25rem;display:flex;flex-direction:column;gap:0.45rem;flex:1;}
+        .card-cat{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+        .card-name{font-family:var(--font-d);font-size:1.15rem;line-height:1.25;color:var(--charcoal);}
+        .card-spec{font-size:0.72rem;color:var(--light-text);display:flex;gap:0.6rem;flex-wrap:wrap;}
+        .card-spec span{background:var(--ivory-2);padding:0.1rem 0.45rem;border-radius:4px;}
+        .card-stars{display:flex;align-items:center;gap:4px;font-size:0.78rem;}
+        .stars{color:#f5a623;}.rating-val{font-weight:700;}.review-cnt{color:var(--light-text);}
+        .card-pricing{display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;}
+        .price-now{font-size:1.2rem;font-weight:700;font-family:var(--font-d);}
+        .price-was{font-size:0.82rem;color:var(--light-text);text-decoration:line-through;}
+        .price-off{font-size:0.72rem;font-weight:700;color:var(--green);background:rgba(42,157,61,0.1);padding:0.12rem 0.42rem;border-radius:4px;}
+        .card-btns{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:auto;}
+        .btn-cart,.btn-buy{padding:0.6rem 0.5rem;border-radius:7px;font-size:0.78rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:0.35rem;transition:all 0.2s ease;}
+        .btn-cart{background:var(--ivory);border:1.5px solid var(--border);color:var(--charcoal);}
+        .btn-cart:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-bg);}
+        .btn-buy{background:var(--gold);color:white;border:1.5px solid transparent;}
+        .btn-buy:hover{background:var(--gold-2);transform:translateY(-1px);}
+
+        /* ACTIVITY GRID */
+        .activity-section{margin-bottom:4rem;}
+        .activity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;}
+        .activity-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1rem;text-align:center;cursor:pointer;transition:all 0.2s ease;}
+        .activity-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-sm);}
+        .act-icon{font-size:2.2rem;margin-bottom:0.5rem;}
+        .act-name{font-size:0.85rem;font-weight:700;color:var(--charcoal);}
+        .act-count{font-size:0.72rem;color:var(--light-text);margin-top:2px;}
+
+        /* TECH BANNER */
+        .tech-banner{background:linear-gradient(135deg,#0d1b2a,#1a2a3a);border-radius:20px;padding:3rem;margin-bottom:4rem;color:white;}
+        .tech-banner h2{font-family:var(--font-d);font-size:1.8rem;margin-bottom:0.5rem;}
+        .tech-banner p{color:rgba(255,255,255,0.55);font-size:0.9rem;margin-bottom:2rem;max-width:500px;}
+        .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.5rem;}
+        .tech-item{display:flex;align-items:flex-start;gap:0.75rem;}
+        .tech-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px;}
+        .tech-title{font-size:0.88rem;font-weight:700;color:#60a5fa;margin-bottom:2px;}
+        .tech-desc{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+
+        .footer{background:var(--charcoal);color:rgba(255,255,255,0.5);text-align:center;padding:1.5rem;font-size:0.8rem;}
+        .footer a{color:var(--gold-2);margin:0 0.5rem;}
+
+        @media(max-width:600px){.products-grid{grid-template-columns:1fr 1fr;gap:0.75rem;}.card-btns{grid-template-columns:1fr;}.spec-inner{gap:1rem;}.hero-stats{gap:1.5rem;}}
+    </style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-wrap">
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/><line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="15" r="1.8" fill="currentColor"/></svg></div><div><div class="logo-name">CHRONOS</div><div class="logo-sub">Fine Timepieces</div></div></a>
+    <div class="nav-links"><a href="luxury-watches.html" class="nav-link">Luxury</a><a href="sport-watches.html" class="nav-link active">Sport</a><a href="vintage-watches.html" class="nav-link">Vintage</a><a href="new-arrivals.html" class="nav-link">New Arrivals</a></div>
+    <a href="index.html" class="nav-back">← Store</a>
+</div></nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">Performance Collection</div>
+        <h1 class="hero-title">Sport Watches<br><em>Built to Perform</em></h1>
+        <p class="hero-desc">From deep ocean dives to mountain summits — watches engineered for extreme conditions without compromising on style. Water resistant, shock proof, adventure ready.</p>
+        <a href="#products" class="hero-cta">Shop Sport Watches →</a>
+        <div class="hero-stats">
+            <div class="stat"><span class="stat-num">200m</span><span class="stat-lbl">Water Resistance</span></div>
+            <div class="stat"><span class="stat-num">100G</span><span class="stat-lbl">Shock Resistance</span></div>
+            <div class="stat"><span class="stat-num">72hr</span><span class="stat-lbl">Power Reserve</span></div>
+            <div class="stat"><span class="stat-num">−20°C</span><span class="stat-lbl">Cold Resistance</span></div>
+        </div>
+    </div>
+</section>
+
+<div class="spec-strip"><div class="spec-inner">
+    <div class="spec-item"><span class="spec-icon">🌊</span> Dive Certified</div>
+    <div class="spec-item"><span class="spec-icon">🏔️</span> Altitude Ready</div>
+    <div class="spec-item"><span class="spec-icon">🧲</span> Anti-Magnetic</div>
+    <div class="spec-item"><span class="spec-icon">💪</span> Shock Resistant</div>
+    <div class="spec-item"><span class="spec-icon">🌙</span> Super-LumiNova</div>
+    <div class="spec-item"><span class="spec-icon">⏱️</span> Chronograph</div>
+</div></div>
+
+<main class="main" id="products">
+    <div class="sec-header">
+        <div><div class="sec-title">Sport Collection</div><div class="sec-sub">Performance-grade watches for every adventure</div></div>
+        <a href="index.html" class="view-all-btn">All Watches →</a>
+    </div>
+
+    <div class="category-pills">
+        <button class="pill active">All Sport</button>
+        <button class="pill">Dive Watches</button>
+        <button class="pill">Chronographs</button>
+        <button class="pill">GMT / Dual Time</button>
+        <button class="pill">Aviator</button>
+        <button class="pill">Field Watches</button>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=600&q=80" alt="Submariner"><span class="card-badge blue">Dive Watch</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Sport</span><div class="card-name">Submariner Pro</div><div class="card-spec"><span>200m WR</span><span>Titanium</span><span>Auto</span></div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.6</span><span class="review-cnt">(312)</span></div><div class="card-pricing"><span class="price-now">₹6,499</span><span class="price-was">₹9,999</span><span class="price-off">35% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&q=80" alt="Chrono"><span class="card-badge green">New</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Sport</span><div class="card-name">Chronograph Master</div><div class="card-spec"><span>Chrono</span><span>Ceramic</span><span>100m</span></div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.7</span><span class="review-cnt">(189)</span></div><div class="card-pricing"><span class="price-now">₹4,299</span><span class="price-was">₹6,500</span><span class="price-off">34% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=600&q=80" alt="Aviator"><span class="card-badge gold">Trending</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Sport</span><div class="card-name">Aviator Sport</div><div class="card-spec"><span>Anti-mag</span><span>Auto</span><span>100m</span></div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.6</span><span class="review-cnt">(267)</span></div><div class="card-pricing"><span class="price-now">₹3,499</span><span class="price-was">₹5,200</span><span class="price-off">33% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=80" alt="GMT"><span class="card-badge green">New</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Sport</span><div class="card-name">Explorer GMT</div><div class="card-spec"><span>GMT</span><span>Steel</span><span>200m</span></div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.7</span><span class="review-cnt">(203)</span></div><div class="card-pricing"><span class="price-now">₹7,299</span><span class="price-was">₹10,500</span><span class="price-off">30% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+    </div>
+
+    <div class="activity-section">
+        <div class="sec-header"><div><div class="sec-title">Shop by Activity</div><div class="sec-sub">Find the perfect watch for your sport</div></div></div>
+        <div class="activity-grid">
+            <div class="activity-card"><div class="act-icon">🤿</div><div class="act-name">Diving</div><div class="act-count">8 models</div></div>
+            <div class="activity-card"><div class="act-icon">✈️</div><div class="act-name">Aviation</div><div class="act-count">6 models</div></div>
+            <div class="activity-card"><div class="act-icon">🏃</div><div class="act-name">Running</div><div class="act-count">5 models</div></div>
+            <div class="activity-card"><div class="act-icon">🧗</div><div class="act-name">Climbing</div><div class="act-count">4 models</div></div>
+            <div class="activity-card"><div class="act-icon">⛵</div><div class="act-name">Sailing</div><div class="act-count">7 models</div></div>
+            <div class="activity-card"><div class="act-icon">🎯</div><div class="act-name">Military</div><div class="act-count">9 models</div></div>
+        </div>
+    </div>
+
+    <div class="tech-banner">
+        <h2>Engineering Excellence</h2>
+        <p>Every sport watch in our collection meets strict military and professional standards for durability and accuracy.</p>
+        <div class="tech-grid">
+            <div class="tech-item"><span class="tech-icon">💧</span><div><div class="tech-title">Water Resistance</div><div class="tech-desc">Up to 200m depth certification tested in real conditions</div></div></div>
+            <div class="tech-item"><span class="tech-icon">🔩</span><div><div class="tech-title">Shock Resistance</div><div class="tech-desc">Military spec 100G shock resistance standards</div></div></div>
+            <div class="tech-item"><span class="tech-icon">🌙</span><div><div class="tech-title">Lume Hands</div><div class="tech-desc">Swiss Super-LumiNova® C3 that glows up to 8 hours</div></div></div>
+            <div class="tech-item"><span class="tech-icon">🔬</span><div><div class="tech-title">Sapphire Crystal</div><div class="tech-desc">Scratch-proof sapphire with anti-reflective coating</div></div></div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer"><p>© 2025 CHRONOS &nbsp;|&nbsp;<a href="index.html">Home</a><a href="luxury-watches.html">Luxury</a><a href="contact.html">Contact</a></p></footer>
+<script>
+document.querySelectorAll('.card-wishlist').forEach(b=>b.addEventListener('click',()=>b.textContent=b.textContent==='🤍'?'❤️':'🤍'));
+document.querySelectorAll('.btn-cart').forEach(b=>b.addEventListener('click',()=>{b.textContent='✓ Added!';b.style.color='var(--green)';b.style.borderColor='var(--green)';setTimeout(()=>{b.textContent='🛒 Cart';b.style.color='';b.style.borderColor='';},1500);}));
+document.querySelectorAll('.pill').forEach(p=>p.addEventListener('click',()=>{document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));p.classList.add('active');}));
+</script>
+</body>
+</html>

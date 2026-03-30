@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals — CHRONOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--ivory:#f8f5f0;--ivory-2:#f0ece4;--white:#ffffff;--charcoal:#1c1c1e;--mid:#48484a;--light-text:#8e8e93;--faint:#aeaeb2;--gold:#b8860b;--gold-2:#d4a017;--gold-bg:rgba(184,134,11,0.08);--red:#e63946;--green:#2a9d3d;--border:#ddd8d0;--border-2:#ece8e0;--shadow-sm:0 1px 8px rgba(28,28,30,0.08);--shadow-md:0 4px 24px rgba(28,28,30,0.12);--shadow-gold:0 6px 24px rgba(184,134,11,0.22);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--ivory);color:var(--charcoal);line-height:1.6;}
+        a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:var(--font-b);}img{display:block;max-width:100%;}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ivory-2);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+        .navbar{background:var(--white);border-bottom:1px solid var(--border);height:62px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+        .nav-wrap{max-width:1300px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+        .logo{display:flex;align-items:center;gap:0.7rem;}.logo-icon{color:var(--gold);}
+        .logo-name{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.2em;}
+        .logo-sub{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--light-text);margin-top:2px;}
+        .nav-links{display:flex;gap:0.25rem;}
+        .nav-link{padding:0.45rem 0.85rem;border-radius:7px;font-size:0.84rem;font-weight:500;color:var(--mid);transition:all 0.2s ease;}
+        .nav-link:hover{background:var(--ivory-2);color:var(--charcoal);}
+        .nav-link.active{background:var(--gold-bg);color:var(--gold);font-weight:600;}
+        .nav-back{display:flex;align-items:center;gap:0.5rem;background:var(--ivory);border:1.5px solid var(--border);padding:0.45rem 1rem;border-radius:8px;font-size:0.85rem;font-weight:600;color:var(--mid);transition:all 0.2s ease;}
+        .nav-back:hover{border-color:var(--gold);color:var(--gold);}
+
+        /* HERO — Fresh, clean, bright */
+        .announce{background:var(--charcoal);color:var(--gold-2);text-align:center;padding:0.65rem;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;}
+        .hero{background:linear-gradient(160deg,#f8f5f0 0%,#ede8df 50%,#e8e2d8 100%);padding:5rem 1.5rem 4rem;position:relative;overflow:hidden;}
+        .hero-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+        .hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.25);color:var(--red);font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:99px;margin-bottom:1.25rem;}
+        .blink{display:inline-block;width:7px;height:7px;background:var(--red);border-radius:50%;animation:blink 1.2s ease-in-out infinite;}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+        .hero-title{font-family:var(--font-d);font-size:clamp(2.5rem,5vw,4rem);line-height:1.05;margin-bottom:1rem;color:var(--charcoal);}
+        .hero-title em{color:var(--gold);font-style:italic;}
+        .hero-desc{font-size:1rem;color:var(--mid);font-weight:300;line-height:1.8;margin-bottom:2rem;max-width:460px;}
+        .hero-cta{display:inline-flex;align-items:center;gap:0.6rem;background:var(--charcoal);color:white;padding:0.85rem 2rem;border-radius:9px;font-size:0.95rem;font-weight:700;transition:all 0.2s ease;}
+        .hero-cta:hover{background:var(--gold);transform:translateY(-2px);}
+        .hero-date-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:0.6rem 1rem;font-size:0.78rem;font-weight:600;color:var(--mid);margin-top:1rem;}
+        .hero-image{position:relative;}
+        .hero-main-img{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);}
+        .hero-main-img img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+        .hero-float-card{position:absolute;bottom:-1rem;left:-1.5rem;background:white;border:1px solid var(--border);border-radius:12px;padding:0.85rem 1.1rem;box-shadow:var(--shadow-md);min-width:180px;}
+        .hfc-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--light-text);margin-bottom:4px;}
+        .hfc-name{font-family:var(--font-d);font-size:0.95rem;color:var(--charcoal);}
+        .hfc-price{font-size:0.88rem;font-weight:700;color:var(--gold);margin-top:2px;}
+
+        .main{max-width:1300px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+        .sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.75rem;gap:1rem;flex-wrap:wrap;}
+        .sec-title{font-family:var(--font-d);font-size:1.9rem;}
+        .sec-sub{font-size:0.875rem;color:var(--light-text);margin-top:0.25rem;}
+
+        /* COUNTDOWN */
+        .countdown-banner{background:var(--charcoal);border-radius:14px;padding:1.5rem 2rem;margin-bottom:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+        .cb-left{color:white;}
+        .cb-title{font-family:var(--font-d);font-size:1.2rem;margin-bottom:0.25rem;}
+        .cb-sub{font-size:0.78rem;color:rgba(255,255,255,0.5);}
+        .countdown{display:flex;gap:0.75rem;}
+        .cd-block{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:0.75rem 1rem;text-align:center;min-width:60px;}
+        .cd-num{font-family:var(--font-d);font-size:1.8rem;color:var(--gold-2);line-height:1;}
+        .cd-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.4);margin-top:4px;}
+
+        /* FEATURED ARRIVAL */
+        .featured-arrival{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:3rem;box-shadow:var(--shadow-sm);}
+        .fa-img{aspect-ratio:1;overflow:hidden;}
+        .fa-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+        .featured-arrival:hover .fa-img img{transform:scale(1.04);}
+        .fa-content{padding:2.5rem;display:flex;flex-direction:column;justify-content:center;}
+        .fa-new-tag{display:inline-block;background:var(--red);color:white;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:4px;margin-bottom:0.85rem;width:fit-content;}
+        .fa-title{font-family:var(--font-d);font-size:2rem;margin-bottom:0.75rem;color:var(--charcoal);}
+        .fa-desc{font-size:0.875rem;color:var(--mid);line-height:1.75;margin-bottom:1.5rem;}
+        .fa-pricing{display:flex;align-items:baseline;gap:0.75rem;margin-bottom:1.5rem;}
+        .fa-price{font-family:var(--font-d);font-size:1.75rem;color:var(--charcoal);}
+        .fa-was{font-size:1rem;color:var(--light-text);text-decoration:line-through;}
+        .fa-off{font-size:0.78rem;font-weight:700;color:var(--green);background:rgba(42,157,61,0.1);padding:0.2rem 0.55rem;border-radius:4px;}
+        .fa-btns{display:flex;gap:0.75rem;flex-wrap:wrap;}
+        .fa-btn-cart{background:var(--ivory);border:2px solid var(--charcoal);color:var(--charcoal);padding:0.75rem 1.5rem;border-radius:8px;font-weight:700;font-size:0.875rem;transition:all 0.2s ease;}
+        .fa-btn-cart:hover{background:var(--charcoal);color:white;}
+        .fa-btn-buy{background:var(--gold);color:white;padding:0.75rem 1.5rem;border-radius:8px;font-weight:700;font-size:0.875rem;transition:all 0.2s ease;box-shadow:var(--shadow-gold);}
+        .fa-btn-buy:hover{background:var(--gold-2);}
+
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;}
+        .product-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.3s ease;display:flex;flex-direction:column;animation:cardIn 0.5s ease both;}
+        @keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        .product-card:nth-child(1){animation-delay:.04s}.product-card:nth-child(2){animation-delay:.08s}.product-card:nth-child(3){animation-delay:.12s}.product-card:nth-child(4){animation-delay:.16s}
+        .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--gold);}
+        .card-img{position:relative;background:var(--ivory-2);aspect-ratio:4/3;overflow:hidden;}
+        .card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
+        .product-card:hover .card-img img{transform:scale(1.06);}
+        .card-badge{position:absolute;top:0.65rem;left:0.65rem;background:var(--red);color:white;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.22rem 0.6rem;border-radius:4px;}
+        .card-badge.gold{background:var(--gold);}
+        .card-badge.green{background:var(--green);}
+        .card-wishlist{position:absolute;top:0.65rem;right:0.65rem;width:32px;height:32px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.88rem;transition:all 0.2s ease;box-shadow:var(--shadow-sm);}
+        .card-wishlist:hover{transform:scale(1.15);}
+        .card-body{padding:1.1rem 1.25rem;display:flex;flex-direction:column;gap:0.45rem;flex:1;}
+        .card-cat{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+        .card-name{font-family:var(--font-d);font-size:1.15rem;line-height:1.25;color:var(--charcoal);}
+        .card-stars{display:flex;align-items:center;gap:4px;font-size:0.78rem;}
+        .stars{color:#f5a623;}.rating-val{font-weight:700;}.review-cnt{color:var(--light-text);}
+        .card-pricing{display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;}
+        .price-now{font-size:1.2rem;font-weight:700;font-family:var(--font-d);}
+        .price-was{font-size:0.82rem;color:var(--light-text);text-decoration:line-through;}
+        .price-off{font-size:0.72rem;font-weight:700;color:var(--green);background:rgba(42,157,61,0.1);padding:0.12rem 0.42rem;border-radius:4px;}
+        .card-btns{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:auto;}
+        .btn-cart,.btn-buy{padding:0.6rem 0.5rem;border-radius:7px;font-size:0.78rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:0.35rem;transition:all 0.2s ease;}
+        .btn-cart{background:var(--ivory);border:1.5px solid var(--border);color:var(--charcoal);}
+        .btn-cart:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-bg);}
+        .btn-buy{background:var(--gold);color:white;border:1.5px solid transparent;}
+        .btn-buy:hover{background:var(--gold-2);transform:translateY(-1px);}
+
+        /* NEWSLETTER */
+        .newsletter{background:linear-gradient(135deg,var(--charcoal),#2c2018);border-radius:16px;padding:3rem;text-align:center;color:white;margin-top:2rem;}
+        .newsletter h2{font-family:var(--font-d);font-size:1.8rem;margin-bottom:0.5rem;}
+        .newsletter p{color:rgba(255,255,255,0.55);font-size:0.875rem;margin-bottom:1.75rem;}
+        .nl-form{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
+        .nl-input{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:0.75rem 1.25rem;border-radius:8px;font-size:0.875rem;min-width:280px;outline:none;transition:all 0.2s ease;}
+        .nl-input::placeholder{color:rgba(255,255,255,0.4);}
+        .nl-input:focus{border-color:var(--gold-2);background:rgba(255,255,255,0.15);}
+        .nl-btn{background:var(--gold);color:white;padding:0.75rem 1.75rem;border-radius:8px;font-weight:700;font-size:0.875rem;transition:all 0.2s ease;box-shadow:var(--shadow-gold);}
+        .nl-btn:hover{background:var(--gold-2);}
+
+        .footer{background:var(--charcoal);color:rgba(255,255,255,0.5);text-align:center;padding:1.5rem;font-size:0.8rem;}
+        .footer a{color:var(--gold-2);margin:0 0.5rem;}
+
+        @media(max-width:900px){.hero-inner,.featured-arrival{grid-template-columns:1fr;}.hero-float-card{display:none;}}
+        @media(max-width:600px){.products-grid{grid-template-columns:1fr 1fr;gap:0.75rem;}.card-btns{grid-template-columns:1fr;}.countdown{gap:0.4rem;}.cd-block{min-width:50px;padding:0.6rem 0.7rem;}}
+    </style>
+</head>
+<body>
+<div class="announce">🎉 New drops every Friday — Subscribe for early access!</div>
+<nav class="navbar"><div class="nav-wrap">
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/><line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="15" r="1.8" fill="currentColor"/></svg></div><div><div class="logo-name">CHRONOS</div><div class="logo-sub">Fine Timepieces</div></div></a>
+    <div class="nav-links"><a href="luxury-watches.html" class="nav-link">Luxury</a><a href="sport-watches.html" class="nav-link">Sport</a><a href="vintage-watches.html" class="nav-link">Vintage</a><a href="new-arrivals.html" class="nav-link active">New Arrivals</a></div>
+    <a href="index.html" class="nav-back">← Store</a>
+</div></nav>
+
+<section class="hero"><div class="hero-inner">
+    <div>
+        <div class="hero-eyebrow"><span class="blink"></span> Just Dropped</div>
+        <h1 class="hero-title">New<br><em>Arrivals</em><br>2025</h1>
+        <p class="hero-desc">Fresh from the watchmaker's bench — the latest additions to the CHRONOS collection. Be the first to own the newest timepieces before they sell out.</p>
+        <a href="#products" class="hero-cta">See What's New →</a>
+        <div class="hero-date-badge">📅 Last updated: March 2025</div>
+    </div>
+    <div class="hero-image">
+        <div class="hero-main-img"><img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=700&q=80" alt="New Arrival"></div>
+        <div class="hero-float-card"><div class="hfc-label">Just Arrived</div><div class="hfc-name">Explorer GMT</div><div class="hfc-price">₹7,299</div></div>
+    </div>
+</div></section>
+
+<main class="main" id="products">
+    <!-- Countdown Banner -->
+    <div class="countdown-banner">
+        <div class="cb-left"><div class="cb-title">⚡ Launch Day Offer — Extra 10% Off</div><div class="cb-sub">Use code NEWDROP10 at checkout. Ends soon!</div></div>
+        <div class="countdown" id="countdown">
+            <div class="cd-block"><div class="cd-num" id="cdH">08</div><div class="cd-label">Hours</div></div>
+            <div class="cd-block"><div class="cd-num" id="cdM">42</div><div class="cd-label">Mins</div></div>
+            <div class="cd-block"><div class="cd-num" id="cdS">17</div><div class="cd-label">Secs</div></div>
+        </div>
+    </div>
+
+    <!-- Featured -->
+    <div class="sec-header"><div><div class="sec-title">⭐ Featured Drop</div><div class="sec-sub">This week's most exciting arrival</div></div></div>
+    <div class="featured-arrival">
+        <div class="fa-img"><img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=700&q=80" alt="Explorer GMT"></div>
+        <div class="fa-content">
+            <span class="fa-new-tag">🆕 Just Arrived</span>
+            <div class="fa-title">Explorer GMT</div>
+            <div class="fa-desc">The most awaited launch of 2025. Track two time zones with the iconic bi-color bezel. Steel case, automatic movement, 200m water resistance, Jubilee bracelet. Built for the modern globetrotter.</div>
+            <div class="fa-pricing"><span class="fa-price">₹7,299</span><span class="fa-was">₹10,500</span><span class="fa-off">30% OFF</span></div>
+            <div class="fa-btns"><button class="fa-btn-cart">🛒 Add to Cart</button><button class="fa-btn-buy">Buy Now →</button></div>
+        </div>
+    </div>
+
+    <!-- Other New Arrivals -->
+    <div class="sec-header"><div><div class="sec-title">All New Arrivals</div><div class="sec-sub">Freshest additions to our collection</div></div></div>
+    <div class="products-grid">
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&q=80" alt="GMT"><span class="card-badge">New</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Sport</span><div class="card-name">Explorer GMT</div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.7</span><span class="review-cnt">(203)</span></div><div class="card-pricing"><span class="price-now">₹7,299</span><span class="price-was">₹10,500</span><span class="price-off">30% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&q=80" alt="Chrono"><span class="card-badge green">New Arrival</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Sport</span><div class="card-name">Chronograph Master</div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.7</span><span class="review-cnt">(189)</span></div><div class="card-pricing"><span class="price-now">₹4,299</span><span class="price-was">₹6,500</span><span class="price-off">34% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=600&q=80" alt="Solar"><span class="card-badge green">Eco Pick</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Casual</span><div class="card-name">Solar Pulse Eco</div><div class="card-stars"><span class="stars">★★★★★</span><span class="rating-val">4.5</span><span class="review-cnt">(378)</span></div><div class="card-pricing"><span class="price-now">₹2,199</span><span class="price-was">₹3,200</span><span class="price-off">31% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+
+        <div class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=80" alt="Minimal"><span class="card-badge gold">Popular</span><button class="card-wishlist">🤍</button></div><div class="card-body"><span class="card-cat">Casual</span><div class="card-name">Urban Minimal</div><div class="card-stars"><span class="stars">★★★★☆</span><span class="rating-val">4.4</span><span class="review-cnt">(445)</span></div><div class="card-pricing"><span class="price-now">₹1,499</span><span class="price-was">₹2,200</span><span class="price-off">32% OFF</span></div><div class="card-btns"><button class="btn-cart">🛒 Cart</button><button class="btn-buy">Buy Now</button></div></div></div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+        <h2>Never Miss a Drop</h2>
+        <p>Get early access to new arrivals, limited editions, and exclusive launch offers straight to your inbox.</p>
+        <div class="nl-form">
+            <input type="email" class="nl-input" placeholder="Enter your email address">
+            <button class="nl-btn" onclick="this.textContent='✓ Subscribed!';this.style.background='var(--green)';setTimeout(()=>{this.textContent='Subscribe →';this.style.background='';},2000)">Subscribe →</button>
+        </div>
+    </div>
+</main>
+
+<footer class="footer"><p>© 2025 CHRONOS &nbsp;|&nbsp;<a href="index.html">Home</a><a href="luxury-watches.html">Luxury</a><a href="contact.html">Contact</a></p></footer>
+<script>
+// Countdown timer
+let h=8,m=42,s=17;
+setInterval(()=>{
+    s--;if(s<0){s=59;m--;if(m<0){m=59;h--;if(h<0){h=23;}}}
+    document.getElementById('cdH').textContent=String(h).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(m).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+},1000);
+document.querySelectorAll('.card-wishlist').forEach(b=>b.addEventListener('click',()=>b.textContent=b.textContent==='🤍'?'❤️':'🤍'));
+document.querySelectorAll('.btn-cart,.fa-btn-cart').forEach(b=>b.addEventListener('click',()=>{const orig=b.textContent;b.textContent='✓ Added!';b.style.color='var(--green)';b.style.borderColor='var(--green)';setTimeout(()=>{b.textContent=orig;b.style.color='';b.style.borderColor='';},1500);}));
+</script>
+</body>
+</html>

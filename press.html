@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press — CHRONOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--ivory:#f8f5f0;--ivory-2:#f0ece4;--white:#ffffff;--charcoal:#1c1c1e;--mid:#48484a;--light-text:#8e8e93;--gold:#b8860b;--gold-2:#d4a017;--gold-bg:rgba(184,134,11,0.08);--green:#2a9d3d;--border:#ddd8d0;--border-2:#ece8e0;--shadow-sm:0 1px 8px rgba(28,28,30,0.08);--shadow-md:0 4px 24px rgba(28,28,30,0.12);--shadow-gold:0 6px 24px rgba(184,134,11,0.22);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--ivory);color:var(--charcoal);line-height:1.6;}
+        a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:var(--font-b);}img{display:block;max-width:100%;}input,textarea{font-family:var(--font-b);}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ivory-2);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+        .navbar{background:var(--white);border-bottom:1px solid var(--border);height:62px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+        .nav-wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+        .logo{display:flex;align-items:center;gap:0.7rem;}.logo-icon{color:var(--gold);}
+        .logo-name{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.2em;}
+        .logo-sub{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--light-text);margin-top:2px;}
+        .nav-back{display:flex;align-items:center;gap:0.5rem;background:var(--ivory);border:1.5px solid var(--border);padding:0.45rem 1rem;border-radius:8px;font-size:0.85rem;font-weight:600;color:var(--mid);transition:all 0.2s ease;}
+        .nav-back:hover{border-color:var(--gold);color:var(--gold);}
+
+        .hero{background:var(--white);border-bottom:1px solid var(--border);padding:4rem 1.5rem;text-align:center;}
+        .hero-eyebrow{display:inline-block;background:var(--gold-bg);border:1px solid rgba(184,134,11,0.25);color:var(--gold);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:99px;margin-bottom:1rem;}
+        .hero-title{font-family:var(--font-d);font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:0.75rem;line-height:1.05;}
+        .hero-title em{color:var(--gold);font-style:italic;}
+        .hero-desc{font-size:0.95rem;color:var(--light-text);max-width:540px;margin:0 auto 1.75rem;}
+        .press-contact-pill{display:inline-flex;align-items:center;gap:0.6rem;background:var(--charcoal);color:white;padding:0.65rem 1.5rem;border-radius:99px;font-size:0.85rem;font-weight:600;transition:all 0.2s ease;}
+        .press-contact-pill:hover{background:var(--gold);}
+
+        /* LOGOS */
+        .featured-in{background:var(--ivory-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 1.5rem;}
+        .fi-inner{max-width:1200px;margin:0 auto;}
+        .fi-label{text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--light-text);margin-bottom:1.25rem;}
+        .logos-row{display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;}
+        .outlet-logo{display:flex;align-items:center;gap:0.5rem;font-family:var(--font-d);font-size:1.1rem;color:var(--mid);opacity:0.6;transition:opacity 0.2s ease;cursor:default;}
+        .outlet-logo:hover{opacity:1;}
+        .outlet-icon{font-size:1.3rem;}
+
+        .main{max-width:1200px;margin:0 auto;padding:3.5rem 1.5rem 5rem;}
+        .sec-title{font-family:var(--font-d);font-size:1.9rem;margin-bottom:0.4rem;}
+        .sec-sub{font-size:0.875rem;color:var(--light-text);margin-bottom:2rem;}
+
+        /* PRESS RELEASES */
+        .press-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-bottom:4rem;}
+        .press-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.3s ease;display:flex;flex-direction:column;}
+        .press-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--gold);}
+        .press-card-head{background:var(--charcoal);padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;}
+        .outlet-name{font-family:var(--font-d);font-size:1.1rem;color:var(--gold-2);}
+        .press-date{font-size:0.72rem;color:rgba(255,255,255,0.4);}
+        .press-card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:0.6rem;}
+        .press-headline{font-family:var(--font-d);font-size:1.05rem;line-height:1.35;color:var(--charcoal);}
+        .press-excerpt{font-size:0.82rem;color:var(--mid);line-height:1.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+        .press-read{display:inline-flex;align-items:center;gap:0.4rem;color:var(--gold);font-size:0.78rem;font-weight:700;margin-top:auto;padding-top:0.75rem;transition:gap 0.2s ease;}
+        .press-read:hover{gap:0.7rem;}
+
+        /* MILESTONES */
+        .milestones-section{background:var(--charcoal);border-radius:20px;padding:3rem;margin-bottom:4rem;color:white;}
+        .ms-title{font-family:var(--font-d);font-size:1.8rem;text-align:center;margin-bottom:0.5rem;}
+        .ms-sub{text-align:center;color:rgba(255,255,255,0.45);font-size:0.875rem;margin-bottom:2.5rem;}
+        .ms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;}
+        .ms-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.25rem;text-align:center;}
+        .ms-num{font-family:var(--font-d);font-size:2rem;color:var(--gold-2);line-height:1;margin-bottom:0.35rem;}
+        .ms-label{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.4;}
+
+        /* PRESS KIT */
+        .presskit-section{background:var(--gold-bg);border:1px solid rgba(184,134,11,0.2);border-radius:16px;padding:2.5rem;margin-bottom:4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+        .pk-content{}
+        .pk-title{font-family:var(--font-d);font-size:1.5rem;margin-bottom:0.5rem;}
+        .pk-desc{font-size:0.875rem;color:var(--mid);max-width:500px;}
+        .pk-downloads{display:flex;gap:0.75rem;flex-wrap:wrap;}
+        .pk-btn{display:flex;align-items:center;gap:0.5rem;background:var(--charcoal);color:white;padding:0.65rem 1.25rem;border-radius:8px;font-size:0.82rem;font-weight:700;transition:all 0.2s ease;}
+        .pk-btn:hover{background:var(--gold);}
+
+        /* CONTACT FORM */
+        .press-form-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+        .pf-head{background:var(--charcoal);padding:2rem 2.5rem;color:white;}
+        .pf-head h2{font-family:var(--font-d);font-size:1.6rem;margin-bottom:0.35rem;}
+        .pf-head p{font-size:0.875rem;color:rgba(255,255,255,0.5);}
+        .pf-body{padding:2rem 2.5rem;}
+        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;}
+        .form-field{display:flex;flex-direction:column;gap:0.35rem;}
+        .form-field label{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);}
+        .form-input,.form-textarea{background:var(--ivory);border:1.5px solid var(--border);padding:0.75rem 1rem;border-radius:9px;font-size:0.875rem;color:var(--charcoal);outline:none;transition:border-color 0.2s ease;width:100%;}
+        .form-input:focus,.form-textarea:focus{border-color:var(--gold);background:var(--white);}
+        .form-input::placeholder,.form-textarea::placeholder{color:var(--faint);}
+        .form-textarea{resize:vertical;min-height:110px;}
+        .full-col{grid-column:1/-1;}
+        .submit-btn{background:var(--gold);color:white;padding:0.85rem 2.5rem;border-radius:9px;font-size:0.95rem;font-weight:700;margin-top:0.75rem;transition:all 0.2s ease;box-shadow:var(--shadow-gold);}
+        .submit-btn:hover{background:var(--gold-2);transform:translateY(-2px);}
+        .success-msg{display:none;background:rgba(42,157,61,0.08);border:1.5px solid rgba(42,157,61,0.3);border-radius:10px;padding:1.25rem;color:var(--green);font-weight:600;font-size:0.9rem;margin-top:1rem;}
+        .success-msg.show{display:flex;align-items:center;gap:0.6rem;}
+
+        .footer{background:var(--charcoal);color:rgba(255,255,255,0.5);text-align:center;padding:1.5rem;font-size:0.8rem;margin-top:4rem;}
+        .footer a{color:var(--gold-2);margin:0 0.5rem;}
+
+        @media(max-width:768px){.form-grid{grid-template-columns:1fr;}.pf-head,.pf-body{padding:1.5rem;}.presskit-section{flex-direction:column;}}
+    </style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-wrap">
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/><line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="15" r="1.8" fill="currentColor"/></svg></div><div><div class="logo-name">CHRONOS</div><div class="logo-sub">Fine Timepieces</div></div></a>
+    <a href="index.html" class="nav-back">← Back to Store</a>
+</div></nav>
+
+<div class="hero">
+    <div class="hero-eyebrow">Press Room</div>
+    <h1 class="hero-title">CHRONOS in the <em>Press</em></h1>
+    <p class="hero-desc">Media inquiries, press releases, brand assets, and everything a journalist needs to cover CHRONOS.</p>
+    <a href="mailto:press@chronos.com" class="press-contact-pill">📧 press@chronos.com</a>
+</div>
+
+<div class="featured-in"><div class="fi-inner">
+    <div class="fi-label">As Featured In</div>
+    <div class="logos-row">
+        <div class="outlet-logo"><span class="outlet-icon">📰</span> Economic Times</div>
+        <div class="outlet-logo"><span class="outlet-icon">📱</span> TechCrunch India</div>
+        <div class="outlet-logo"><span class="outlet-icon">🎯</span> Mint</div>
+        <div class="outlet-logo"><span class="outlet-icon">🌐</span> YourStory</div>
+        <div class="outlet-logo"><span class="outlet-icon">⌚</span> WatchTime India</div>
+        <div class="outlet-logo"><span class="outlet-icon">💼</span> Business Today</div>
+        <div class="outlet-logo"><span class="outlet-icon">🦁</span> Shark Tank India</div>
+    </div>
+</div></div>
+
+<main class="main">
+    <!-- Press Releases -->
+    <div class="sec-title">Recent Press Releases</div>
+    <div class="sec-sub">Official announcements from the CHRONOS team</div>
+    <div class="press-grid">
+        <div class="press-card">
+            <div class="press-card-head"><span class="outlet-name">CHRONOS Press</span><span class="press-date">March 15, 2025</span></div>
+            <div class="press-card-body">
+                <div class="press-headline">CHRONOS Crosses ₹50 Crore Revenue Milestone in FY2025</div>
+                <div class="press-excerpt">India's fastest-growing curated watch marketplace announces record annual revenue, serving over 12,000 customers across the country.</div>
+                <a href="#" class="press-read">Read Press Release →</a>
+            </div>
+        </div>
+        <div class="press-card">
+            <div class="press-card-head"><span class="outlet-name">CHRONOS Press</span><span class="press-date">February 1, 2025</span></div>
+            <div class="press-card-body">
+                <div class="press-headline">CHRONOS Raises ₹15 Crore in Series A to Expand Across India</div>
+                <div class="press-excerpt">Funding led by Elevation Capital will fuel expansion to 10 new cities and launch of CHRONOS mobile app for iOS and Android.</div>
+                <a href="#" class="press-read">Read Press Release →</a>
+            </div>
+        </div>
+        <div class="press-card">
+            <div class="press-card-head"><span class="outlet-name">CHRONOS Press</span><span class="press-date">January 10, 2025</span></div>
+            <div class="press-card-body">
+                <div class="press-headline">CHRONOS Opens First Physical Showroom in Bandra West, Mumbai</div>
+                <div class="press-excerpt">After four years of online success, CHRONOS brings its curated collection to a 2,000 sq ft flagship experience center in Mumbai.</div>
+                <a href="#" class="press-read">Read Press Release →</a>
+            </div>
+        </div>
+        <div class="press-card">
+            <div class="press-card-head"><span class="outlet-name">Economic Times</span><span class="press-date">December 5, 2024</span></div>
+            <div class="press-card-body">
+                <div class="press-headline">"CHRONOS is Democratizing Luxury Watch Ownership in India"</div>
+                <div class="press-excerpt">A deep-dive feature on how three Mumbai friends built India's most-loved online watch store from a ₹5 lakh investment.</div>
+                <a href="#" class="press-read">Read Article →</a>
+            </div>
+        </div>
+        <div class="press-card">
+            <div class="press-card-head"><span class="outlet-name">YourStory</span><span class="press-date">October 22, 2024</span></div>
+            <div class="press-card-body">
+                <div class="press-headline">How CHRONOS Built a ₹50 Crore Watch Business on Trust and Curation</div>
+                <div class="press-excerpt">YourStory profiles CHRONOS founders Aryan, Priya, and Rohan on their journey from watch collectors to startup founders.</div>
+                <a href="#" class="press-read">Read Article →</a>
+            </div>
+        </div>
+        <div class="press-card">
+            <div class="press-card-head"><span class="outlet-name">WatchTime India</span><span class="press-date">September 14, 2024</span></div>
+            <div class="press-card-body">
+                <div class="press-headline">CHRONOS Named "Best Online Watch Retailer in India 2024"</div>
+                <div class="press-excerpt">WatchTime India's annual awards recognise CHRONOS for best selection, customer service, and authenticity guarantee.</div>
+                <a href="#" class="press-read">Read Article →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Milestones -->
+    <div class="milestones-section">
+        <div class="ms-title">By the Numbers</div>
+        <div class="ms-sub">Key milestones that tell the CHRONOS story</div>
+        <div class="ms-grid">
+            <div class="ms-card"><div class="ms-num">₹50Cr</div><div class="ms-label">Annual Revenue FY2025</div></div>
+            <div class="ms-card"><div class="ms-num">12,000+</div><div class="ms-label">Customers Served</div></div>
+            <div class="ms-card"><div class="ms-num">500+</div><div class="ms-label">Watch Models Listed</div></div>
+            <div class="ms-card"><div class="ms-num">4.9★</div><div class="ms-label">Average Customer Rating</div></div>
+            <div class="ms-card"><div class="ms-num">35+</div><div class="ms-label">Team Members</div></div>
+            <div class="ms-card"><div class="ms-num">0%</div><div class="ms-label">Counterfeit Incidents (ever)</div></div>
+        </div>
+    </div>
+
+    <!-- Press Kit -->
+    <div class="presskit-section">
+        <div class="pk-content">
+            <div class="pk-title">📦 Press Kit</div>
+            <div class="pk-desc">Download our official brand assets including logos, product images, founder photos, and company backgrounders for editorial use.</div>
+        </div>
+        <div class="pk-downloads">
+            <a href="#" class="pk-btn" onclick="alert('Press kit download coming soon. Please email press@chronos.com')">⬇️ Logo Pack (.zip)</a>
+            <a href="#" class="pk-btn" onclick="alert('Press kit download coming soon. Please email press@chronos.com')">⬇️ Brand Guidelines (.pdf)</a>
+            <a href="#" class="pk-btn" onclick="alert('Press kit download coming soon. Please email press@chronos.com')">⬇️ Founder Photos (.zip)</a>
+        </div>
+    </div>
+
+    <!-- Press Contact Form -->
+    <div class="press-form-card">
+        <div class="pf-head"><h2>Media Inquiry</h2><p>Journalists, editors, and content creators — reach out here. We typically respond within 4 hours on business days.</p></div>
+        <div class="pf-body">
+            <div class="form-grid">
+                <div class="form-field"><label>Your Name *</label><input type="text" class="form-input" id="pressName" placeholder="Full name"></div>
+                <div class="form-field"><label>Publication / Media House *</label><input type="text" class="form-input" id="pressOutlet" placeholder="e.g. Economic Times"></div>
+                <div class="form-field"><label>Email Address *</label><input type="email" class="form-input" id="pressEmail" placeholder="your@publication.com"></div>
+                <div class="form-field"><label>Phone Number</label><input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX"></div>
+                <div class="form-field full-col"><label>Story Angle / Inquiry *</label><textarea class="form-textarea" id="pressMsg" placeholder="Briefly describe your story angle, interview request, or press inquiry..."></textarea></div>
+                <div class="form-field"><label>Deadline (if any)</label><input type="date" class="form-input"></div>
+                <div class="form-field"><label>Assets Needed</label><input type="text" class="form-input" placeholder="e.g. Founder quotes, product images..."></div>
+            </div>
+            <button class="submit-btn" onclick="submitPressInquiry()">Send Inquiry →</button>
+            <div class="success-msg" id="pressSuccess">✅ Inquiry received! Our PR team will respond within 4 business hours. Thank you for your interest in CHRONOS.</div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer"><p>© 2025 CHRONOS Fine Timepieces &nbsp;|&nbsp;<a href="index.html">Home</a><a href="about.html">About</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></p></footer>
+<script>
+function submitPressInquiry(){
+    const name=document.getElementById('pressName').value.trim();
+    const outlet=document.getElementById('pressOutlet').value.trim();
+    const email=document.getElementById('pressEmail').value.trim();
+    const msg=document.getElementById('pressMsg').value.trim();
+    if(!name||!outlet||!email||!msg){alert('Please fill in all required fields.');return;}
+    const btn=document.querySelector('.submit-btn');
+    btn.textContent='Sending...';btn.style.opacity='0.7';
+    setTimeout(()=>{btn.textContent='Send Inquiry →';btn.style.opacity='1';document.getElementById('pressSuccess').classList.add('show');},1000);
+}
+</script>
+</body>
+</html>

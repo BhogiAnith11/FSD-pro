@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — CHRONOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--ivory:#f8f5f0;--ivory-2:#f0ece4;--white:#ffffff;--charcoal:#1c1c1e;--mid:#48484a;--light-text:#8e8e93;--gold:#b8860b;--gold-2:#d4a017;--gold-bg:rgba(184,134,11,0.08);--green:#2a9d3d;--border:#ddd8d0;--border-2:#ece8e0;--shadow-sm:0 1px 8px rgba(28,28,30,0.08);--shadow-md:0 4px 24px rgba(28,28,30,0.12);--shadow-gold:0 6px 24px rgba(184,134,11,0.22);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--ivory);color:var(--charcoal);line-height:1.6;}
+        a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:var(--font-b);}img{display:block;max-width:100%;}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ivory-2);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+        .navbar{background:var(--white);border-bottom:1px solid var(--border);height:62px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+        .nav-wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+        .logo{display:flex;align-items:center;gap:0.7rem;}.logo-icon{color:var(--gold);}
+        .logo-name{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.2em;}
+        .logo-sub{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--light-text);margin-top:2px;}
+        .nav-back{display:flex;align-items:center;gap:0.5rem;background:var(--ivory);border:1.5px solid var(--border);padding:0.45rem 1rem;border-radius:8px;font-size:0.85rem;font-weight:600;color:var(--mid);transition:all 0.2s ease;}
+        .nav-back:hover{border-color:var(--gold);color:var(--gold);}
+
+        /* HERO */
+        .hero{background:linear-gradient(160deg,var(--charcoal) 0%,#2c2018 100%);color:white;padding:5.5rem 1.5rem 5rem;text-align:center;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(184,134,11,0.12) 0%,transparent 70%);}
+        .hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;animation:fadeUp 0.9s ease;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        .hero-eyebrow{display:inline-block;background:rgba(184,134,11,0.18);border:1px solid rgba(184,134,11,0.35);color:var(--gold-2);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:99px;margin-bottom:1.25rem;}
+        .hero-title{font-family:var(--font-d);font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:1rem;line-height:1.05;}
+        .hero-title em{color:var(--gold-2);font-style:italic;}
+        .hero-desc{font-size:1.05rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.85;}
+
+        /* STATS ROW */
+        .stats-row{background:var(--white);border-bottom:1px solid var(--border);padding:2rem 1.5rem;}
+        .stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+        .stat-item{text-align:center;}
+        .stat-num{font-family:var(--font-d);font-size:2.2rem;color:var(--gold);line-height:1;}
+        .stat-lbl{font-size:0.78rem;color:var(--light-text);margin-top:4px;}
+
+        .main{max-width:1200px;margin:0 auto;padding:4rem 1.5rem 5rem;}
+
+        /* STORY */
+        .story-section{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem;}
+        .story-img{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);}
+        .story-img img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+        .story-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;}
+        .story-title{font-family:var(--font-d);font-size:2.2rem;margin-bottom:1.25rem;line-height:1.2;}
+        .story-text{font-size:0.9rem;color:var(--mid);line-height:1.85;margin-bottom:1rem;}
+        .story-quote{border-left:3px solid var(--gold);padding-left:1.25rem;font-family:var(--font-d);font-size:1.2rem;font-style:italic;color:var(--charcoal);margin:1.5rem 0;}
+
+        /* VALUES */
+        .values-section{margin-bottom:5rem;}
+        .sec-title{font-family:var(--font-d);font-size:1.9rem;margin-bottom:0.4rem;}
+        .sec-sub{font-size:0.875rem;color:var(--light-text);margin-bottom:2rem;}
+        .values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;}
+        .value-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all 0.2s ease;}
+        .value-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow-sm);}
+        .value-icon{font-size:2.2rem;margin-bottom:0.75rem;}
+        .value-title{font-family:var(--font-d);font-size:1.15rem;margin-bottom:0.4rem;}
+        .value-desc{font-size:0.85rem;color:var(--mid);line-height:1.7;}
+
+        /* TEAM */
+        .team-section{margin-bottom:5rem;}
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;}
+        .team-card{text-align:center;}
+        .team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--charcoal),#2c2018);border:3px solid var(--gold-bg);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 0.85rem;}
+        .team-name{font-family:var(--font-d);font-size:1.05rem;margin-bottom:2px;}
+        .team-role{font-size:0.78rem;color:var(--gold);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.4rem;}
+        .team-bio{font-size:0.78rem;color:var(--light-text);line-height:1.6;}
+
+        /* TIMELINE */
+        .timeline-section{background:var(--charcoal);border-radius:20px;padding:3rem;margin-bottom:5rem;color:white;}
+        .tl-title{font-family:var(--font-d);font-size:1.8rem;text-align:center;margin-bottom:0.4rem;}
+        .tl-sub{text-align:center;color:rgba(255,255,255,0.45);font-size:0.875rem;margin-bottom:2.5rem;}
+        .tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;}
+        .tl-item{text-align:center;padding:1.25rem;border:1px solid rgba(255,255,255,0.06);border-radius:12px;}
+        .tl-year{font-family:var(--font-d);font-size:1.5rem;color:var(--gold-2);margin-bottom:0.4rem;}
+        .tl-event{font-size:0.85rem;color:rgba(255,255,255,0.65);line-height:1.6;}
+
+        /* CTA */
+        .cta-section{background:var(--gold-bg);border:1px solid rgba(184,134,11,0.2);border-radius:16px;padding:3rem;text-align:center;}
+        .cta-section h2{font-family:var(--font-d);font-size:2rem;margin-bottom:0.75rem;}
+        .cta-section p{color:var(--mid);font-size:0.9rem;margin-bottom:1.75rem;}
+        .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+        .cta-btn-primary{background:var(--charcoal);color:white;padding:0.85rem 2rem;border-radius:9px;font-weight:700;font-size:0.95rem;transition:all 0.2s ease;}
+        .cta-btn-primary:hover{background:var(--gold);}
+        .cta-btn-ghost{background:transparent;border:2px solid var(--charcoal);color:var(--charcoal);padding:0.85rem 2rem;border-radius:9px;font-weight:700;font-size:0.95rem;transition:all 0.2s ease;}
+        .cta-btn-ghost:hover{background:var(--charcoal);color:white;}
+
+        .footer{background:var(--charcoal);color:rgba(255,255,255,0.5);text-align:center;padding:1.5rem;font-size:0.8rem;margin-top:4rem;}
+        .footer a{color:var(--gold-2);margin:0 0.5rem;}
+
+        @media(max-width:900px){.story-section{grid-template-columns:1fr;gap:2rem;}.stats-inner{grid-template-columns:1fr 1fr;}}
+        @media(max-width:480px){.stats-inner{grid-template-columns:1fr 1fr;}.tl-grid{grid-template-columns:1fr 1fr;}}
+    </style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-wrap">
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/><line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="15" r="1.8" fill="currentColor"/></svg></div><div><div class="logo-name">CHRONOS</div><div class="logo-sub">Fine Timepieces</div></div></a>
+    <a href="index.html" class="nav-back">← Back to Store</a>
+</div></nav>
+
+<section class="hero"><div class="hero-inner">
+    <div class="hero-eyebrow">Our Story</div>
+    <h1 class="hero-title">Passion for<br><em>Timekeeping</em></h1>
+    <p class="hero-desc">CHRONOS was founded on a simple belief — that a great watch shouldn't require a bank loan. We bring the world's finest timepieces directly to watch lovers across India, curated by enthusiasts, for enthusiasts.</p>
+</div></section>
+
+<div class="stats-row"><div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">2019</div><div class="stat-lbl">Founded in Mumbai</div></div>
+    <div class="stat-item"><div class="stat-num">12K+</div><div class="stat-lbl">Happy Customers</div></div>
+    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-lbl">Watch Models</div></div>
+    <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-lbl">Average Rating</div></div>
+</div></div>
+
+<main class="main">
+    <!-- Story -->
+    <div class="story-section">
+        <div class="story-img"><img src="https://images.unsplash.com/photo-1511370235399-1802cae1d32f?w=700&q=80" alt="Our Story"></div>
+        <div>
+            <div class="story-eyebrow">How It Started</div>
+            <h2 class="story-title">Born from a Passion for Horology</h2>
+            <p class="story-text">In 2019, three watch enthusiasts in Mumbai decided they were tired of paying import margins and settling for inaccessible luxury. They had one mission: make the world's most beautiful timepieces available to every Indian who appreciated fine craftsmanship.</p>
+            <p class="story-text">Starting with just 12 carefully selected watches in a shared apartment, CHRONOS grew through word-of-mouth, obsessive customer service, and an unwavering commitment to authenticity.</p>
+            <blockquote class="story-quote">"A watch is not just a tool that tells time. It's a daily reminder of your values, your taste, and what you've achieved."</blockquote>
+            <p class="story-text">Today, CHRONOS serves over 12,000 customers across India with 500+ models from luxury Swiss and Japanese makers — all 100% authentic, all beautifully curated.</p>
+        </div>
+    </div>
+
+    <!-- Values -->
+    <div class="values-section">
+        <div class="sec-title">What We Stand For</div>
+        <div class="sec-sub">The principles that guide every decision we make</div>
+        <div class="values-grid">
+            <div class="value-card"><div class="value-icon">🔍</div><div class="value-title">100% Authentic</div><div class="value-desc">Every watch is sourced from authorized distributors. We have zero tolerance for replicas or grey-market goods. Your trust is everything.</div></div>
+            <div class="value-card"><div class="value-icon">💝</div><div class="value-title">Customer First</div><div class="value-desc">Our team consists of watch lovers who genuinely care about matching you with the right timepiece, not just making a sale.</div></div>
+            <div class="value-card"><div class="value-icon">🌍</div><div class="value-title">Accessible Luxury</div><div class="value-desc">We believe great watches should not be exclusive to the ultra-wealthy. Luxury has a democratizing power — we help you access it.</div></div>
+            <div class="value-card"><div class="value-icon">♻️</div><div class="value-title">Sustainability</div><div class="value-desc">We prioritize brands with ethical manufacturing, use recycled packaging, and offer a lifetime service program to reduce watch disposal.</div></div>
+        </div>
+    </div>
+
+    <!-- Team -->
+    <div class="team-section">
+        <div class="sec-title">Meet the Team</div>
+        <div class="sec-sub">Watch enthusiasts who built CHRONOS for people like themselves</div>
+        <div class="team-grid">
+            <div class="team-card"><div class="team-avatar">🧑</div><div class="team-name">Aryan Mehta</div><div class="team-role">Co-Founder & CEO</div><div class="team-bio">15 years in luxury retail. Owns 40+ watches. Believes the perfect watch is the one you reach for every morning.</div></div>
+            <div class="team-card"><div class="team-avatar">👩</div><div class="team-name">Priya Agarwal</div><div class="team-role">Co-Founder & COO</div><div class="team-bio">Ex-supply chain at Titan. Built our direct-from-distributor procurement model that ensures every watch is genuine.</div></div>
+            <div class="team-card"><div class="team-avatar">👨</div><div class="team-name">Rohan Shah</div><div class="team-role">Co-Founder & CTO</div><div class="team-bio">Full-stack engineer turned watch nerd. Built the entire CHRONOS platform and our proprietary inventory system.</div></div>
+            <div class="team-card"><div class="team-avatar">🧑</div><div class="team-name">Vikram Nair</div><div class="team-role">Head of Curation</div><div class="team-bio">Certified watch expert. Personally inspects every new model before it's listed. If he doesn't love it, we don't sell it.</div></div>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-section">
+        <div class="tl-title">Our Journey</div>
+        <div class="tl-sub">From a Mumbai apartment to India's most loved watch store</div>
+        <div class="tl-grid">
+            <div class="tl-item"><div class="tl-year">2019</div><div class="tl-event">Founded in a Mumbai apartment with ₹5 lakh and 12 watches</div></div>
+            <div class="tl-item"><div class="tl-year">2020</div><div class="tl-event">Reached 500 customers. Moved to a proper office in Bandra</div></div>
+            <div class="tl-item"><div class="tl-year">2021</div><div class="tl-event">Launched warranty program and expanded to 200+ models</div></div>
+            <div class="tl-item"><div class="tl-year">2022</div><div class="tl-event">Raised seed funding. Opened first physical showroom in Mumbai</div></div>
+            <div class="tl-item"><div class="tl-year">2023</div><div class="tl-year" style="font-size:1rem">500+ models</div><div class="tl-event">Pan-India delivery. Series A funding. 8,000 customers served</div></div>
+            <div class="tl-item"><div class="tl-year">2025</div><div class="tl-event">12,000+ customers. ₹50Cr+ revenue. India's #1 curated watch store</div></div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2>Ready to Find Your Perfect Watch?</h2>
+        <p>Browse our curated collection of 500+ authentic timepieces. From under ₹1,000 to ultra-luxury — there's a CHRONOS watch for every wrist.</p>
+        <div class="cta-btns">
+            <a href="index.html" class="cta-btn-primary">Shop Collection →</a>
+            <a href="careers.html" class="cta-btn-ghost">Join Our Team</a>
+        </div>
+    </div>
+</main>
+
+<footer class="footer"><p>© 2025 CHRONOS Fine Timepieces &nbsp;|&nbsp;<a href="index.html">Home</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></p></footer>
+</body>
+</html>

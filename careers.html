@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers — CHRONOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--ivory:#f8f5f0;--ivory-2:#f0ece4;--white:#ffffff;--charcoal:#1c1c1e;--mid:#48484a;--light-text:#8e8e93;--gold:#b8860b;--gold-2:#d4a017;--gold-bg:rgba(184,134,11,0.08);--green:#2a9d3d;--border:#ddd8d0;--border-2:#ece8e0;--shadow-sm:0 1px 8px rgba(28,28,30,0.08);--shadow-md:0 4px 24px rgba(28,28,30,0.12);--shadow-gold:0 6px 24px rgba(184,134,11,0.22);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--ivory);color:var(--charcoal);line-height:1.6;}
+        a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:var(--font-b);}img{display:block;max-width:100%;}input,select,textarea{font-family:var(--font-b);}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ivory-2);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+        .navbar{background:var(--white);border-bottom:1px solid var(--border);height:62px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+        .nav-wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+        .logo{display:flex;align-items:center;gap:0.7rem;}.logo-icon{color:var(--gold);}
+        .logo-name{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.2em;}
+        .logo-sub{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--light-text);margin-top:2px;}
+        .nav-back{display:flex;align-items:center;gap:0.5rem;background:var(--ivory);border:1.5px solid var(--border);padding:0.45rem 1rem;border-radius:8px;font-size:0.85rem;font-weight:600;color:var(--mid);transition:all 0.2s ease;}
+        .nav-back:hover{border-color:var(--gold);color:var(--gold);}
+
+        .hero{background:linear-gradient(135deg,#0d1a00 0%,#1a2e05 50%,#0f1f00 100%);color:white;padding:5rem 1.5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(42,157,61,0.12) 0%,transparent 70%);}
+        .hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;animation:fadeUp 0.8s ease;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        .hero-eyebrow{display:inline-block;background:rgba(42,157,61,0.18);border:1px solid rgba(42,157,61,0.35);color:#4ade80;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:99px;margin-bottom:1.25rem;}
+        .hero-title{font-family:var(--font-d);font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:1rem;line-height:1.05;}
+        .hero-title em{color:#4ade80;font-style:italic;}
+        .hero-desc{font-size:1rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.85;margin-bottom:2rem;}
+        .hero-stats{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;}
+        .hs-item{text-align:center;}
+        .hs-num{font-family:var(--font-d);font-size:1.8rem;color:#4ade80;line-height:1;}
+        .hs-lbl{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:3px;}
+
+        .main{max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem 5rem;}
+        .sec-title{font-family:var(--font-d);font-size:1.9rem;margin-bottom:0.4rem;}
+        .sec-sub{font-size:0.875rem;color:var(--light-text);margin-bottom:2rem;}
+
+        /* PERKS */
+        .perks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin-bottom:4rem;}
+        .perk-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all 0.2s ease;}
+        .perk-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-sm);}
+        .perk-icon{font-size:2rem;margin-bottom:0.65rem;}
+        .perk-title{font-size:0.9rem;font-weight:700;color:var(--charcoal);margin-bottom:0.3rem;}
+        .perk-desc{font-size:0.8rem;color:var(--mid);line-height:1.65;}
+
+        /* JOBS */
+        .jobs-section{margin-bottom:4rem;}
+        .dept-label{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--light-text);padding:1rem 0 0.65rem;border-top:1px solid var(--border);margin-top:1.5rem;}
+        .dept-label:first-child{border-top:none;margin-top:0;}
+        .job-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:0.65rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:all 0.2s ease;flex-wrap:wrap;}
+        .job-card:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:var(--shadow-sm);}
+        .job-info{}
+        .job-title{font-family:var(--font-d);font-size:1.1rem;color:var(--charcoal);margin-bottom:0.35rem;}
+        .job-meta{display:flex;gap:0.75rem;flex-wrap:wrap;}
+        .job-tag{font-size:0.72rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:4px;}
+        .job-tag.dept{background:var(--gold-bg);color:var(--gold);}
+        .job-tag.type{background:rgba(42,157,61,0.1);color:var(--green);}
+        .job-tag.loc{background:var(--ivory-2);color:var(--mid);}
+        .apply-btn{background:var(--charcoal);color:white;padding:0.55rem 1.25rem;border-radius:8px;font-size:0.82rem;font-weight:700;transition:all 0.2s ease;white-space:nowrap;flex-shrink:0;}
+        .apply-btn:hover{background:var(--gold);}
+
+        /* APPLICATION FORM */
+        .app-form-section{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:3rem;}
+        .af-head{background:var(--charcoal);padding:2rem 2.5rem;color:white;}
+        .af-head h2{font-family:var(--font-d);font-size:1.6rem;margin-bottom:0.35rem;}
+        .af-head p{font-size:0.875rem;color:rgba(255,255,255,0.5);}
+        .af-body{padding:2rem 2.5rem;}
+        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;}
+        .form-field{display:flex;flex-direction:column;gap:0.35rem;}
+        .form-field label{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);}
+        .form-input,.form-select,.form-textarea{background:var(--ivory);border:1.5px solid var(--border);padding:0.75rem 1rem;border-radius:9px;font-size:0.875rem;color:var(--charcoal);outline:none;transition:border-color 0.2s ease;width:100%;}
+        .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);background:var(--white);}
+        .form-input::placeholder,.form-textarea::placeholder{color:var(--faint);}
+        .form-textarea{resize:vertical;min-height:100px;}
+        .full-col{grid-column:1/-1;}
+        .submit-btn{background:var(--gold);color:white;padding:0.85rem 2.5rem;border-radius:9px;font-size:0.95rem;font-weight:700;margin-top:0.75rem;transition:all 0.2s ease;box-shadow:var(--shadow-gold);}
+        .submit-btn:hover{background:var(--gold-2);transform:translateY(-2px);}
+        .success-msg{display:none;background:rgba(42,157,61,0.08);border:1.5px solid rgba(42,157,61,0.3);border-radius:10px;padding:1.25rem 1.5rem;color:var(--green);font-weight:600;font-size:0.9rem;margin-top:1rem;}
+        .success-msg.show{display:flex;align-items:center;gap:0.6rem;}
+
+        .footer{background:var(--charcoal);color:rgba(255,255,255,0.5);text-align:center;padding:1.5rem;font-size:0.8rem;margin-top:4rem;}
+        .footer a{color:var(--gold-2);margin:0 0.5rem;}
+
+        @media(max-width:768px){.form-grid{grid-template-columns:1fr;}.af-head,.af-body{padding:1.5rem;}.hero-stats{gap:1.5rem;}}
+    </style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-wrap">
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="15" r="9" stroke="currentColor" stroke-width="1"/><line x1="15" y1="7" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="15" y1="15" x2="20" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="15" r="1.8" fill="currentColor"/></svg></div><div><div class="logo-name">CHRONOS</div><div class="logo-sub">Fine Timepieces</div></div></a>
+    <a href="index.html" class="nav-back">← Back to Store</a>
+</div></nav>
+
+<section class="hero"><div class="hero-inner">
+    <div class="hero-eyebrow">We're Hiring</div>
+    <h1 class="hero-title">Build the Future of<br><em>Watch Retail</em></h1>
+    <p class="hero-desc">Join a passionate team that's redefining how India buys luxury watches. We move fast, care deeply, and wear great watches. Come do the best work of your career.</p>
+    <div class="hero-stats">
+        <div class="hs-item"><div class="hs-num">35+</div><div class="hs-lbl">Team Members</div></div>
+        <div class="hs-item"><div class="hs-num">8</div><div class="hs-lbl">Open Roles</div></div>
+        <div class="hs-item"><div class="hs-num">Mumbai</div><div class="hs-lbl">Headquarters</div></div>
+        <div class="hs-item"><div class="hs-num">🌍</div><div class="hs-lbl">Remote Friendly</div></div>
+    </div>
+</div></section>
+
+<main class="main">
+    <!-- Perks -->
+    <div class="sec-title">Why Work at CHRONOS?</div>
+    <div class="sec-sub">More than a job — a community of passionate people</div>
+    <div class="perks-grid">
+        <div class="perk-card"><div class="perk-icon">⌚</div><div class="perk-title">Watch Allowance</div><div class="perk-desc">₹20,000 annual allowance to buy any watch from our collection at cost price.</div></div>
+        <div class="perk-card"><div class="perk-icon">🏠</div><div class="perk-title">Remote Friendly</div><div class="perk-desc">Most roles offer 3 days remote/week. Engineering and design teams are fully remote.</div></div>
+        <div class="perk-card"><div class="perk-icon">📚</div><div class="perk-title">Learning Budget</div><div class="perk-desc">₹30,000/year for courses, certifications, books, and conferences of your choice.</div></div>
+        <div class="perk-card"><div class="perk-icon">🏥</div><div class="perk-title">Full Health Cover</div><div class="perk-desc">Medical, dental, and vision insurance for you and your immediate family.</div></div>
+        <div class="perk-card"><div class="perk-icon">📈</div><div class="perk-title">ESOP Program</div><div class="perk-desc">All full-time employees get equity. When CHRONOS wins, everyone wins.</div></div>
+        <div class="perk-card"><div class="perk-icon">🍕</div><div class="perk-title">Daily Meals</div><div class="perk-desc">Free breakfast and lunch at HQ. Dinner allowance for late working days.</div></div>
+        <div class="perk-card"><div class="perk-icon">✈️</div><div class="perk-title">Annual Retreat</div><div class="perk-desc">All-expenses company retreat every year. Previous locations: Goa, Coorg, Jaipur.</div></div>
+        <div class="perk-card"><div class="perk-icon">🌱</div><div class="perk-title">Growth First</div><div class="perk-desc">We promote internally. 70% of our leadership started as individual contributors.</div></div>
+    </div>
+
+    <!-- Open Roles -->
+    <div class="jobs-section">
+        <div class="sec-title">Open Positions</div>
+        <div class="sec-sub">8 roles currently open across multiple teams</div>
+
+        <div class="dept-label">Engineering</div>
+        <div class="job-card"><div class="job-info"><div class="job-title">Senior Full-Stack Engineer</div><div class="job-meta"><span class="job-tag dept">Engineering</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Remote / Mumbai</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+        <div class="job-card"><div class="job-info"><div class="job-title">iOS Developer (React Native)</div><div class="job-meta"><span class="job-tag dept">Engineering</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Remote</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+
+        <div class="dept-label">Product & Design</div>
+        <div class="job-card"><div class="job-info"><div class="job-title">Senior Product Designer (UI/UX)</div><div class="job-meta"><span class="job-tag dept">Design</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Mumbai / Hybrid</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+        <div class="job-card"><div class="job-info"><div class="job-title">Product Manager — Commerce</div><div class="job-meta"><span class="job-tag dept">Product</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Mumbai</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+
+        <div class="dept-label">Marketing & Content</div>
+        <div class="job-card"><div class="job-info"><div class="job-title">Watch Content Writer & Editor</div><div class="job-meta"><span class="job-tag dept">Marketing</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Remote</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+        <div class="job-card"><div class="job-info"><div class="job-title">Performance Marketing Manager</div><div class="job-meta"><span class="job-tag dept">Marketing</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Mumbai</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+
+        <div class="dept-label">Operations & Customer Success</div>
+        <div class="job-card"><div class="job-info"><div class="job-title">Customer Experience Lead</div><div class="job-meta"><span class="job-tag dept">Operations</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Mumbai</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+        <div class="job-card"><div class="job-info"><div class="job-title">Watch Curation Specialist</div><div class="job-meta"><span class="job-tag dept">Curation</span><span class="job-tag type">Full-time</span><span class="job-tag loc">Mumbai</span></div></div><button class="apply-btn" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button></div>
+    </div>
+
+    <!-- Application Form -->
+    <div class="app-form-section" id="applyForm">
+        <div class="af-head"><h2>Apply to CHRONOS</h2><p>Send us your details and we'll get back to you within 3 business days.</p></div>
+        <div class="af-body">
+            <div class="form-grid">
+                <div class="form-field"><label>Full Name *</label><input type="text" class="form-input" id="appName" placeholder="Your full name"></div>
+                <div class="form-field"><label>Email Address *</label><input type="email" class="form-input" id="appEmail" placeholder="your@email.com"></div>
+                <div class="form-field"><label>Phone Number *</label><input type="tel" class="form-input" id="appPhone" placeholder="+91 XXXXX XXXXX"></div>
+                <div class="form-field"><label>Position Applying For *</label>
+                    <select class="form-select" id="appRole">
+                        <option value="">Select a role</option>
+                        <option>Senior Full-Stack Engineer</option>
+                        <option>iOS Developer (React Native)</option>
+                        <option>Senior Product Designer (UI/UX)</option>
+                        <option>Product Manager — Commerce</option>
+                        <option>Watch Content Writer & Editor</option>
+                        <option>Performance Marketing Manager</option>
+                        <option>Customer Experience Lead</option>
+                        <option>Watch Curation Specialist</option>
+                        <option>Other / Open Application</option>
+                    </select>
+                </div>
+                <div class="form-field"><label>LinkedIn Profile</label><input type="url" class="form-input" placeholder="https://linkedin.com/in/..."></div>
+                <div class="form-field"><label>Portfolio / GitHub</label><input type="url" class="form-input" placeholder="Portfolio or GitHub URL"></div>
+                <div class="form-field full-col"><label>Why CHRONOS? *</label><textarea class="form-textarea" id="appWhy" placeholder="Tell us why you want to join CHRONOS and what you'd bring to the team..."></textarea></div>
+                <div class="form-field full-col"><label>Attach Resume (link)</label><input type="url" class="form-input" placeholder="Google Drive or Dropbox link to your resume"></div>
+            </div>
+            <button class="submit-btn" onclick="submitApplication()">Submit Application →</button>
+            <div class="success-msg" id="appSuccess">✅ Application received! Our team will review it and respond within 3 business days. Good luck!</div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer"><p>© 2025 CHRONOS Fine Timepieces &nbsp;|&nbsp;<a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></p></footer>
+<script>
+function submitApplication(){
+    const name=document.getElementById('appName').value.trim();
+    const email=document.getElementById('appEmail').value.trim();
+    const phone=document.getElementById('appPhone').value.trim();
+    const role=document.getElementById('appRole').value;
+    const why=document.getElementById('appWhy').value.trim();
+    if(!name||!email||!phone||!role||!why){alert('Please fill in all required fields.');return;}
+    const btn=document.querySelector('.submit-btn');
+    btn.textContent='Submitting...';btn.style.opacity='0.7';
+    setTimeout(()=>{btn.textContent='Submit Application →';btn.style.opacity='1';document.getElementById('appSuccess').classList.add('show');},1000);
+}
+</script>
+</body>
+</html>
